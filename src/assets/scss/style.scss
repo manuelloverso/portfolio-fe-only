@@ -1,0 +1,7 @@
+@use "./partials/variables" as *;
+@use "./partials/app-header";
+
+body {
+  background-color: $bg-dark;
+  color: $color-grey;
+}

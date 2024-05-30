@@ -1,8 +1,15 @@
 <script>
+// IMPORTS
 import axios from "axios";
+import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 export default {
   name: "App",
+  components: {
+    AppHeader,
+    AppFooter,
+  },
   data() {
     return {
       projects: [],
@@ -24,14 +31,23 @@ export default {
 };
 </script>
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-4" v-for="project in projects">
-        <div class="card">
-          <h1>{{ project.title }}</h1>
+  <!-- Page Header -->
+  <AppHeader />
+
+  <!-- Page Main -->
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-4" v-for="project in projects">
+          <div class="card project-card slide-fwd-center">
+            <h1>{{ project.title }}</h1>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <!-- Page Footer -->
+  <AppFooter />
 </template>
 <style scoped></style>
