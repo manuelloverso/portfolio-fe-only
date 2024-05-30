@@ -11,7 +11,7 @@ export default {
 </script>
 <template>
   <div class="col-4">
-    <div class="card h-100 project-card slide-fwd-center">
+    <div class="h-100 project-card">
       <div class="card-img">
         <img
           v-if="project.image.startsWith('http')"
@@ -34,7 +34,7 @@ export default {
         </p>
         <p v-if="project.technologies.length != 0">
           <strong>Technologies: </strong>
-          <span class="badge mx-1 bg-dark" v-for="tech in project.technologies">
+          <span class="mx-1" v-for="tech in project.technologies">
             {{ tech.name }}
           </span>
         </p>

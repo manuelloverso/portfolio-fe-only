@@ -17,10 +17,30 @@ export default {
 
       <div class="nav-right-side d-flex">
         <ul class="nav-links">
-          <li><a href="#">About Me</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Skills</a></li>
-          <li><a href="#">Contacts</a></li>
+          <li>
+            <a href="#">
+              About Me
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Projects
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Skills
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Contacts
+              <span></span>
+            </a>
+          </li>
         </ul>
 
         <ul class="socials d-flex">
