@@ -3,12 +3,14 @@
 import axios from "axios";
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
+import ProjectCard from "./components/ProjectCard.vue";
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppFooter,
+    ProjectCard,
   },
   data() {
     return {
@@ -38,11 +40,7 @@ export default {
   <main>
     <div class="container">
       <div class="row">
-        <div class="col-4" v-for="project in projects">
-          <div class="card project-card slide-fwd-center">
-            <h1>{{ project.title }}</h1>
-          </div>
-        </div>
+        <ProjectCard v-for="project in projects" :project="project" />
       </div>
     </div>
   </main>
