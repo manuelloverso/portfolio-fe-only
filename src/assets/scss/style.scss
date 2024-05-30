@@ -2,3 +2,41 @@
 @use "./partials/app-header";
 @use "./partials/common";
 @use "./partials/utilities";
+@use "./partials/home-main";
+
+.home-jumbotron {
+  height: 800px;
+  background-image: url(../img/jumbotron.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+
+  .jumbo-text {
+    padding-top: 7rem;
+    color: $accent;
+    animation: tracking-in-contract-bck-top 3s
+      cubic-bezier(0.215, 0.61, 0.355, 1) both;
+    @keyframes tracking-in-contract-bck-top {
+      0% {
+        letter-spacing: 1em;
+        transform: translateZ(400px) translateY(-300px);
+        opacity: 0;
+      }
+      40% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 5rem;
+    }
+
+    h3 {
+      font-size: 3rem;
+    }
+  }
+}

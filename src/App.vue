@@ -33,11 +33,22 @@ export default {
 };
 </script>
 <template>
-  <!-- Page Header -->
-  <AppHeader />
+  <!-- Home Page Jumbotron -->
+  <div class="home-jumbotron">
+    <!-- Page Header -->
+    <AppHeader />
+
+    <div class="jumbo-text md-container">
+      <h1>I'm Manuel Loverso</h1>
+      <h3 class="mb-5">Jr. Full Stack Web Developer</h3>
+      <button class="btn-gradient">
+        About Me <i class="fa-solid fa-arrow-down"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- Page Main -->
-  <main>
+  <main id="home-main">
     <div class="md-container">
       <div class="row">
         <ProjectCard v-for="project in projects" :project="project" />
