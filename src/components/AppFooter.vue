@@ -7,6 +7,9 @@ export default {
 };
 </script>
 <template>
-  <footer>I am the Footer</footer>
+  <footer id="app-footer">
+    <div class="md-container">
+      <h3>I am The footer</h3>
+    </div>
+  </footer>
 </template>
-<style scoped></style>

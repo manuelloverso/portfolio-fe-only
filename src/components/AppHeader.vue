@@ -9,7 +9,7 @@ export default {
 <template>
   <header id="app-header">
     <!-- Navigation bar -->
-    <nav class="nav-container">
+    <nav class="md-container">
       <!-- Site Logo -->
       <div class="logo">
         <h1>ML</h1>
@@ -25,7 +25,9 @@ export default {
 
         <ul class="socials d-flex">
           <li>
-            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a target="_blank" href="https://github.com/manuelloverso/">
+              <i class="fa-brands fa-github"></i>
+            </a>
           </li>
 
           <li>
