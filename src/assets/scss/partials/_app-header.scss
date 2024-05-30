@@ -1,2 +1,30 @@
+@use "./variables" as *;
+
 #app-header {
+  padding: 1rem 0;
+  nav {
+    display: flex;
+    justify-content: space-between;
+
+    .nav-right-side {
+      font-size: 1.2rem;
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+
+        a {
+          color: $text-grey;
+          text-decoration: none;
+        }
+      }
+
+      .socials {
+        gap: 1rem;
+        li a {
+          color: $text-grey;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }

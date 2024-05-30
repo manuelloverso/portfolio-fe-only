@@ -39,7 +39,7 @@ export default {
   <!-- Page Main -->
   <main>
     <div class="container">
-      <div class="row">
+      <div class="row gy-3">
         <ProjectCard v-for="project in projects" :project="project" />
       </div>
     </div>
