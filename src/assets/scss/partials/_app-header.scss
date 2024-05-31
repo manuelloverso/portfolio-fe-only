@@ -24,6 +24,8 @@
 
     .logo {
       font-size: 2rem;
+      color: $text-grey;
+      text-decoration: none;
       cursor: pointer;
       transition: transform 0.3s linear, color 0.4s ease-in-out;
 

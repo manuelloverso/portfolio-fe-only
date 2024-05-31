@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from "vue-router";
+
 export default {
   name: "AppHeader",
   data() {
@@ -11,23 +13,23 @@ export default {
     <!-- Navigation bar -->
     <nav class="md-container">
       <!-- Site Logo -->
-      <div class="logo">
+      <RouterLink class="logo" :to="{ name: 'home' }">
         <h1>ML</h1>
-      </div>
+      </RouterLink>
 
       <div class="nav-right-side d-flex">
         <ul class="nav-links">
           <li>
-            <a href="#">
+            <a href="#about-me">
               About Me
               <span></span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <RouterLink :to="{ name: 'projects' }">
               Projects
               <span></span>
-            </a>
+            </RouterLink>
           </li>
           <li>
             <a href="#">

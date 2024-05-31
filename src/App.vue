@@ -17,31 +17,12 @@ export default {
 };
 </script>
 <template>
-  <!-- Home Page Jumbotron -->
-  <div class="home-jumbotron">
-    <!-- Page Header -->
-    <AppHeader />
+  <!-- Site Header -->
+  <AppHeader />
 
-    <div class="jumbo-text md-container">
-      <h1>I'm Manuel Loverso</h1>
-      <h3 class="mb-5">Jr. Full Stack Web Developer</h3>
-      <button class="btn-gradient">
-        About Me <i class="fa-solid fa-arrow-down"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Page Main -->
-  <!-- <main id="home-main">
-    <div class="md-container">
-      <div class="row">
-        <ProjectCard v-for="project in projects" :project="project" />
-      </div>
-    </div>
-  </main> -->
   <RouterView />
 
-  <!-- Page Footer -->
+  <!-- Site Footer -->
   <AppFooter />
 </template>
 <style scoped></style>
