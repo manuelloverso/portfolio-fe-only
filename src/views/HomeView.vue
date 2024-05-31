@@ -1,41 +1,21 @@
 <script>
-import axios from "axios";
-import ProjectCard from "../components/ProjectCard.vue";
 import AboutMe from "../components/AboutMe.vue";
+import HomeProjects from "../components/HomeProjects.vue";
 
 export default {
   name: "HomeView",
   components: {
-    ProjectCard,
     AboutMe,
+    HomeProjects,
   },
   data() {
-    return {
-      projects: [],
-    };
-  },
-
-  methods: {
-    callApi(url) {
-      axios.get(url).then((response) => {
-        console.log(response.data.response);
-        this.projects = response.data.response;
-      });
-    },
-  },
-
-  mounted() {
-    this.callApi("http://127.0.0.1:8000/api/projects");
+    return {};
   },
 };
 </script>
 <template>
   <!-- Home Page Jumbotron -->
   <div class="home-jumbotron">
-    <!-- Page Header -->
-    <AppHeader />
-    <p class="md-container">{{ $route.fullPath }}</p>
-
     <div class="md-container">
       <div class="jumbo-text">
         <h1>I'm Manuel Loverso</h1>
@@ -48,15 +28,11 @@ export default {
       </div>
     </div>
   </div>
+
   <!-- Page Main -->
   <main id="home-main">
     <AboutMe />
 
-    <div class="md-container">
-      <div class="row">
-        <ProjectCard v-for="project in projects" :project="project" />
-      </div>
-    </div>
+    <HomeProjects />
   </main>
 </template>
-<style scoped></style>
