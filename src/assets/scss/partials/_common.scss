@@ -1,5 +1,9 @@
 @use "./variables" as *;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $bg-dark;
   color: $text-grey;

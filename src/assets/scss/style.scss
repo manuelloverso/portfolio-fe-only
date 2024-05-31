@@ -5,11 +5,11 @@
 @use "./partials/home-main";
 
 .home-jumbotron {
-  height: 800px;
+  height: 100vh;
   background-image: url(../img/jumbotron.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center;
 
   .jumbo-text {
     padding-top: 7rem;
