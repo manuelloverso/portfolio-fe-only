@@ -1,14 +1,26 @@
 <script>
+import { gsap } from "gsap";
+
 export default {
   name: "AboutMe",
   data() {
     return {};
   },
+
+  /* methods: {
+    triggerAnimation() {
+      gsap.to(".box", { rotation: 360, x: 100, duration: 1 });
+    },
+  },
+
+  mounted() {
+    this.triggerAnimation();
+  }, */
 };
 </script>
 <template>
   <section id="about-me" class="md-container">
-    <h3>About Me</h3>
+    <h2 class="box">About Me</h2>
     <p>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
       repellat optio consequatur consectetur et enim error laudantium similique,
