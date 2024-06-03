@@ -31,7 +31,7 @@ export default {
               <span></span>
             </RouterLink>
           </li>
-          <li>
+          <li id="skills-btn">
             <a href="#">
               Skills
               <span></span>
