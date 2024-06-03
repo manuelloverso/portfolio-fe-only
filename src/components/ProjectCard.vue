@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from "vue-router";
+
 export default {
   name: "ProjectCard",
   props: {
@@ -71,6 +73,7 @@ export default {
             </div>
           </div>
         </template>
+        <RouterLink :to="'projects/' + project.id"> See More </RouterLink>
       </div>
     </div>
   </div>
