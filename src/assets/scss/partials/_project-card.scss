@@ -58,6 +58,8 @@
 
   img {
     margin-bottom: 0.5rem;
+    width: 100%;
+    aspect-ratio: 16 / 8;
   }
 
   h3 {
@@ -73,16 +75,29 @@
   }
 
   .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 1.2rem;
     a {
       text-decoration: none;
+      padding: 10px;
+      border-radius: 13px;
     }
 
     .gh-link {
       background-color: black;
       color: white;
-      padding: 10px;
-      border-radius: 13px;
+    }
+
+    .yt-link {
+      background-color: rgb(191, 43, 43);
+      color: white;
+    }
+
+    .preview-link {
+      background-color: $accent;
+      color: black;
     }
   }
 
@@ -93,9 +108,9 @@
   }
 
   .technology {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: black;
-    padding: 10px 15px;
+    padding: 7px 12px;
     border-radius: 10px;
     background: $bg-tech;
   }

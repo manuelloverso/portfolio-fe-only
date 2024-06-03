@@ -10,18 +10,16 @@ export default {
 };
 </script>
 <template>
-  <div class="col-4">
+  <div v-if="project.is_in_evidence" class="col-4">
     <div class="project-card">
       <!-- Image -->
       <img
         v-if="project.image.startsWith('http')"
-        class="w-100"
         :src="project.image"
         alt=""
       />
       <img
         v-else
-        class="w-100"
         :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
         alt=""
       />
@@ -36,7 +34,6 @@ export default {
         <!-- Links -->
         <div class="links">
           <!-- GH Link -->
-
           <a
             target="_blank"
             class="gh-link"
@@ -44,6 +41,26 @@ export default {
             :href="project.github_link"
           >
             <i class="fa-brands fa-github"></i> Source Code
+          </a>
+
+          <!-- YT Link -->
+          <a
+            target="_blank"
+            class="yt-link"
+            v-if="project.yt_link != null"
+            :href="project.yt_link"
+          >
+            <i class="fa-brands fa-youtube"></i> Showcase
+          </a>
+
+          <!-- Preview Link -->
+          <a
+            target="_blank"
+            class="preview-link"
+            v-if="project.preview_link != null"
+            :href="project.preview_link"
+          >
+            <i class="fa-solid fa-laptop"></i> Live Preview
           </a>
         </div>
         <!-- Project's Technologies -->
