@@ -9,29 +9,53 @@ export default {
   data() {
     return {};
   },
+
+  methods: {
+    cardEffect() {
+      const card = this.$refs.card;
+      const maxRotation = 15; // Maximum rotation angle in degrees
+      if (!card) return;
+      document.addEventListener("mousemove", (e) => {
+        if (e.target.id === "card" || card.contains(e.target)) {
+          const cardWidth = card.clientWidth;
+          const cardHeight = card.clientHeight;
+
+          const cardWidthHalf = cardWidth / 2;
+          const cardHeightHalf = cardHeight / 2;
+
+          const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
+          const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
+
+          // Adjust the scaling factors for more subtle rotation
+          let degX = -(offsetHeight * 0.05); // Reduced from 0.1 to 0.05
+          let degY = offsetWidth * 0.03; // Reduced from 0.05 to 0.03
+
+          // Clamp the values to prevent excessive rotation
+          degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
+          degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
+
+          card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
+        } else {
+          card.style.transform = `rotateX(0) rotateY(0)`;
+        }
+      });
+    },
+  },
+
+  mounted() {
+    this.cardEffect();
+  },
 };
 </script>
 <template>
-  <div v-if="project.is_in_evidence" class="col-4">
-    <div class="project-card">
-      <!-- Image -->
-      <img
-        v-if="project.image.startsWith('http')"
-        :src="project.image"
-        alt=""
-      />
-      <img
-        v-else
-        :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
-        alt=""
-      />
-
-      <!-- Project Data -->
-      <div class="project-data">
-        <!-- Project Title -->
-        <h3>{{ project.title }}</h3>
-        <!-- Project Description -->
-        <p>{{ project.description }}</p>
+  <RouterLink
+    v-if="project.is_in_evidence"
+    class="card-link"
+    :to="'projects/' + project.id"
+  >
+    <div class="project-card" ref="card">
+      <div class="left">
+        <h2>{{ project.title }}</h2>
 
         <!-- Links -->
         <div class="links">
@@ -65,6 +89,7 @@ export default {
             <i class="fa-solid fa-laptop"></i> Live Preview
           </a>
         </div>
+
         <!-- Project's Technologies -->
         <template v-if="project.technologies.length != 0">
           <div class="technologies">
@@ -73,8 +98,21 @@ export default {
             </div>
           </div>
         </template>
-        <RouterLink :to="'projects/' + project.id"> See More </RouterLink>
+      </div>
+
+      <div class="image">
+        <!-- Image -->
+        <img
+          v-if="project.image.startsWith('http')"
+          :src="project.image"
+          alt=""
+        />
+        <img
+          v-else
+          :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
+          alt=""
+        />
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>

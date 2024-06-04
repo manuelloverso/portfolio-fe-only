@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       projects: [],
+      loading: true,
     };
   },
 
@@ -18,6 +19,7 @@ export default {
       axios.get(url).then((response) => {
         console.log(response.data.response);
         this.projects = response.data.response;
+        this.loading = false;
       });
     },
   },
@@ -31,10 +33,12 @@ export default {
   <!-- Projects Section -->
   <section id="home-projects">
     <div class="md-container">
-      <h2>My Projects</h2>
-      <div class="row">
+      <h2 class="text-center">My Projects</h2>
+      <div v-if="!loading" class="cards-container">
         <ProjectCard v-for="project in projects" :project="project" />
       </div>
+
+      <p v-else>Loading...</p>
     </div>
   </section>
 </template>
