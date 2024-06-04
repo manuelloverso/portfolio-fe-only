@@ -30,81 +30,90 @@ export default {
   },
 
   mounted() {
-    /*  this.singleProject(this.url);
-    console.log(this.project); */
-
     this.id = this.$route.params.id;
     this.singleProject(`http://127.0.0.1:8000/api/projects/${this.id}`);
   },
 };
 </script>
 <template>
-  <div class="md-container py-3">
-    <div v-if="loading">Loading...</div>
-    <div v-else>
-      <div class="project-card">
-        <!-- Image -->
-        <img
-          v-if="project.image.startsWith('http')"
-          :src="project.image"
-          alt=""
-        />
-        <img
-          v-else
-          :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
-          alt=""
-        />
+  <section id="project-show">
+    <div class="md-container">
+      <div v-if="loading">Loading...</div>
+      <div v-else>
+        <h1 class="text-center">{{ project.title }}</h1>
 
-        <!-- Project Data -->
-        <div class="project-data">
-          <!-- Project Title -->
-          <h3>{{ project.title }}</h3>
-          <!-- Project Description -->
-          <p>{{ project.description }}</p>
+        <div class="image">
+          <!-- Image -->
+          <img
+            v-if="project.image.startsWith('http')"
+            :src="project.image"
+            alt=""
+          />
+          <img
+            v-else
+            :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
+            alt=""
+          />
+        </div>
 
-          <!-- Links -->
-          <div class="links">
-            <!-- GH Link -->
-            <a
-              target="_blank"
-              class="gh-link"
-              v-if="project.github_link != null"
-              :href="project.github_link"
-            >
-              <i class="fa-brands fa-github"></i> Source Code
-            </a>
+        <div class="details">
+          <div class="left">
+            <div class="description">
+              {{ project.description }}
+            </div>
 
-            <!-- YT Link -->
-            <a
-              target="_blank"
-              class="yt-link"
-              v-if="project.yt_link != null"
-              :href="project.yt_link"
-            >
-              <i class="fa-brands fa-youtube"></i> Showcase
-            </a>
-
-            <!-- Preview Link -->
-            <a
-              target="_blank"
-              class="preview-link"
-              v-if="project.preview_link != null"
-              :href="project.preview_link"
-            >
-              <i class="fa-solid fa-laptop"></i> Live Preview
-            </a>
-          </div>
-          <!-- Project's Technologies -->
-          <template v-if="project.technologies.length != 0">
-            <div class="technologies">
-              <div class="technology" v-for="tech in project.technologies">
-                {{ tech.name }}
+            <div v-if="project.technologies.length != 0" class="technologies">
+              <div class="technologies">
+                <button
+                  class="technology-btn"
+                  v-for="tech in project.technologies"
+                >
+                  {{ tech.name }}
+                </button>
               </div>
             </div>
-          </template>
+          </div>
+
+          <div class="right">
+            <div class="date">
+              {{ project.date }}
+            </div>
+            <!-- Links -->
+            <div class="project-links">
+              <!-- GH Link -->
+              <a
+                target="_blank"
+                class="gh-link"
+                v-if="project.github_link != null"
+                :href="project.github_link"
+              >
+                <i class="fa-brands fa-github"></i> Source Code
+              </a>
+
+              <!-- YT Link -->
+              <a
+                target="_blank"
+                class="yt-link"
+                v-if="project.yt_link != null"
+                :href="project.yt_link"
+              >
+                <i class="fa-brands fa-youtube"></i> Showcase
+              </a>
+
+              <!-- Preview Link -->
+              <a
+                target="_blank"
+                class="preview-link"
+                v-if="project.preview_link != null"
+                :href="project.preview_link"
+              >
+                <i class="fa-solid fa-laptop"></i> Live Preview
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 <style scoped></style>

@@ -58,7 +58,7 @@ export default {
         <h2>{{ project.title }}</h2>
 
         <!-- Links -->
-        <div class="links">
+        <div class="project-links">
           <!-- GH Link -->
           <a
             target="_blank"
@@ -93,7 +93,7 @@ export default {
         <!-- Project's Technologies -->
         <template v-if="project.technologies.length != 0">
           <div class="technologies">
-            <div class="technology" v-for="tech in project.technologies">
+            <div class="technology-btn" v-for="tech in project.technologies">
               {{ tech.name }}
             </div>
           </div>

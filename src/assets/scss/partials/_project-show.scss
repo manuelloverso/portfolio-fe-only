@@ -1,0 +1,48 @@
+@use "./variables" as *;
+
+#project-show {
+  padding-top: 4rem;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .image {
+    margin-bottom: 3rem;
+    img {
+      width: 100%;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      width: 35%;
+
+      .description {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .date {
+        text-align: end;
+      }
+    }
+  }
+}

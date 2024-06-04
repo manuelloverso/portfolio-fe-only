@@ -13,3 +13,45 @@ body {
 ul {
   list-style: none;
 }
+
+.technology-btn {
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid $accent;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: $accent;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: $accent;
+    color: $bg-dark;
+  }
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+  a {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 13px;
+  }
+
+  .gh-link {
+    background-color: black;
+    color: white;
+  }
+
+  .yt-link {
+    background-color: rgb(191, 43, 43);
+    color: white;
+  }
+
+  .preview-link {
+    background-color: $accent;
+    color: black;
+  }
+}
