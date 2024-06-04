@@ -7,6 +7,7 @@ export default {
     return {
       project: null,
       id: null,
+      loading: true,
     };
   },
 
@@ -15,7 +16,12 @@ export default {
       axios
         .get(url)
         .then((response) => {
-          this.project = response.data.response;
+          if (response.data.success) {
+            this.project = response.data.response;
+            this.loading = false;
+          } else {
+            this.$router.push({ name: "NotFound" });
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -34,7 +40,7 @@ export default {
 </script>
 <template>
   <div class="md-container py-3">
-    <div v-if="project === null">Loading...</div>
+    <div v-if="loading">Loading...</div>
     <div v-else>
       <div class="project-card">
         <!-- Image -->
@@ -96,7 +102,6 @@ export default {
               </div>
             </div>
           </template>
-          <RouterLink :to="'projects/' + project.id"> See More </RouterLink>
         </div>
       </div>
     </div>

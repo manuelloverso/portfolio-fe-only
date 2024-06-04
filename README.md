@@ -1,5 +1,6 @@
 # TO-DO :
 
+- Resolve the error in console
 - Add all the technologies with a logo and a color in laravel
 - Rebuild all the project card component
 - Animate the logo
