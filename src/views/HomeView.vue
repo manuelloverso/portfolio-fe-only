@@ -1,12 +1,14 @@
 <script>
 import AboutMe from "../components/AboutMe.vue";
 import HomeProjects from "../components/HomeProjects.vue";
+import MySkills from "../components/MySkills.vue";
 
 export default {
   name: "HomeView",
   components: {
     AboutMe,
     HomeProjects,
+    MySkills,
   },
   data() {
     return {};
@@ -34,5 +36,7 @@ export default {
     <AboutMe />
 
     <HomeProjects />
+
+    <MySkills />
   </main>
 </template>

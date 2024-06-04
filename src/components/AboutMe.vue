@@ -20,7 +20,7 @@ export default {
 </script>
 <template>
   <section id="about-me" class="md-container">
-    <h2 class="box">About Me</h2>
+    <h1>About Me</h1>
     <p>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
       repellat optio consequatur consectetur et enim error laudantium similique,

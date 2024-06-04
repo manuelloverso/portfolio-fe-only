@@ -39,6 +39,10 @@ export default {
       </div>
 
       <p v-else>Loading...</p>
+
+      <RouterLink class="projects-btn" :to="{ name: 'projects' }">
+        <button class="btn-gradient">See All</button>
+      </RouterLink>
     </div>
   </section>
 </template>

@@ -27,10 +27,9 @@ export default {
           const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
 
           // Adjust the scaling factors for more subtle rotation
-          let degX = -(offsetHeight * 0.05); // Reduced from 0.1 to 0.05
-          let degY = offsetWidth * 0.03; // Reduced from 0.05 to 0.03
+          let degX = -(offsetHeight * 0.05);
+          let degY = offsetWidth * 0.03;
 
-          // Clamp the values to prevent excessive rotation
           degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
           degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
 
