@@ -61,7 +61,7 @@ export default {
               toggleActions: "restart reverse none pause",
               start: "top 80%",
               end: "bottom 100px",
-              markers: true,
+              markers: false,
             },
           }
         );

@@ -8,7 +8,7 @@ export default {
       name: "",
       email: "",
       message: "",
-      apiUrl: '"http://127.0.0.1:8000/api/contacts"',
+      apiUrl: "http://127.0.0.1:8000/api/contacts",
       loading: true,
       success: false,
       errors: null,
