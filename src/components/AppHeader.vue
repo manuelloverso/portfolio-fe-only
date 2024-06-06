@@ -38,10 +38,10 @@ export default {
             </a>
           </li>
           <li>
-            <a href="#">
+            <RouterLink :to="{ name: 'contacts' }">
               Contacts
               <span></span>
-            </a>
+            </RouterLink>
           </li>
         </ul>
 

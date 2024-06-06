@@ -1,5 +1,8 @@
 <script>
 import { RouterLink } from "vue-router";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "ProjectCard",
@@ -12,11 +15,13 @@ export default {
 
   methods: {
     cardEffect() {
-      const card = this.$refs.card;
-      const maxRotation = 15; // Maximum rotation angle in degrees
-      if (!card) return;
-      document.addEventListener("mousemove", (e) => {
-        if (e.target.id === "card" || card.contains(e.target)) {
+      const cards = document.querySelectorAll(".project-card");
+
+      const maxRotation = 15;
+      if (cards.length === 0) return;
+
+      cards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
           const cardWidth = card.clientWidth;
           const cardHeight = card.clientHeight;
 
@@ -26,7 +31,6 @@ export default {
           const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
           const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
 
-          // Adjust the scaling factors for more subtle rotation
           let degX = -(offsetHeight * 0.05);
           let degY = offsetWidth * 0.03;
 
@@ -34,15 +38,40 @@ export default {
           degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
 
           card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
-        } else {
+        });
+
+        card.addEventListener("mouseleave", () => {
           card.style.transform = `rotateX(0) rotateY(0)`;
-        }
+        });
+      });
+    },
+
+    cardsScroll() {
+      const cards = document.querySelectorAll(".project-card");
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { autoAlpha: 0, x: -700 },
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 2,
+            scrollTrigger: {
+              trigger: card,
+              toggleActions: "restart reverse none pause",
+              start: "top 80%",
+              end: "bottom 100px",
+              markers: true,
+            },
+          }
+        );
       });
     },
   },
 
   mounted() {
-    this.cardEffect();
+    /* this.cardEffect(); */
+    this.cardsScroll();
   },
 };
 </script>
@@ -52,9 +81,9 @@ export default {
     class="card-link"
     :to="'projects/' + project.id"
   >
-    <div class="project-card" ref="card">
-      <div class="left">
-        <h2>{{ project.title }}</h2>
+    <div class="project-card">
+      <div class="left" ref="cardLeft">
+        <div class="split project-title">{{ project.title }}</div>
 
         <!-- Links -->
         <div class="project-links">
@@ -115,3 +144,4 @@ export default {
     </div>
   </RouterLink>
 </template>
+<style></style>

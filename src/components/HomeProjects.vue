@@ -17,7 +17,6 @@ export default {
   methods: {
     callApi(url) {
       axios.get(url).then((response) => {
-        console.log(response.data.response);
         this.projects = response.data.response;
         this.loading = false;
       });

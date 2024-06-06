@@ -94,12 +94,13 @@ export default {
 </script>
 <template>
   <section id="skills">
-    <h1>My Skills</h1>
+    <h1>Skills</h1>
     <div class="splide skills-slider" aria-label="skills">
       <div class="splide__track">
         <ul class="splide__list align-center">
           <splide-slide v-for="tech in technologies">
             <img
+              class="tech"
               width="100"
               :src="`/public/img/${tech.image}`"
               :alt="tech.tech"

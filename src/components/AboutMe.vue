@@ -7,9 +7,9 @@ export default {
     return {};
   },
 
-  /* methods: {
+  /*  methods: {
     triggerAnimation() {
-      gsap.to(".box", { rotation: 360, x: 100, duration: 1 });
+      gsap.to(".box", { rotation: 360, x: 100, duration: 2 });
     },
   },
 
@@ -20,7 +20,7 @@ export default {
 </script>
 <template>
   <section id="about-me" class="md-container">
-    <h1>About Me</h1>
+    <h1 class="box">About Me</h1>
     <p>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
       repellat optio consequatur consectetur et enim error laudantium similique,
