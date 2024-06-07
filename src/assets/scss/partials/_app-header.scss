@@ -1,11 +1,11 @@
 @use "./variables" as *;
 
 #app-header {
+  transition: background-color 1.5s ease;
   padding: 1rem 0;
   position: sticky;
   z-index: 2;
   top: 0;
-  background-color: $bg-dark;
   nav {
     display: flex;
     justify-content: space-between;
@@ -94,4 +94,8 @@
       }
     }
   }
+}
+
+.bg-header {
+  background-color: rgba(10, 10, 10, 0.889);
 }

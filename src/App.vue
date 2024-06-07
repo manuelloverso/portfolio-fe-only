@@ -26,7 +26,8 @@ export default {
 };
 </script>
 <template>
-  <div id="cursor"></div>
+  <div class="bg-bobble1"></div>
+  <div class="bg-bobble2"></div>
   <!-- Site Header -->
   <AppHeader />
 

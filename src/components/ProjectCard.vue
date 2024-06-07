@@ -91,12 +91,14 @@ export default {
     :to="'projects/' + project.id"
   >
     <div
-      class="project-card"
+      class="project-card card-container"
       data-cursor-text="See more"
       @click="defaultCursor()"
     >
       <div class="left" ref="cardLeft">
-        <div class="split project-title">{{ project.title }}</div>
+        <div class="split project-title">
+          {{ project.title }}
+        </div>
 
         <!-- Links -->
         <div class="project-links">

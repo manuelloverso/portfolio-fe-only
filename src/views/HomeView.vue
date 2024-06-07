@@ -33,7 +33,7 @@ export default {
 
   <!-- Page Main -->
   <main id="home-main">
-    <AboutMe />
+    <!--  <AboutMe /> -->
 
     <HomeProjects />
 

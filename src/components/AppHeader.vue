@@ -6,6 +6,19 @@ export default {
   data() {
     return {};
   },
+
+  mounted() {
+    const header = document.getElementById("app-header");
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY > 80) {
+        header.classList.add("bg-header");
+      }
+
+      if (window.scrollY < 100 && header.classList.contains("bg-header")) {
+        header.classList.remove("bg-header");
+      }
+    });
+  },
 };
 </script>
 <template>
