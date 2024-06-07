@@ -1,6 +1,6 @@
 <script>
 import { RouterLink } from "vue-router";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,32 +46,41 @@ export default {
       });
     },
 
-    cardsScroll() {
+    cardsAnimation() {
       const cards = document.querySelectorAll(".project-card");
       cards.forEach((card) => {
         gsap.fromTo(
           card,
-          { autoAlpha: 0, x: -700 },
+          { autoAlpha: 0, scale: 0.5 },
           {
             autoAlpha: 1,
-            x: 0,
-            duration: 2,
+            scale: 1,
+            duration: 1,
             scrollTrigger: {
               trigger: card,
-              toggleActions: "restart reverse none pause",
+              toggleActions: "play none none reverse",
               start: "top 80%",
-              end: "bottom 100px",
               markers: false,
             },
           }
         );
       });
     },
+
+    defaultCursor() {
+      const cursor = document.querySelector(".mf-cursor");
+      cursor.classList.remove("-text", "-pointer");
+    },
+
+    biggerCursor() {
+      const cursor = document.querySelector(".mf-cursor");
+      cursor.classList.add("-text");
+    },
   },
 
   mounted() {
-    /* this.cardEffect(); */
-    this.cardsScroll();
+    this.cardEffect();
+    this.cardsAnimation();
   },
 };
 </script>
@@ -81,7 +90,11 @@ export default {
     class="card-link"
     :to="'projects/' + project.id"
   >
-    <div class="project-card">
+    <div
+      class="project-card"
+      data-cursor-text="See more"
+      @click="defaultCursor()"
+    >
       <div class="left" ref="cardLeft">
         <div class="split project-title">{{ project.title }}</div>
 
@@ -93,6 +106,8 @@ export default {
             class="gh-link"
             v-if="project.github_link != null"
             :href="project.github_link"
+            @mouseenter="defaultCursor()"
+            @mouseleave="biggerCursor()"
           >
             <i class="fa-brands fa-github"></i> Source Code
           </a>
@@ -103,6 +118,8 @@ export default {
             class="yt-link"
             v-if="project.yt_link != null"
             :href="project.yt_link"
+            @mouseenter="defaultCursor()"
+            @mouseleave="biggerCursor()"
           >
             <i class="fa-brands fa-youtube"></i> Showcase
           </a>
@@ -113,6 +130,8 @@ export default {
             class="preview-link"
             v-if="project.preview_link != null"
             :href="project.preview_link"
+            @mouseenter="defaultCursor()"
+            @mouseleave="biggerCursor()"
           >
             <i class="fa-solid fa-laptop"></i> Live Preview
           </a>
@@ -121,7 +140,12 @@ export default {
         <!-- Project's Technologies -->
         <template v-if="project.technologies.length != 0">
           <div class="technologies">
-            <div class="technology-btn" v-for="tech in project.technologies">
+            <div
+              class="technology-btn"
+              v-for="tech in project.technologies"
+              @mouseenter="defaultCursor()"
+              @mouseleave="biggerCursor()"
+            >
               {{ tech.name }}
             </div>
           </div>

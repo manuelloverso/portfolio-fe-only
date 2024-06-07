@@ -9,6 +9,7 @@
 @use "./partials/project-card";
 @use "./partials/project-show";
 @use "./partials/skills";
+@import "/node_modules/mouse-follower/src/scss/index.scss";
 
 /* width */
 ::-webkit-scrollbar {
