@@ -2,6 +2,9 @@
 import { SplideSlide } from "@splidejs/vue-splide";
 import Splide from "@splidejs/splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "MySkills",
@@ -86,15 +89,32 @@ export default {
 
       splide.mount({ AutoScroll });
     },
+
+    animateHeading() {
+      const text = document.querySelector(".skills-heading");
+
+      gsap.from(text, {
+        x: -1000,
+        scale: 0.1,
+        scrollTrigger: {
+          trigger: text,
+          start: "top 85%",
+          end: "bottom 20%",
+          scrub: true,
+          pin: true,
+        },
+      });
+    },
   },
   mounted() {
     this.slider();
+    this.animateHeading();
   },
 };
 </script>
 <template>
   <section id="skills">
-    <h1>Skills</h1>
+    <h1 class="md-container skills-heading">Skills</h1>
     <div class="splide skills-slider" aria-label="skills">
       <div class="splide__track">
         <ul class="splide__list align-center">
