@@ -1,7 +1,7 @@
 @use "./variables" as *;
 
 .home-jumbotron {
-  height: 800px;
+  height: 700px;
 
   .md-container {
     position: relative;
@@ -11,11 +11,21 @@
     padding-top: 7rem;
     color: $accent;
     h1 {
-      font-size: 5rem;
+      font-size: 5.5rem;
+      line-height: 0.8;
+      padding-top: 20px;
+      overflow: hidden;
+      font-weight: 300;
+      margin-bottom: 30px;
     }
 
     h3 {
       font-size: 3rem;
+      font-weight: 300;
+
+      line-height: 0.9;
+      padding-top: 20px;
+      overflow: hidden;
     }
   }
 }

@@ -28,7 +28,6 @@ export default {
             start: "bottom 50%",
             end: "bottom 20%",
             scrub: 2,
-            markers: true,
           },
         }
       );
@@ -45,7 +44,6 @@ export default {
           end: "top 20%",
           scrub: true,
           pin: true,
-          markers: false,
         },
       });
     },
