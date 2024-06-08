@@ -22,6 +22,17 @@ export default {
       speed: 0.5,
       skewingText: 0,
     });
+
+    const lenis = new Lenis();
+
+    lenis.on("scroll", (e) => {});
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
   },
 };
 </script>

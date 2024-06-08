@@ -13,7 +13,6 @@
 
 @import "/node_modules/mouse-follower/src/scss/index.scss";
 
-/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -25,4 +24,25 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }

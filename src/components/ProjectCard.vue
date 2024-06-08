@@ -87,16 +87,16 @@ export default {
 <template>
   <RouterLink
     v-if="project.is_in_evidence"
-    class="card-link"
+    class="card-link card-container"
     :to="'projects/' + project.id"
   >
     <div
-      class="project-card card-container"
+      class="project-card"
       data-cursor-text="See more"
       @click="defaultCursor()"
     >
       <div class="left" ref="cardLeft">
-        <div class="split project-title">
+        <div class="project-title">
           {{ project.title }}
         </div>
 

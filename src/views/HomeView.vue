@@ -2,6 +2,9 @@
 import AboutMe from "../components/AboutMe.vue";
 import HomeProjects from "../components/HomeProjects.vue";
 import MySkills from "../components/MySkills.vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "HomeView",
@@ -33,7 +36,7 @@ export default {
 
   <!-- Page Main -->
   <main id="home-main">
-    <!--  <AboutMe /> -->
+    <AboutMe />
 
     <HomeProjects />
 
