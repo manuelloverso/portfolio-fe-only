@@ -41,9 +41,7 @@ export default {
     },
   },
 
-  mounted() {
-    /* this.animateJumbo(); */
-  },
+  mounted() {},
 };
 </script>
 <template>

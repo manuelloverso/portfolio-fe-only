@@ -85,11 +85,7 @@ export default {
 };
 </script>
 <template>
-  <RouterLink
-    v-if="project.is_in_evidence"
-    class="card-link card-container"
-    :to="'projects/' + project.id"
-  >
+  <RouterLink class="card-link card-container" :to="'projects/' + project.id">
     <div
       class="project-card"
       data-cursor-text="See more"

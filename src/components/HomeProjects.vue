@@ -19,10 +19,15 @@ export default {
 
   methods: {
     callApi(url) {
-      axios.get(url).then((response) => {
-        this.projects = response.data.response;
-        this.loading = false;
-      });
+      axios
+        .get(url)
+        .then((response) => {
+          this.projects = response.data.response;
+          this.loading = false;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     animateHeading() {
@@ -54,7 +59,9 @@ export default {
     <div class="md-container">
       <h2 class="text-center projects-heading">My Projects</h2>
       <div v-if="!loading" class="cards-container">
-        <ProjectCard v-for="project in projects" :project="project" />
+        <template v-for="project in projects" :key="project.id">
+          <ProjectCard v-if="project.is_in_evidence" :project="project" />
+        </template>
       </div>
 
       <p v-else>Loading...</p>
