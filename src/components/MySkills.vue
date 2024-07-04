@@ -95,7 +95,7 @@ export default {
 
       gsap.from(text, {
         x: -1000,
-        scale: 0.1,
+        scale: 0,
         scrollTrigger: {
           trigger: text,
           start: "top 85%",

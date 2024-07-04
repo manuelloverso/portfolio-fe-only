@@ -34,7 +34,7 @@ export default {
             trigger: text.chars,
             start: "top 80%",
             end: "bottom 20%",
-            toggleActions: "play reverse play pause",
+            toggleActions: "play reverse play restart",
           },
         });
       });
@@ -42,7 +42,7 @@ export default {
   },
 
   mounted() {
-    this.animateJumbo();
+    /* this.animateJumbo(); */
   },
 };
 </script>
@@ -50,7 +50,7 @@ export default {
   <!-- Home Page Jumbotron -->
   <div class="home-jumbotron">
     <div class="md-container">
-      <div class="jumbo-text">
+      <div class="jumbo-text tracking-in-contract-bck-top">
         <h1 class="split-jumbo head-jumbo">I'm Manuel Loverso</h1>
         <h3 class="mb-5 split-jumbo">Jr. Full Stack Web Developer</h3>
         <a href="#about-me">
@@ -71,3 +71,45 @@ export default {
     <MySkills />
   </main>
 </template>
+
+<style scoped>
+.tracking-in-contract-bck-top {
+  -webkit-animation: tracking-in-contract-bck-top 3s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: tracking-in-contract-bck-top 3s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@-webkit-keyframes tracking-in-contract-bck-top {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(-300px);
+    transform: translateZ(400px) translateY(-300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-contract-bck-top {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(-300px);
+    transform: translateZ(400px) translateY(-300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+</style>
