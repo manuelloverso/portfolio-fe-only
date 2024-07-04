@@ -1,8 +1,12 @@
 <script>
 import axios from "axios";
+import AppLoader from "../components/AppLoader.vue";
 
 export default {
   name: "ProjectShow",
+  components: {
+    AppLoader,
+  },
   data() {
     return {
       project: null,
@@ -38,7 +42,9 @@ export default {
 <template>
   <section id="project-show">
     <div class="md-container">
-      <div v-if="loading">Loading...</div>
+      <template v-if="loading">
+        <AppLoader />
+      </template>
       <div v-else>
         <h1 class="text-center tracking-in-expand-fwd-top">
           {{ project.title }}
