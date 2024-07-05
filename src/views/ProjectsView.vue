@@ -1,11 +1,15 @@
 <script>
 import axios from "axios";
 import ProjectCard from "../components/ProjectCard.vue";
+import Scroller from "../components/Scroller.vue";
+import AppLoader from "../components/AppLoader.vue";
 
 export default {
   name: "ProjectsView",
   components: {
     ProjectCard,
+    Scroller,
+    AppLoader,
   },
   data() {
     return {
@@ -44,6 +48,7 @@ export default {
             Una panoramica dei progetti realizzati nell'ultimo periodo
           </h2>
         </div>
+        <Scroller />
       </div>
 
       <!-- Projects -->
@@ -53,7 +58,9 @@ export default {
         </template>
       </div>
 
-      <p v-else>Loading...</p>
+      <template v-else>
+        <AppLoader />
+      </template>
     </div>
   </main>
 </template>
@@ -145,15 +152,17 @@ export default {
 .page-header {
   height: calc(100vh - 150px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 400px;
+  margin-bottom: 300px;
 
   .text-container {
     color: rgb(197, 205, 209);
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 70px;
   }
 
   & h1 {

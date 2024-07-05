@@ -33,26 +33,14 @@ export default {
       <div class="nav-right-side d-flex">
         <ul class="nav-links">
           <li>
-            <a href="#about-me">
-              About Me
-              <span></span>
-            </a>
-          </li>
-          <li>
             <RouterLink :to="{ name: 'projects' }">
-              Projects
+              Progetti
               <span></span>
             </RouterLink>
           </li>
-          <li id="skills-btn">
-            <a href="#">
-              Skills
-              <span></span>
-            </a>
-          </li>
           <li>
             <RouterLink :to="{ name: 'contacts' }">
-              Contacts
+              Contattami
               <span></span>
             </RouterLink>
           </li>
@@ -66,7 +54,11 @@ export default {
           </li>
 
           <li>
-            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a
+              target="_blank"
+              href="https://linkedin.com/in/manuel-loverso-30582b282"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
           </li>
         </ul>
       </div>

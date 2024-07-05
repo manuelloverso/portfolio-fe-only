@@ -45,49 +45,51 @@ export default {
 };
 </script>
 <template>
-  <div class="md-container">
-    <h1>Contact Me</h1>
+  <main>
+    <div class="md-container">
+      <h1>Contact Me</h1>
 
-    <form @submit.prevent="sendMessage()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          class="form-control"
-          placeholder=""
-          aria-describedby="helpId"
-          v-model="name"
-        />
-      </div>
+      <form @submit.prevent="sendMessage()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            v-model="name"
+          />
+        </div>
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          id="email"
-          aria-describedby="emailHelpId"
-          placeholder="abc@mail.com"
-          v-model="email"
-        />
-      </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelpId"
+            placeholder="abc@mail.com"
+            v-model="email"
+          />
+        </div>
 
-      <div class="mb-3">
-        <label for="message" class="form-label"></label>
-        <textarea
-          class="form-control"
-          name="message"
-          id="message"
-          rows="3"
-          v-model="message"
-        ></textarea>
-      </div>
+        <div class="mb-3">
+          <label for="message" class="form-label"></label>
+          <textarea
+            class="form-control"
+            name="message"
+            id="message"
+            rows="3"
+            v-model="message"
+          ></textarea>
+        </div>
 
-      <button type="submit">Send</button>
-    </form>
-  </div>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </main>
 </template>
 <style scoped></style>

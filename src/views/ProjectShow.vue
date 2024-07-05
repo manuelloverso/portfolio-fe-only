@@ -40,13 +40,13 @@ export default {
 };
 </script>
 <template>
-  <section id="project-show">
+  <main id="project-show">
     <div class="md-container">
       <template v-if="loading">
         <AppLoader />
       </template>
       <div v-else>
-        <h1 class="text-center tracking-in-expand-fwd-top">
+        <h1 class="project-title text-center tracking-in-expand-fwd-top">
           {{ project.title }}
         </h1>
 
@@ -124,7 +124,7 @@ export default {
         </div>
       </div>
     </div>
-  </section>
+  </main>
 </template>
 <style scoped>
 /* Project Image */

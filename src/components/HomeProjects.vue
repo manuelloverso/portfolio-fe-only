@@ -3,12 +3,14 @@ import axios from "axios";
 import ProjectCard from "./ProjectCard.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import AppLoader from "./AppLoader.vue";
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "HomeProjects",
   components: {
     ProjectCard,
+    AppLoader,
   },
   data() {
     return {
@@ -64,7 +66,9 @@ export default {
         </template>
       </div>
 
-      <p v-else>Loading...</p>
+      <template v-else>
+        <AppLoader />
+      </template>
 
       <RouterLink class="projects-btn" :to="{ name: 'projects' }">
         <button class="btn-gradient">See All</button>

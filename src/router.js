@@ -15,6 +15,11 @@ const router = createRouter({
     { path: "/contacts", name: "contacts", component: ContactsView },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
   ],
+
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 };
+  },
 });
 
 export default router;

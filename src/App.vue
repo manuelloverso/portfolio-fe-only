@@ -42,12 +42,29 @@ export default {
   <!-- Site Header -->
   <AppHeader />
 
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <transition name="slide-fade" mode="out-in">
+      <component :is="Component" :key="$route.path" />
+    </transition>
+  </RouterView>
 
   <!-- Site Footer -->
   <AppFooter />
 </template>
 <style>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
 .mf-cursor::before {
   background: rgb(197, 205, 209);
   transform: scale(0.4);

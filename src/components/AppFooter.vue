@@ -13,3 +13,9 @@ export default {
     </div>
   </footer>
 </template>
+<style scoped>
+#app-footer {
+  height: 400px;
+  background-color: rgba(10, 10, 10, 0.545);
+}
+</style>
