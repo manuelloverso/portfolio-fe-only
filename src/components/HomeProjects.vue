@@ -59,7 +59,7 @@ export default {
   <!-- Projects Section -->
   <section id="home-projects">
     <div class="md-container">
-      <h2 class="text-center projects-heading">My Projects</h2>
+      <h2 class="text-center projects-heading">I miei progetti</h2>
       <div v-if="!loading" class="cards-container">
         <template v-for="project in projects" :key="project.id">
           <ProjectCard v-if="project.is_in_evidence" :project="project" />

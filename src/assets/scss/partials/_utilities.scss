@@ -1,20 +1,5 @@
 @use "./variables" as *;
 /* BUTTONS */
-.btn-accent {
-  padding: 10px;
-  background: transparent;
-  color: $bg-bobbles;
-  border: 1px solid $bg-bobbles;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-}
-
-.btn-accent:hover {
-  color: $bg-dark;
-  background-color: $bg-bobbles;
-  box-shadow: $bg-bobbles 0 0 20px 10px;
-  border-color: $bg-bobbles;
-}
 
 .btn-gradient {
   font-size: 1rem;

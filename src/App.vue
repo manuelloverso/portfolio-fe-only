@@ -37,8 +37,8 @@ export default {
 };
 </script>
 <template>
-  <div class="bg-bobble1"></div>
-  <div class="bg-bobble2"></div>
+  <div ref="bg-1" class="bg-bobble1 bg-home"></div>
+  <div ref="bg-2" class="bg-bobble2 bg-home"></div>
   <!-- Site Header -->
   <AppHeader />
 
@@ -52,6 +52,11 @@ export default {
   <AppFooter />
 </template>
 <style>
+/* background */
+.bg-home {
+  background-color: rgb(7, 27, 139);
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
