@@ -18,7 +18,19 @@ export default {
     return {};
   },
 
-  methods: {},
+  methods: {
+    handleBackground() {
+      if (this.$route.name == "contacts") {
+        return "bg-contacts";
+      } else if (
+        this.$route.name == "projects" ||
+        this.$route.name == "ProjectShow"
+      ) {
+        return "bg-projects";
+      }
+    },
+  },
+
   mounted() {
     /* scroll */
     lenis.on("scroll", (e) => {});
@@ -36,8 +48,8 @@ export default {
   <!-- custom cursor -->
   <CustomCursor />
 
-  <div ref="bg-1" class="bg-bobble1 bg-home"></div>
-  <div ref="bg-2" class="bg-bobble2 bg-home"></div>
+  <div ref="bg-1" class="bg-bobble1 bobble" :class="handleBackground()"></div>
+  <div ref="bg-2" class="bg-bobble2 bobble" :class="handleBackground()"></div>
   <!-- Site Header -->
   <AppHeader />
 
@@ -52,8 +64,13 @@ export default {
 </template>
 <style>
 /* background */
-.bg-home {
-  background-color: rgb(7, 27, 139);
+
+.bg-projects {
+  background-color: rgb(186, 22, 22) !important;
+}
+
+.bg-contacts {
+  background-color: rgb(6, 79, 10) !important;
 }
 
 .slide-fade-enter-active {

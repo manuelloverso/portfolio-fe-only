@@ -112,7 +112,9 @@ export default {
               ></textarea>
             </div>
 
-            <div class="btn"><button type="submit">Invia</button></div>
+            <div class="btn contacts-color">
+              <button type="submit">Invia</button>
+            </div>
           </form>
         </div>
       </div>

@@ -12,7 +12,7 @@ export default {
       <h2>404</h2>
       <h4>Spiacente, quello che stai cercando non esiste</h4>
       <RouterLink :to="{ name: 'home' }">
-        <button class="btn-gradient">Torna alla Home</button>
+        <div class="btn"><button>Torna alla home</button></div>
       </RouterLink>
     </div>
   </main>
@@ -26,7 +26,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 86vh;
 
     & h2 {
       font-size: 5rem;

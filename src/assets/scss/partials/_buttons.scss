@@ -46,6 +46,13 @@
     0 0 30px rgb(7, 27, 139), 0 0 60px rgb(7, 27, 139);
 }
 
+.contacts-color.btn::before,
+.contacts-color.btn::after {
+  background: rgb(6, 79, 10);
+  box-shadow: 0 0 5px rgb(6, 79, 10), 0 0 15px rgb(6, 79, 10),
+    0 0 30px rgb(6, 79, 10), 0 0 60px rgb(6, 79, 10);
+}
+
 .btn button::before {
   content: "";
   position: absolute;
@@ -69,12 +76,11 @@
   bottom: -5px;
   width: 30px;
   height: 10px;
-  /* background: #f00; */
   border-radius: 10px;
   transition: 0.5s;
   transition-delay: 0.5;
 }
-.btn:hover::before /*lightup button*/ {
+.btn:hover::before {
   bottom: 0;
   height: 50%;
   width: 80%;
@@ -89,12 +95,11 @@
   top: -5px;
   width: 30px;
   height: 10px;
-  /* background: #f00; */
   border-radius: 10px;
   transition: 0.5s;
   transition-delay: 0.5;
 }
-.btn:hover::after /*lightup button*/ {
+.btn:hover::after {
   top: 0;
   height: 50%;
   width: 80%;
