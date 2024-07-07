@@ -33,7 +33,10 @@ export default {
   },
 
   mounted() {
-    this.callApi("http://127.0.0.1:8000/api/projects");
+    /* delay the axios call not to make interfere with the hero animations */
+    setTimeout(() => {
+      this.callApi("http://127.0.0.1:8000/api/projects");
+    }, 2000);
   },
 };
 </script>

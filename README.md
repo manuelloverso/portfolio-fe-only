@@ -1,5 +1,6 @@
 # TO-DO :
 
+- problemi relativi allo scroll potrebbero essere dovuti al cambiamento del background
 - do the ajax call for projects in the store.js
 - handle potential api fails
 - add favicon

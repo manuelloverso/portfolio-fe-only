@@ -3,7 +3,6 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import ProjectCard from "./components/ProjectCard.vue";
-import gsap from "gsap";
 import lenis from "./lenis";
 import CustomCursor from "./components/CustomCursor.vue";
 export default {
@@ -15,19 +14,33 @@ export default {
     CustomCursor,
   },
   data() {
-    return {};
+    return {
+      backgroundUpdate: "",
+    };
+  },
+
+  watch: {
+    $route: {
+      handler: "handleBackground",
+      immediate: true,
+    },
   },
 
   methods: {
     handleBackground() {
-      if (this.$route.name == "contacts") {
-        return "bg-contacts";
-      } else if (
-        this.$route.name == "projects" ||
-        this.$route.name == "ProjectShow"
-      ) {
-        return "bg-projects";
-      }
+      setTimeout(() => {
+        if (this.$route.name == "contacts") {
+          console.log("im in");
+          this.backgroundUpdate = "bg-contacts";
+        } else if (
+          this.$route.name == "projects" ||
+          this.$route.name == "ProjectShow"
+        ) {
+          this.backgroundUpdate = "bg-projects";
+        } else {
+          this.backgroundUpdate = "";
+        }
+      }, 1000);
     },
   },
 
@@ -48,8 +61,8 @@ export default {
   <!-- custom cursor -->
   <CustomCursor />
 
-  <div ref="bg-1" class="bg-bobble1 bobble" :class="handleBackground()"></div>
-  <div ref="bg-2" class="bg-bobble2 bobble" :class="handleBackground()"></div>
+  <div ref="bg-1" class="bg-bobble1 bobble" :class="backgroundUpdate"></div>
+  <div ref="bg-2" class="bg-bobble2 bobble" :class="backgroundUpdate"></div>
   <!-- Site Header -->
   <AppHeader />
 
