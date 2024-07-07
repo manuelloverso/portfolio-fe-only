@@ -76,9 +76,11 @@ export default {
         <AppLoader />
       </template>
 
-      <RouterLink class="projects-btn" :to="{ name: 'projects' }">
-        <button class="btn-gradient">See All</button>
-      </RouterLink>
+      <div class="projects-btn">
+        <RouterLink :to="{ name: 'projects' }">
+          <div class="btn"><button>Vedi di più</button></div>
+        </RouterLink>
+      </div>
     </div>
   </section>
 </template>

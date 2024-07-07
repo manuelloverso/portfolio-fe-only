@@ -112,7 +112,7 @@ export default {
               ></textarea>
             </div>
 
-            <button class="btn-gradient" type="submit">Invia</button>
+            <div class="btn"><button type="submit">Invia</button></div>
           </form>
         </div>
       </div>

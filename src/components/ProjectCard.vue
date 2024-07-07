@@ -163,6 +163,7 @@ export default {
         <!-- Image -->
         <img
           @mouseenter="cardCursorLeave()"
+          @mouseleave="cardCursor()"
           class="project-img"
           v-if="project.image.startsWith('http')"
           :src="project.image"
