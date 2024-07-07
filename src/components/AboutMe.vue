@@ -24,10 +24,10 @@ export default {
           opacity: 1,
           stagger: 1,
           scrollTrigger: {
-            trigger: "p",
+            trigger: ".about-paragraph",
             start: "bottom 50%",
             end: "bottom 20%",
-            scrub: 2,
+            scrub: 3,
           },
         }
       );
@@ -59,7 +59,7 @@ export default {
   <div class="md-container">
     <section id="about-me">
       <h1 class="split heading">About Me</h1>
-      <p class="split">
+      <p class="split about-paragraph">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
         repellat optio consequatur consectetur et enim error laudantium
         similique, minus iure assumenda corporis iusto, exercitationem dolorum.

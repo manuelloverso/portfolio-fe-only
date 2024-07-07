@@ -83,7 +83,7 @@ export default {
   transform: translate(-50%, -50%);
   z-index: 100;
   mix-blend-mode: difference;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .card-text {

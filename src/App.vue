@@ -3,10 +3,8 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import ProjectCard from "./components/ProjectCard.vue";
-import MouseFollower from "mouse-follower";
 import gsap from "gsap";
 import CustomCursor from "./components/CustomCursor.vue";
-MouseFollower.registerGSAP(gsap);
 export default {
   name: "App",
   components: {
