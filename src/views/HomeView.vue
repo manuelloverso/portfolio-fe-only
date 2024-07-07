@@ -2,10 +2,7 @@
 import AboutMe from "../components/AboutMe.vue";
 import HomeProjects from "../components/HomeProjects.vue";
 import MySkills from "../components/MySkills.vue";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import Scroller from "../components/Scroller.vue";
-gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "HomeView",

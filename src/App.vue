@@ -4,6 +4,7 @@ import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import ProjectCard from "./components/ProjectCard.vue";
 import gsap from "gsap";
+import lenis from "./lenis";
 import CustomCursor from "./components/CustomCursor.vue";
 export default {
   name: "App",
@@ -20,8 +21,6 @@ export default {
   methods: {},
   mounted() {
     /* scroll */
-    const lenis = new Lenis();
-
     lenis.on("scroll", (e) => {});
 
     function raf(time) {

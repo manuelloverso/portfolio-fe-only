@@ -52,6 +52,15 @@ export default {
   mounted() {
     this.animateParagraph();
     this.animateHeading();
+    ScrollTrigger.refresh();
+  },
+
+  beforeDestroy() {
+    this.animateParagraph.scrollTrigger.kill();
+    this.animateParagraph.kill();
+
+    this.animateHeading.scrollTrigger.kill();
+    this.animateHeading.kill();
   },
 };
 </script>

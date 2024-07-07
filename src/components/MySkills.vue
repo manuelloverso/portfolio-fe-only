@@ -106,9 +106,16 @@ export default {
       });
     },
   },
+
   mounted() {
-    this.slider();
     this.animateHeading();
+    ScrollTrigger.refresh();
+    this.slider();
+  },
+
+  beforeDestroy() {
+    this.animateHeading.scrollTrigger.kill();
+    this.animateHeading.kill();
   },
 };
 </script>

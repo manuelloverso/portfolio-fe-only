@@ -52,6 +52,12 @@ export default {
   mounted() {
     this.callApi("http://127.0.0.1:8000/api/projects");
     this.animateHeading();
+    ScrollTrigger.refresh();
+  },
+
+  beforeDestroy() {
+    this.animateHeading.scrollTrigger.kill();
+    this.animateHeading.kill();
   },
 };
 </script>

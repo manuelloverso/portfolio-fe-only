@@ -5,6 +5,7 @@ import ProjectsView from "./views/ProjectsView.vue";
 import ProjectShow from "./views/ProjectShow.vue";
 import ContactsView from "./views/ContactsView.vue";
 import NotFound from "./views/NotFound.vue";
+import lenis from "./lenis";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,9 +17,13 @@ const router = createRouter({
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
   ],
 
-  scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
-    return { top: 0 };
+  scrollBehavior() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        lenis.scrollTo(0, 0);
+        resolve({ top: 0 });
+      }, 0);
+    });
   },
 });
 

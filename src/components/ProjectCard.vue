@@ -94,6 +94,12 @@ export default {
   mounted() {
     this.cardEffect();
     this.cardsAnimation();
+    ScrollTrigger.refresh();
+  },
+
+  beforeDestroy() {
+    this.cardsAnimation.scrollTrigger.kill();
+    this.cardsAnimation.kill();
   },
 };
 </script>
