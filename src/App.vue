@@ -30,7 +30,6 @@ export default {
     handleBackground() {
       setTimeout(() => {
         if (this.$route.name == "contacts") {
-          console.log("im in");
           this.backgroundUpdate = "bg-contacts";
         } else if (
           this.$route.name == "projects" ||

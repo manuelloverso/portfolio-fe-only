@@ -67,7 +67,7 @@ export default {
 <template>
   <div class="md-container">
     <section id="about-me">
-      <h1 class="split heading">About Me</h1>
+      <h1 class="split heading">Chi sono</h1>
       <p class="split about-paragraph">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
         repellat optio consequatur consectetur et enim error laudantium

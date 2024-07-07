@@ -1,26 +1,32 @@
 <script>
 import axios from "axios";
 import Scroller from "../components/Scroller.vue";
+import AppLoader from "../components/AppLoader.vue";
 
 export default {
   name: "ContactsView",
   components: {
     Scroller,
+    AppLoader,
   },
   data() {
     return {
       name: "",
       email: "",
       message: "",
+      failedCall: false,
       apiUrl: "http://127.0.0.1:8000/api/contacts",
-      loading: true,
+      loading: false,
       success: false,
-      errors: null,
+      errors: [],
+      submitted: false,
     };
   },
 
   methods: {
     sendMessage() {
+      this.submitted = true;
+      this.loading = true;
       const data = {
         name: this.name,
         email: this.email,
@@ -38,11 +44,16 @@ export default {
             this.loading = false;
             this.success = true;
           } else {
+            this.loading = false;
+            this.submitted = false;
             this.errors = response.data.errors;
-            console.log(errors);
+            console.log(this.errors);
           }
         })
         .catch((err) => {
+          this.loading = false;
+          this.submitted = false;
+          this.failedCall = true;
           console.log(err);
         });
     },
@@ -64,64 +75,93 @@ export default {
 
       <div class="d-flex justify-center">
         <div class="card-form col-12 col-md-6">
-          <form @submit.prevent="sendMessage()">
-            <div class="group">
-              <label for="name" class="form-label">Nome</label>
-              <input
-                required
-                minlength="2"
-                maxlength="50"
-                type="text"
-                name="name"
-                id="name"
-                class="form-control"
-                placeholder="Fabio Rossi"
-                aria-describedby="helpId"
-                v-model="name"
-              />
-            </div>
+          <template v-if="!loading">
+            <h3 v-if="failedCall" class="error">
+              Oops, qualcosa è andato storto, riprova più tardi
+            </h3>
 
-            <div class="group">
-              <label for="email" class="form-label">Email</label>
-              <input
-                required
-                minlength="2"
-                maxlength="50"
-                type="email"
-                class="form-control"
-                name="email"
-                id="email"
-                aria-describedby="emailHelpId"
-                placeholder="abc@mail.com"
-                v-model="email"
-              />
-            </div>
+            <h3 v-if="success" class="success">
+              Grazie per avermi contattato! Risponderò al più presto.
+            </h3>
+            <form @submit.prevent="sendMessage()">
+              <div class="group">
+                <label for="name" class="form-label">Nome</label>
+                <input
+                  required
+                  minlength="2"
+                  maxlength="50"
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  placeholder="Fabio Rossi"
+                  aria-describedby="helpId"
+                  v-model="name"
+                />
 
-            <div class="group">
-              <label for="message" class="form-label">Messaggio</label>
-              <textarea
-                required
-                minlength="5"
-                maxlengthe="500"
-                class="w-100"
-                name="message"
-                id="message"
-                rows="8"
-                v-model="message"
-                placeholder="Dimmi qualcosa.."
-              ></textarea>
-            </div>
+                <p class="error" v-if="errors.name">{{ errors.name }}</p>
+              </div>
 
-            <div class="btn contacts-color">
-              <button type="submit">Invia</button>
-            </div>
-          </form>
+              <div class="group">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  required
+                  minlength="2"
+                  maxlength="50"
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  aria-describedby="emailHelpId"
+                  placeholder="abc@mail.com"
+                  v-model="email"
+                />
+
+                <p class="error" v-if="errors.email">{{ errors.email }}</p>
+              </div>
+
+              <div class="group">
+                <label for="message" class="form-label">Messaggio</label>
+                <textarea
+                  required
+                  minlength="5"
+                  maxlength="500"
+                  class="w-100"
+                  name="message"
+                  id="message"
+                  rows="8"
+                  v-model="message"
+                  placeholder="Dimmi qualcosa.."
+                ></textarea>
+
+                <p class="error" v-if="errors.message">{{ errors.message }}</p>
+              </div>
+
+              <div class="btn contacts-color">
+                <button type="submit" :disabled="submitted">Invia</button>
+              </div>
+            </form>
+          </template>
+
+          <template v-else>
+            <AppLoader />
+          </template>
         </div>
       </div>
     </div>
   </main>
 </template>
 <style scoped>
+.error {
+  color: red;
+  margin: 1rem 0;
+}
+
+.success {
+  color: green;
+  margin: 1rem 0;
+}
+
 .page-header {
   height: calc(100vh - 150px);
   display: flex;
