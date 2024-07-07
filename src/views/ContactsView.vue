@@ -150,7 +150,10 @@ export default {
 
 .card-form {
   padding: 2rem;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
+  border-top: 8px solid rgb(197, 205, 209);
+  border-bottom: 8px solid rgb(197, 205, 209);
+
   background-color: #18181860;
   border-radius: 15px;
   margin-bottom: 300px;

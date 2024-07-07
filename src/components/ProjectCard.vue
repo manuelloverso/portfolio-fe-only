@@ -67,14 +67,27 @@ export default {
       });
     },
 
-    defaultCursor() {
-      const cursor = document.querySelector(".mf-cursor");
-      cursor.classList.remove("-text", "-pointer");
+    cardCursor() {
+      const cursor = document.getElementById("cursor");
+      const cursorShadow = document.getElementById("cursor-shadow");
+
+      cursorShadow.classList.add("card-hover");
+      cursorShadow.style.mixBlendMode = "difference";
+
+      cursor.classList.add("card-hover");
     },
 
-    biggerCursor() {
-      const cursor = document.querySelector(".mf-cursor");
-      cursor.classList.add("-text");
+    cardCursorLeave() {
+      const cursor = document.getElementById("cursor");
+      const cursorShadow = document.getElementById("cursor-shadow");
+
+      cursorShadow.classList.remove("card-hover");
+      cursor.classList.remove("card-hover");
+    },
+
+    cursorOnImage() {
+      const cursorShadow = document.getElementById("cursor-shadow");
+      cursorShadow.style.mixBlendMode = "normal";
     },
   },
 
@@ -88,8 +101,9 @@ export default {
   <RouterLink class="card-link card-container" :to="'projects/' + project.id">
     <div
       class="project-card"
-      data-cursor-text="See more"
-      @click="defaultCursor()"
+      @mouseenter="cardCursor()"
+      @mouseleave="cardCursorLeave()"
+      @click="cardCursorLeave()"
     >
       <div class="left" ref="cardLeft">
         <div class="project-title">
@@ -104,8 +118,6 @@ export default {
             class="gh-link"
             v-if="project.github_link != null"
             :href="project.github_link"
-            @mouseenter="defaultCursor()"
-            @mouseleave="biggerCursor()"
           >
             <i class="fa-brands fa-github"></i> Source Code
           </a>
@@ -116,8 +128,6 @@ export default {
             class="yt-link"
             v-if="project.yt_link != null"
             :href="project.yt_link"
-            @mouseenter="defaultCursor()"
-            @mouseleave="biggerCursor()"
           >
             <i class="fa-brands fa-youtube"></i> Showcase
           </a>
@@ -128,8 +138,6 @@ export default {
             class="preview-link"
             v-if="project.preview_link != null"
             :href="project.preview_link"
-            @mouseenter="defaultCursor()"
-            @mouseleave="biggerCursor()"
           >
             <i class="fa-solid fa-laptop"></i> Live Preview
           </a>
@@ -138,12 +146,7 @@ export default {
         <!-- Project's Technologies -->
         <template v-if="project.technologies.length != 0">
           <div class="technologies">
-            <div
-              class="technology-btn"
-              v-for="tech in project.technologies"
-              @mouseenter="defaultCursor()"
-              @mouseleave="biggerCursor()"
-            >
+            <div class="technology-btn" v-for="tech in project.technologies">
               {{ tech.name }}
             </div>
           </div>
@@ -153,17 +156,22 @@ export default {
       <div class="image">
         <!-- Image -->
         <img
+          @mouseenter="cardCursorLeave()"
+          class="project-img"
           v-if="project.image.startsWith('http')"
           :src="project.image"
-          alt=""
+          :alt="project.title"
         />
         <img
           v-else
+          @mouseenter="cardCursorLeave()"
+          @mouseleave="cardCursor()"
+          class="project-img"
           :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
-          alt=""
+          :alt="project.title"
         />
       </div>
     </div>
   </RouterLink>
 </template>
-<style></style>
+<style scoped></style>

@@ -5,3 +5,8 @@
 - handle potential api fails
 - add dynamic background based on routes
 - add favicon
+- refactorying style: move everything into components scoped style
+- center the home jumbo in the center of the vp
+- change buttons style
+- fix custom cursor on links hover
+- fix route scrolling

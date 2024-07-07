@@ -2,7 +2,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -10,6 +9,8 @@ body {
   position: relative;
   color: $text-grey;
   font-family: "Nunito", sans-serif;
+  cursor: none;
+  overflow-x: hidden;
 }
 
 ul {

@@ -5,6 +5,7 @@ import AppFooter from "./components/AppFooter.vue";
 import ProjectCard from "./components/ProjectCard.vue";
 import MouseFollower from "mouse-follower";
 import gsap from "gsap";
+import CustomCursor from "./components/CustomCursor.vue";
 MouseFollower.registerGSAP(gsap);
 export default {
   name: "App",
@@ -12,17 +13,15 @@ export default {
     AppHeader,
     AppFooter,
     ProjectCard,
+    CustomCursor,
   },
   data() {
     return {};
   },
 
+  methods: {},
   mounted() {
-    const cursor = new MouseFollower({
-      speed: 0.5,
-      skewingText: 0,
-    });
-
+    /* scroll */
     const lenis = new Lenis();
 
     lenis.on("scroll", (e) => {});
@@ -37,6 +36,9 @@ export default {
 };
 </script>
 <template>
+  <!-- custom cursor -->
+  <CustomCursor />
+
   <div ref="bg-1" class="bg-bobble1 bg-home"></div>
   <div ref="bg-2" class="bg-bobble2 bg-home"></div>
   <!-- Site Header -->

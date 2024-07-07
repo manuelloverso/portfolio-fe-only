@@ -34,6 +34,13 @@ export default {
   },
 
   mounted() {
+    const activeHovers = document.querySelectorAll(".card-hover");
+    if (activeHovers) {
+      activeHovers.forEach((el) => {
+        el.classList.remove("card-hover");
+      });
+    }
+
     this.id = this.$route.params.id;
     this.singleProject(`http://127.0.0.1:8000/api/projects/${this.id}`);
   },
