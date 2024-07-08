@@ -116,39 +116,6 @@ export default {
           {{ project.title }}
         </div>
 
-        <!-- Links -->
-        <div class="project-links">
-          <!-- GH Link -->
-          <a
-            target="_blank"
-            class="gh-link"
-            v-if="project.github_link != null"
-            :href="project.github_link"
-          >
-            <i class="fa-brands fa-github"></i> Source Code
-          </a>
-
-          <!-- YT Link -->
-          <a
-            target="_blank"
-            class="yt-link"
-            v-if="project.yt_link != null"
-            :href="project.yt_link"
-          >
-            <i class="fa-brands fa-youtube"></i> Showcase
-          </a>
-
-          <!-- Preview Link -->
-          <a
-            target="_blank"
-            class="preview-link"
-            v-if="project.preview_link != null"
-            :href="project.preview_link"
-          >
-            <i class="fa-solid fa-laptop"></i> Live Preview
-          </a>
-        </div>
-
         <!-- Project's Technologies -->
         <template v-if="project.technologies.length != 0">
           <div class="technologies">

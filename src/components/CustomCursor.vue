@@ -1,8 +1,12 @@
 <script>
+import { store } from "../store.js";
+
 export default {
   name: "CustomCursor",
   data() {
-    return {};
+    return {
+      store,
+    };
   },
 
   methods: {
@@ -49,13 +53,50 @@ export default {
       }
     },
 
+    /* handles the cursor on ever anchor tags */
     hoverLinks() {
       const anchors = document.querySelectorAll("a");
-      console.log(anchors);
+      const cursorShadow = document.getElementById("cursor-shadow");
+      const cursor = document.getElementById("cursor");
+
+      anchors.forEach((anchor) => {
+        if (!anchor.classList.contains("card-link")) {
+          anchor.addEventListener("mouseenter", () => {
+            cursorShadow.style.opacity = 0;
+            cursor.style.width = "25px";
+          });
+
+          anchor.addEventListener("mouseleave", () => {
+            cursorShadow.style.opacity = 1;
+            cursor.style.width = "10px";
+          });
+
+          anchor.addEventListener("click", () => {
+            cursorShadow.style.opacity = 1;
+            cursor.style.width = "10px";
+          });
+        }
+      });
     },
   },
 
-  watch: {},
+  watch: {
+    $route() {
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.hoverLinks();
+        }, 2000);
+      });
+    },
+    "store.projectsLoading"(newVal) {
+      if (!newVal) {
+        /* questo serve per lanciare la funzione dopo che il dom è aggiornato */
+        this.$nextTick(() => {
+          this.hoverLinks();
+        });
+      }
+    },
+  },
 
   mounted() {
     this.customCursor();
@@ -81,6 +122,7 @@ export default {
   background-color: white;
   z-index: 100;
   mix-blend-mode: difference;
+  transition: width 0.3s ease-in-out;
 }
 
 #cursor-shadow {
@@ -97,7 +139,8 @@ export default {
   transform: translate(-50%, -50%);
   z-index: 100;
   mix-blend-mode: difference;
-  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 
 .card-text {

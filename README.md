@@ -5,6 +5,6 @@
 - add favicon
 - refactorying style: move everything into components scoped style
 - center the home jumbo in the center of the vp
-- fix custom cursor on links hover
+- fix custom cursor on links hover -> done but still have to handle the contacts view button
 - fix projects show view
 - add content to about me component
