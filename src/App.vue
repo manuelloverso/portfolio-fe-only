@@ -1,5 +1,6 @@
 <script>
 // IMPORTS
+import { store } from "./store";
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import ProjectCard from "./components/ProjectCard.vue";
@@ -15,6 +16,7 @@ export default {
   },
   data() {
     return {
+      store,
       backgroundUpdate: "",
     };
   },
@@ -44,6 +46,8 @@ export default {
   },
 
   mounted() {
+    store.callApi();
+
     /* scroll */
     lenis.on("scroll", (e) => {});
 

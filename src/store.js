@@ -1,17 +1,21 @@
 import { reactive } from "vue";
+import axios from "axios";
 
 export const store = reactive({
-  cardCursor() {
-    const cursor = document.getElementById("cursor");
-    const cursorShadow = document.getElementById("cursor-shadow");
+  projects: [],
+  projectsLoading: true,
 
-    cursorShadow.classList.add("card-hover");
-  },
-
-  cardCursorLeave() {
-    const cursor = document.getElementById("cursor");
-    const cursorShadow = document.getElementById("cursor-shadow");
-
-    cursorShadow.classList.remove("card-hover");
+  /* get projects */
+  /* still have to handle potential fails */
+  callApi() {
+    axios
+      .get("http://127.0.0.1:8000/api/projects")
+      .then((response) => {
+        this.projects = response.data.response;
+        this.projectsLoading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });

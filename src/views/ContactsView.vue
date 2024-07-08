@@ -137,8 +137,10 @@ export default {
                 <p class="error" v-if="errors.message">{{ errors.message }}</p>
               </div>
 
-              <div class="btn contacts-color">
-                <button type="submit" :disabled="submitted">Invia</button>
+              <div class="d-flex justify-center">
+                <div class="btn contacts-color">
+                  <button type="submit" :disabled="submitted">Invia</button>
+                </div>
               </div>
             </form>
           </template>

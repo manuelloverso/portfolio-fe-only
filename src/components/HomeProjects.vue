@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import { store } from "../store";
 import ProjectCard from "./ProjectCard.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -14,24 +14,11 @@ export default {
   },
   data() {
     return {
-      projects: [],
-      loading: true,
+      store,
     };
   },
 
   methods: {
-    callApi(url) {
-      axios
-        .get(url)
-        .then((response) => {
-          this.projects = response.data.response;
-          this.loading = false;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
     animateHeading() {
       const text = document.querySelector(".projects-heading");
 
@@ -50,7 +37,6 @@ export default {
   },
 
   mounted() {
-    this.callApi("http://127.0.0.1:8000/api/projects");
     this.animateHeading();
     ScrollTrigger.refresh();
   },
@@ -66,8 +52,8 @@ export default {
   <section id="home-projects">
     <div class="md-container">
       <h2 class="text-center projects-heading">I miei progetti</h2>
-      <div v-if="!loading" class="cards-container">
-        <template v-for="project in projects" :key="project.id">
+      <div v-if="!store.loading" class="cards-container">
+        <template v-for="project in store.projects" :key="project.id">
           <ProjectCard v-if="project.is_in_evidence" :project="project" />
         </template>
       </div>

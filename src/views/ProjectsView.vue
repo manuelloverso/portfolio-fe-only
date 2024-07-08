@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import { store } from "../store";
 import ProjectCard from "../components/ProjectCard.vue";
 import Scroller from "../components/Scroller.vue";
 import AppLoader from "../components/AppLoader.vue";
@@ -13,30 +13,8 @@ export default {
   },
   data() {
     return {
-      projects: [],
-      loading: true,
+      store,
     };
-  },
-
-  methods: {
-    callApi(url) {
-      axios
-        .get(url)
-        .then((response) => {
-          this.projects = response.data.response;
-          this.loading = false;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
-
-  mounted() {
-    /* delay the axios call not to make interfere with the hero animations */
-    setTimeout(() => {
-      this.callApi("http://127.0.0.1:8000/api/projects");
-    }, 2000);
   },
 };
 </script>
@@ -55,8 +33,8 @@ export default {
       </div>
 
       <!-- Projects -->
-      <div v-if="!loading" class="cards-container">
-        <template v-for="project in projects" :key="project.id">
+      <div v-if="!store.loading" class="cards-container">
+        <template v-for="project in store.projects" :key="project.id">
           <ProjectCard :project="project" />
         </template>
       </div>
