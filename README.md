@@ -4,5 +4,5 @@
 - handle potential api fails
 - add favicon
 - refactorying style: move everything into components scoped style
-- fix projects show view
-- add content to about me component
+- edit projects show view
+- nel footer potrei mettere i link al source code del portfolio

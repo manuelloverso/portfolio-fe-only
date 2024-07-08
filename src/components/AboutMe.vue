@@ -11,9 +11,9 @@ export default {
 
   methods: {
     animateParagraph() {
-      const splitElements = document.querySelectorAll(".split");
+      const splitElement = document.querySelector(".split");
 
-      const text = new SplitType(splitElements[1], { types: "chars" });
+      const text = new SplitType(splitElement, { types: "words,chars" });
 
       gsap.fromTo(
         text.chars,
@@ -34,12 +34,12 @@ export default {
     },
 
     animateHeading() {
-      gsap.from(".heading", {
+      gsap.from(".about-heading", {
         x: 700,
         opacity: 0,
         scale: 0.2,
         scrollTrigger: {
-          trigger: ".heading",
+          trigger: ".about-heading",
           start: "top 80%",
           end: "top 20%",
           scrub: true,
@@ -52,29 +52,23 @@ export default {
   mounted() {
     this.animateParagraph();
     this.animateHeading();
-    ScrollTrigger.refresh();
-  },
-
-  beforeDestroy() {
-    this.animateParagraph.scrollTrigger.kill();
-    this.animateParagraph.kill();
-
-    this.animateHeading.scrollTrigger.kill();
-    this.animateHeading.kill();
   },
 };
 </script>
 <template>
   <div class="md-container">
     <section id="about-me">
-      <h1 class="split heading">Chi sono</h1>
+      <h1 class="about-heading">Chi sono</h1>
       <p class="split about-paragraph">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos officiis
-        repellat optio consequatur consectetur et enim error laudantium
-        similique, minus iure assumenda corporis iusto, exercitationem dolorum.
-        Cupiditate eum iste a facere tenetur vel. Autem ad dolorum doloribus vel
-        et porro tempora quis incidunt ipsa, at velit itaque mollitia id quo
-        dolorem beatae possimus nesciunt sint nisi. Sunt.
+        Sono un Junior Web Developer con una grande passione per la
+        programmazione e la creazione di soluzioni web innovative. Dopo aver
+        completato un corso intensivo di 700 ore, mi sono dedicato con
+        entusiasmo allo sviluppo di competenze in diversi ambiti della
+        programmazione web, sia front-end che back-end. Anche se sono
+        relativamente nuovo in questo campo, ogni progetto rappresenta per me
+        un'opportunità di crescita e apprendimento. Sono motivato a migliorare
+        costantemente le mie abilità e sono entusiasta di affrontare nuove sfide
+        nel mondo dello sviluppo web.
       </p>
     </section>
   </div>
