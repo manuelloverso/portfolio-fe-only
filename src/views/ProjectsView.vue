@@ -131,7 +131,7 @@ export default {
 }
 
 .page-header {
-  height: calc(100vh - 150px);
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;

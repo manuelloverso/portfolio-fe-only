@@ -1,14 +1,15 @@
 @use "./variables" as *;
 
 .home-jumbotron {
-  height: 700px;
+  height: 80vh;
+  display: flex;
+  align-items: center;
 
   .md-container {
     position: relative;
   }
 
   .jumbo-text {
-    padding-top: 7rem;
     color: $accent;
     margin-bottom: 100px;
     h1 {

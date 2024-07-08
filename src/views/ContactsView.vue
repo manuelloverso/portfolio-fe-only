@@ -57,6 +57,40 @@ export default {
           console.log(err);
         });
     },
+
+    cursorOnBtn() {
+      const cursorShadow = document.getElementById("cursor-shadow");
+      const cursor = document.getElementById("cursor");
+
+      this.$refs.submitbtn.addEventListener("mouseenter", () => {
+        cursorShadow.style.opacity = 0;
+        cursor.style.width = "25px";
+      });
+
+      this.$refs.submitbtn.addEventListener("mouseleave", () => {
+        cursorShadow.style.opacity = 1;
+        cursor.style.width = "10px";
+      });
+
+      this.$refs.submitbtn.addEventListener("click", () => {
+        cursorShadow.style.opacity = 1;
+        cursor.style.width = "10px";
+      });
+    },
+  },
+
+  watch: {
+    loading(newVal) {
+      if (!newVal) {
+        this.$nextTick(() => {
+          this.cursorOnBtn();
+        });
+      }
+    },
+  },
+
+  mounted() {
+    this.cursorOnBtn();
   },
 };
 </script>
@@ -139,7 +173,9 @@ export default {
 
               <div class="d-flex justify-center">
                 <div class="btn contacts-color">
-                  <button type="submit" :disabled="submitted">Invia</button>
+                  <button ref="submitbtn" type="submit" :disabled="submitted">
+                    Invia
+                  </button>
                 </div>
               </div>
             </form>
@@ -165,7 +201,7 @@ export default {
 }
 
 .page-header {
-  height: calc(100vh - 150px);
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
