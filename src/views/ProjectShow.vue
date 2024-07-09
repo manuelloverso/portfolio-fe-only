@@ -12,6 +12,7 @@ export default {
       project: null,
       id: null,
       loading: true,
+      failed: false,
     };
   },
 
@@ -28,6 +29,8 @@ export default {
           }
         })
         .catch((err) => {
+          this.loading = false;
+          this.failed = true;
           console.log(err);
         });
     },
@@ -52,7 +55,7 @@ export default {
       <template v-if="loading">
         <AppLoader />
       </template>
-      <div v-else>
+      <div v-if="!loading && !failed">
         <h1 class="project-title text-center tracking-in-expand-fwd-top">
           {{ project.title }}
         </h1>
@@ -130,10 +133,36 @@ export default {
           </div>
         </div>
       </div>
+
+      <template v-if="failed">
+        <div class="failed-call">
+          <p>
+            Mi spiace, al momento non è possibile visualizzare i progetti,
+            riprova più tardi e invia una segnalazione
+          </p>
+
+          <div class="projects-btn">
+            <RouterLink :to="{ name: 'contacts' }">
+              <div class="btn projects-color"><button>Contattami</button></div>
+            </RouterLink>
+          </div>
+        </div>
+      </template>
     </div>
   </main>
 </template>
 <style scoped>
+.failed-call {
+  flex-direction: column;
+  gap: 2rem;
+  color: red;
+  font-size: 1.3rem;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Project Image */
 .slide-in-blurred-top {
   -webkit-animation: slide-in-blurred-top 1s cubic-bezier(0.23, 1, 0.32, 1) both;

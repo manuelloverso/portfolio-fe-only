@@ -33,19 +33,48 @@ export default {
       </div>
 
       <!-- Projects -->
-      <div v-if="!store.loading" class="cards-container">
+      <div
+        v-if="!store.projectsLoading && !store.failed"
+        class="cards-container"
+      >
         <template v-for="project in store.projects" :key="project.id">
           <ProjectCard :project="project" />
         </template>
       </div>
 
-      <template v-else>
+      <template v-if="store.projectsLoading">
         <AppLoader />
+      </template>
+
+      <template v-if="store.failed">
+        <div class="failed-call">
+          <p>
+            Mi spiace, al momento non è possibile visualizzare i progetti,
+            riprova più tardi e invia una segnalazione
+          </p>
+
+          <div class="projects-btn">
+            <RouterLink :to="{ name: 'contacts' }">
+              <div class="btn projects-color"><button>Contattami</button></div>
+            </RouterLink>
+          </div>
+        </div>
       </template>
     </div>
   </main>
 </template>
 <style scoped>
+.failed-call {
+  flex-direction: column;
+  gap: 2rem;
+  color: red;
+  font-size: 1.3rem;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cards-container {
   display: flex;
   flex-direction: column;

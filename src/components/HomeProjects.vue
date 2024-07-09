@@ -52,21 +52,51 @@ export default {
   <section id="home-projects">
     <div class="md-container">
       <h2 class="text-center projects-heading">I miei progetti</h2>
-      <div v-if="!store.loading" class="cards-container">
+      <div
+        v-if="!store.projectsLoading && !store.failed"
+        class="cards-container"
+      >
         <template v-for="project in store.projects" :key="project.id">
           <ProjectCard v-if="project.is_in_evidence" :project="project" />
         </template>
+
+        <div class="projects-btn">
+          <RouterLink :to="{ name: 'projects' }">
+            <div class="btn"><button>Vedi di più</button></div>
+          </RouterLink>
+        </div>
       </div>
 
-      <template v-else>
+      <template v-if="store.projectsLoading">
         <AppLoader />
       </template>
 
-      <div class="projects-btn">
-        <RouterLink :to="{ name: 'projects' }">
-          <div class="btn"><button>Vedi di più</button></div>
-        </RouterLink>
-      </div>
+      <template v-if="store.failed">
+        <div class="failed-call">
+          <p>
+            Mi spiace, al momento non è possibile visualizzare i progetti,
+            riprova più tardi e invia una segnalazione
+          </p>
+
+          <div class="projects-btn">
+            <RouterLink :to="{ name: 'contacts' }">
+              <div class="btn"><button>Contattami</button></div>
+            </RouterLink>
+          </div>
+        </div>
+      </template>
     </div>
   </section>
 </template>
+<style scoped>
+.failed-call {
+  flex-direction: column;
+  gap: 2rem;
+  color: red;
+  font-size: 1.3rem;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

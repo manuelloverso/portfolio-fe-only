@@ -4,6 +4,7 @@ import axios from "axios";
 export const store = reactive({
   projects: [],
   projectsLoading: true,
+  failed: false,
 
   /* get projects */
   /* still have to handle potential fails */
@@ -16,6 +17,8 @@ export const store = reactive({
       })
       .catch((err) => {
         console.log(err);
+        this.projectsLoading = false;
+        this.failed = true;
       });
   },
 });

@@ -119,7 +119,7 @@ export default {
             </h3>
             <form @submit.prevent="sendMessage()">
               <div class="group">
-                <label for="name" class="form-label">Nome</label>
+                <label for="name" class="form-label">Nome*</label>
                 <input
                   required
                   minlength="2"
@@ -137,7 +137,7 @@ export default {
               </div>
 
               <div class="group">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email*</label>
                 <input
                   required
                   minlength="2"
@@ -155,7 +155,7 @@ export default {
               </div>
 
               <div class="group">
-                <label for="message" class="form-label">Messaggio</label>
+                <label for="message" class="form-label">Messaggio*</label>
                 <textarea
                   required
                   minlength="5"
