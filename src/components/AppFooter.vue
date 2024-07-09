@@ -10,26 +10,53 @@ export default {
   <footer id="app-footer">
     <div class="md-container row">
       <div class="col-12 col-md-4">
-        <nav class="d-flex flex-column g-3">
-          <div class="logo">ML</div>
+        <nav class="d-flex flex-column g-3 align-start">
+          <RouterLink class="logo" :to="{ name: 'home' }"> Home </RouterLink>
 
-          <span>Progetti</span>
-          <span>Contattami</span>
+          <RouterLink :to="{ name: 'projects' }"> Progetti </RouterLink>
+
+          <RouterLink :to="{ name: 'contacts' }"> Contattami </RouterLink>
         </nav>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="socials d-flex g-3">
-          <span>Linkedin</span>
-          <span>Github</span>
+        <div class="socials d-flex flex-column g-3 align-start">
+          <a target="_blank" href="https://github.com/manuelloverso/">
+            <i class="fa-brands fa-github"></i>
+            Github
+          </a>
+          <a
+            target="_blank"
+            href="https://linkedin.com/in/manuel-loverso-30582b282"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+            Linkedin
+          </a>
+
+          <a target="_blank" href="mailto:manuel.loverso.dev@gmail.com">
+            <i class="fa-solid fa-at"></i>
+            manuel.loverso.dev@gmail.com
+          </a>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="portfolio-links d-flex flex-column g-3">
-          <h3>Codice del Portfolio</h3>
-          <span>Front-end Repo</span>
-          <span>Back-end Repo</span>
+        <div class="portfolio-links d-flex flex-column g-3 align-start">
+          <h3>GH Website Repos</h3>
+          <a
+            target="_blank"
+            href="https://github.com/manuelloverso/frontend-portfolio"
+          >
+            <i class="fa-brands fa-github"></i>
+            Front-end
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/manuelloverso/backend-portfolio"
+          >
+            <i class="fa-brands fa-github"></i>
+            Back-end
+          </a>
         </div>
       </div>
     </div>
@@ -38,7 +65,34 @@ export default {
 <style scoped>
 #app-footer {
   padding: 3rem 0;
-  background-color: rgba(10, 10, 10, 0.545);
+  background-color: rgba(0, 0, 0, 0.458);
   color: rgb(197, 205, 209);
+}
+
+a {
+  color: inherit;
+  position: relative;
+  text-decoration: none;
+  cursor: none;
+  font-size: 1.15rem;
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: rgb(197, 205, 209);
+  bottom: -2px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
 }
 </style>
