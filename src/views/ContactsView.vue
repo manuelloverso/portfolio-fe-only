@@ -107,6 +107,15 @@ export default {
         <Scroller />
       </div>
 
+      <div class="mail">
+        <h4>
+          <a target="_blank" href="mailto:manuel.loverso.dev@gmail.com">
+            <i class="fa-regular fa-envelope"></i> manuel.loverso.dev@gmail.com
+          </a>
+        </h4>
+        <span>Oppure contattami tramite il form qui sotto</span>
+      </div>
+
       <div class="d-flex justify-center">
         <div class="card-form col-12 col-md-6">
           <template v-if="!loading">
@@ -127,9 +136,7 @@ export default {
                   type="text"
                   name="name"
                   id="name"
-                  class="form-control"
                   placeholder="Fabio Rossi"
-                  aria-describedby="helpId"
                   v-model="name"
                 />
 
@@ -143,10 +150,8 @@ export default {
                   minlength="2"
                   maxlength="50"
                   type="email"
-                  class="form-control"
                   name="email"
                   id="email"
-                  aria-describedby="emailHelpId"
                   placeholder="abc@mail.com"
                   v-model="email"
                 />
@@ -190,6 +195,20 @@ export default {
   </main>
 </template>
 <style scoped>
+.mail {
+  color: rgb(197, 205, 209);
+  text-align: center;
+  margin-bottom: 150px;
+
+  & h4 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  & span {
+    font-size: 1.15rem;
+  }
+}
 .error {
   color: red;
   margin: 1rem 0;

@@ -51,7 +51,7 @@ export default {
   <!-- Projects Section -->
   <section id="home-projects">
     <div class="md-container">
-      <h2 class="text-center projects-heading">I miei progetti</h2>
+      <h2 class="text-center projects-heading">Progetti</h2>
       <div
         v-if="!store.projectsLoading && !store.failed"
         class="cards-container"

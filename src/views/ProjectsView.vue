@@ -159,6 +159,10 @@ export default {
   }
 }
 
+.cards-container {
+  margin-bottom: 300px;
+}
+
 .page-header {
   height: 80vh;
   display: flex;
