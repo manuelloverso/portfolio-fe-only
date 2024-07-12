@@ -11,26 +11,28 @@ export default {
 
   methods: {
     animateParagraph() {
-      const splitElement = document.querySelector(".split");
+      setTimeout(() => {
+        const splitElement = document.querySelector(".split");
 
-      const text = new SplitType(splitElement, { types: "words,chars" });
+        const text = new SplitType(splitElement, { types: "words,chars" });
 
-      gsap.fromTo(
-        text.chars,
-        {
-          opacity: 0.2,
-        },
-        {
-          opacity: 1,
-          stagger: 1,
-          scrollTrigger: {
-            trigger: ".about-paragraph",
-            start: "bottom 50%",
-            end: "bottom 20%",
-            scrub: 3,
+        gsap.fromTo(
+          text.chars,
+          {
+            opacity: 0.2,
           },
-        }
-      );
+          {
+            opacity: 1,
+            stagger: 1,
+            scrollTrigger: {
+              trigger: ".about-paragraph",
+              start: "top 80%",
+              end: "center 60%",
+              scrub: 3,
+            },
+          }
+        );
+      }, 500);
     },
 
     animateHeading() {

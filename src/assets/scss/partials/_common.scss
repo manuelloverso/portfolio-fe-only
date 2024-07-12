@@ -52,11 +52,21 @@ ul {
   .gh-link {
     background-color: black;
     color: white;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(38, 38, 38);
+    }
   }
 
   .yt-link {
     background-color: rgb(191, 43, 43);
     color: white;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(105, 20, 20);
+    }
   }
 
   .preview-link {

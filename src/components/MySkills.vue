@@ -126,12 +126,14 @@ export default {
       <div class="splide__track">
         <ul class="splide__list align-center">
           <splide-slide v-for="tech in technologies">
-            <img
-              class="tech"
-              width="100"
-              :src="`/public/img/${tech.image}`"
-              :alt="tech.tech"
-            />
+            <div class="logo">
+              <img
+                class="tech"
+                width="100"
+                :src="`/public/img/${tech.image}`"
+                :alt="tech.tech"
+              />
+            </div>
           </splide-slide>
         </ul>
       </div>
@@ -140,4 +142,17 @@ export default {
 </template>
 <style scoped>
 @import "@splidejs/splide/dist/css/splide.min.css";
+
+.splide__track {
+  max-height: 120px;
+}
+
+.logo {
+  height: 120px;
+  display: flex;
+  align-items: center;
+
+  & img {
+  }
+}
 </style>

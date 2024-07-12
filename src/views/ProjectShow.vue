@@ -1,6 +1,9 @@
 <script>
 import axios from "axios";
 import AppLoader from "../components/AppLoader.vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "ProjectShow",
@@ -33,6 +36,46 @@ export default {
           this.failed = true;
           console.log(err);
         });
+    },
+
+    animateInfo() {
+      setTimeout(() => {
+        if (!this.loading && !this.failed) {
+          /* description animation */
+          const splitElement = document.querySelector(".split");
+
+          const text = new SplitType(splitElement, { types: "words,chars" });
+
+          gsap.fromTo(
+            text.chars,
+            {
+              opacity: 0.2,
+            },
+            {
+              opacity: 1,
+              stagger: 1,
+              scrollTrigger: {
+                trigger: ".description-paragraph",
+                start: "top 80%",
+                end: "center 65%",
+                scrub: 3,
+              },
+            }
+          );
+
+          /* technologies badges animaton */
+        }
+      }, 500);
+    },
+  },
+
+  watch: {
+    loading(newVal) {
+      if (!newVal) {
+        this.$nextTick(() => {
+          this.animateInfo();
+        });
+      }
     },
   },
 
@@ -79,7 +122,9 @@ export default {
         <div class="details">
           <div class="left">
             <div class="description">
-              {{ project.description }}
+              <p class="split description-paragraph">
+                {{ project.description }}
+              </p>
             </div>
 
             <div v-if="project.technologies.length != 0" class="technologies">
@@ -104,27 +149,47 @@ export default {
               <a
                 target="_blank"
                 class="gh-link"
-                v-if="project.github_link != null"
+                v-if="project.github_link"
                 :href="project.github_link"
               >
                 <i class="fa-brands fa-github"></i> Source Code
+              </a>
+
+              <!-- FE Repo Link -->
+              <a
+                target="_blank"
+                class="gh-link"
+                v-if="project.frontend_link"
+                :href="project.frontend_link"
+              >
+                <i class="fa-brands fa-github"></i> Frontend repo
+              </a>
+
+              <!-- BE Repo Link -->
+              <a
+                target="_blank"
+                class="gh-link"
+                v-if="project.backend_link"
+                :href="project.backend_link"
+              >
+                <i class="fa-brands fa-github"></i> Backend repo
               </a>
 
               <!-- YT Link -->
               <a
                 target="_blank"
                 class="yt-link"
-                v-if="project.yt_link != null"
+                v-if="project.yt_link"
                 :href="project.yt_link"
               >
-                <i class="fa-brands fa-youtube"></i> Showcase
+                <i class="fa-brands fa-youtube"></i> Preview
               </a>
 
               <!-- Preview Link -->
               <a
                 target="_blank"
                 class="preview-link"
-                v-if="project.preview_link != null"
+                v-if="project.preview_link"
                 :href="project.preview_link"
               >
                 <i class="fa-solid fa-laptop"></i> Live Preview
