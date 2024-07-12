@@ -7,7 +7,6 @@ export const store = reactive({
   failed: false,
 
   /* get projects */
-  /* still have to handle potential fails */
   callApi() {
     axios
       .get("http://127.0.0.1:8000/api/projects")

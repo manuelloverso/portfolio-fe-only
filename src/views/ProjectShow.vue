@@ -64,14 +64,14 @@ export default {
           <!-- Image -->
           <img
             class="slide-in-blurred-top"
-            v-if="project.image.startsWith('http')"
-            :src="project.image"
+            v-if="project.show_image.startsWith('http')"
+            :src="project.show_image"
             alt=""
           />
           <img
             class="slide-in-blurred-top"
             v-else
-            :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
+            :src="'http://127.0.0.1:8000' + '/storage/' + project.show_image"
             alt=""
           />
         </div>

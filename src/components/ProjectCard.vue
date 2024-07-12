@@ -70,24 +70,15 @@ export default {
     cardCursor() {
       const cursor = document.getElementById("cursor");
       const cursorShadow = document.getElementById("cursor-shadow");
-
       cursorShadow.classList.add("card-hover");
-      cursorShadow.style.mixBlendMode = "difference";
-
       cursor.classList.add("card-hover");
     },
 
     cardCursorLeave() {
       const cursor = document.getElementById("cursor");
       const cursorShadow = document.getElementById("cursor-shadow");
-
       cursorShadow.classList.remove("card-hover");
       cursor.classList.remove("card-hover");
-    },
-
-    cursorOnImage() {
-      const cursorShadow = document.getElementById("cursor-shadow");
-      cursorShadow.style.mixBlendMode = "normal";
     },
   },
 
@@ -132,8 +123,8 @@ export default {
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
           class="project-img"
-          v-if="project.image.startsWith('http')"
-          :src="project.image"
+          v-if="project.card_image.startsWith('http')"
+          :src="project.card_image"
           :alt="project.title"
         />
         <img
@@ -141,7 +132,7 @@ export default {
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
           class="project-img"
-          :src="'http://127.0.0.1:8000' + '/storage/' + project.image"
+          :src="'http://127.0.0.1:8000' + '/storage/' + project.card_image"
           :alt="project.title"
         />
       </div>

@@ -119,14 +119,13 @@ export default {
   width: 10px;
   position: fixed;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.774);
   z-index: 100;
-  mix-blend-mode: difference;
   transition: width 0.3s ease-in-out;
 }
 
 #cursor-shadow {
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.774);
   pointer-events: none;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -138,7 +137,6 @@ export default {
   position: fixed;
   transform: translate(-50%, -50%);
   z-index: 100;
-  mix-blend-mode: difference;
   transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out,
     opacity 0.2s ease-in-out;
 }
@@ -153,7 +151,7 @@ export default {
 }
 
 .card-hover#cursor-shadow {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.774);
   width: 120px;
 
   .card-text {
