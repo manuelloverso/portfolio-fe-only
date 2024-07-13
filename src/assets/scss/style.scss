@@ -1,16 +1,14 @@
-@use "./partials/variables" as *;
-@use "./partials/app-header";
-@use "./partials/app-footer";
 @use "./partials/common";
 @use "./partials/utilities";
-@use "./partials/home-jumbotron";
-@use "./partials/about-me";
-@use "./partials/home-projects";
-@use "./partials/project-card";
-@use "./partials/project-show";
-@use "./partials/skills";
 @use "./partials/background";
 @use "./partials/buttons";
+
+:root {
+  --accent: rgb(197, 205, 209);
+  --bg-cards: #18181860;
+  --text-grey: rgb(84, 84, 84);
+  --site-bg: rgb(10, 10, 10);
+}
 
 /* lenis */
 

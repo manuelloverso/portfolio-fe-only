@@ -143,6 +143,23 @@ export default {
 <style scoped>
 @import "@splidejs/splide/dist/css/splide.min.css";
 
+#skills {
+  padding: 3rem 0;
+  margin-bottom: 250px;
+  .skills-slider {
+    cursor: grab;
+  }
+
+  & h1 {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 500;
+    color: var(--accent);
+    padding-bottom: 2rem;
+    margin-bottom: 80px;
+  }
+}
+
 .splide__track {
   max-height: 120px;
 }
@@ -151,8 +168,5 @@ export default {
   height: 120px;
   display: flex;
   align-items: center;
-
-  & img {
-  }
 }
 </style>

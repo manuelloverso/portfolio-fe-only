@@ -75,3 +75,24 @@ export default {
     </section>
   </div>
 </template>
+
+<style scoped>
+#about-me {
+  padding: 3rem 0;
+  color: var(--accent);
+  width: 40%;
+  margin-bottom: 350px;
+
+  & h1 {
+    color: var(--accent);
+    font-size: 5rem;
+    margin-bottom: 100px;
+    font-weight: 500;
+  }
+
+  & p {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+}
+</style>

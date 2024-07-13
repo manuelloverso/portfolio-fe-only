@@ -99,4 +99,27 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
+#home-projects {
+  padding: 3rem 0;
+  margin-bottom: 300px;
+  height: 1416px;
+  & h2 {
+    font-size: 5rem;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 4rem;
+  }
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .projects-btn {
+    display: flex;
+    justify-content: center;
+    cursor: none;
+  }
+}
 </style>

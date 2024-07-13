@@ -66,7 +66,7 @@ export default {
 #app-footer {
   padding: 3rem 0;
   background-color: rgba(0, 0, 0, 0.458);
-  color: rgb(197, 205, 209);
+  color: var(--accent);
 }
 
 a {
@@ -83,7 +83,7 @@ a::before {
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: rgb(197, 205, 209);
+  background-color: var(--accent);
   bottom: -2px;
   left: 0;
   transform-origin: right;

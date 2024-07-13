@@ -1,13 +1,11 @@
-@use "./variables" as *;
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: $bg-dark;
+  background-color: var(--site-bg);
   position: relative;
-  color: $text-grey;
+  color: var(--text-grey);
   font-family: "Nunito", sans-serif;
   cursor: none;
   overflow-x: hidden;
@@ -26,15 +24,15 @@ ul {
 .technology-btn {
   padding: 10px;
   background-color: transparent;
-  border: 1px solid $accent;
+  border: 1px solid var(--accent);
   border-radius: 10px;
   font-size: 1rem;
-  color: $accent;
+  color: var(--accent);
   transition: all 0.5s ease;
 
   &:hover {
-    background-color: $accent;
-    color: $bg-dark;
+    background-color: var(--accent);
+    color: var(--site-bg);
   }
 }
 
@@ -70,7 +68,7 @@ ul {
   }
 
   .preview-link {
-    background-color: $accent;
+    background-color: var(--accent);
     color: black;
   }
 }

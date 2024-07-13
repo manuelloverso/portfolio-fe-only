@@ -62,8 +62,30 @@ export default {
               },
             }
           );
+        }
+      }, 500);
+    },
 
-          /* technologies badges animaton */
+    animateTechnologies() {
+      setTimeout(() => {
+        if (!this.loading && !this.failed) {
+          const techs = document.querySelectorAll(".technology-btn");
+          console.log(techs);
+
+          gsap.set(techs, { opacity: 0, y: 30 });
+
+          gsap.to(techs, {
+            ease: "back.out",
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+
+            scrollTrigger: {
+              trigger: ".technologies",
+              toggleActions: "restart none none reverse",
+              start: "top 80%",
+            },
+          });
         }
       }, 500);
     },
@@ -74,6 +96,7 @@ export default {
       if (!newVal) {
         this.$nextTick(() => {
           this.animateInfo();
+          this.animateTechnologies();
         });
       }
     },
@@ -226,6 +249,56 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#project-show {
+  padding-top: 4rem;
+  margin-bottom: 250px;
+
+  & h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+  }
+
+  .image {
+    margin-bottom: 3rem;
+    & img {
+      width: 100%;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      width: 35%;
+
+      .description {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        color: var(--accent);
+      }
+
+      .technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .date {
+        text-align: end;
+      }
+    }
+  }
 }
 
 /* Project Image */

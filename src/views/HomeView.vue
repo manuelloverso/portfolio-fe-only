@@ -42,6 +42,39 @@ export default {
 </template>
 
 <style scoped>
+.home-jumbotron {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+
+  .md-container {
+    position: relative;
+  }
+
+  .jumbo-text {
+    color: var(--accent);
+    margin-bottom: 100px;
+    & h1 {
+      font-size: 5.5rem;
+      line-height: 0.8;
+      padding-top: 20px;
+      overflow: hidden;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+
+    & h3 {
+      font-size: 3rem;
+      font-weight: 300;
+
+      line-height: 0.9;
+      padding-top: 20px;
+      overflow: hidden;
+    }
+  }
+}
+
+/* animations */
 .tracking-in-contract-bck-top {
   -webkit-animation: tracking-in-contract-bck-top 3s
     cubic-bezier(0.175, 0.885, 0.32, 1.275);
