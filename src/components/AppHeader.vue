@@ -1,10 +1,21 @@
 <script>
 import { RouterLink } from "vue-router";
+import { Collapse } from "bootstrap";
 
 export default {
   name: "AppHeader",
   data() {
     return {};
+  },
+
+  methods: {
+    toggleCollapse() {
+      const navbarCollapse = this.$refs.navbarCollapse;
+      if (navbarCollapse.classList.contains("show")) {
+        const collapseInstance = new Collapse(navbarCollapse);
+        collapseInstance.hide();
+      }
+    },
   },
 
   mounted() {
@@ -24,13 +35,13 @@ export default {
 <template>
   <header id="app-header">
     <!-- Navigation bar -->
-    <nav class="md-container">
+    <nav class="md-container navbar">
       <!-- Site Logo -->
-      <RouterLink class="logo" :to="{ name: 'home' }">
+      <RouterLink class="logo align-self-start" :to="{ name: 'home' }">
         <h1>ML</h1>
       </RouterLink>
 
-      <div class="nav-right-side d-none d-sm-flex">
+      <div class="nav-right-side d-none d-md-flex align-items-center">
         <ul class="nav-links">
           <li>
             <RouterLink :to="{ name: 'projects' }">
@@ -63,31 +74,59 @@ export default {
         </ul>
       </div>
 
-      <div class="btn-group d-block d-sm-none">
+      <div class="btn-group d-block d-md-none text-end">
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarToggleExternalContent"
-          aria-controls="navbarToggleExternalContent"
-          aria-expanded="false"
+          data-bs-target="#n_bar"
+          aria-controls="navbarNavAltMarkup"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="fa-solid fa-bars"></i>
         </button>
-        <!-- <button
-          type="button"
-          class="btn btn-secondary dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          DD
-        </button> -->
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Menu item</a></li>
-          <li><a class="dropdown-item" href="#">Menu item</a></li>
-          <li><a class="dropdown-item" href="#">Menu item</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="n_bar" ref="navbarCollapse">
+          <ul class="navbar-nav toggle-nav-links text-end">
+            <li class="nav-item">
+              <RouterLink
+                :to="{ name: 'projects' }"
+                class="nav-link"
+                @click="toggleCollapse"
+                >Progetti</RouterLink
+              >
+            </li>
+            <li class="nav-item">
+              <RouterLink
+                class="nav-link"
+                :to="{ name: 'contacts' }"
+                @click="toggleCollapse"
+                >Contattami</RouterLink
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                target="_blank"
+                class="nav-link"
+                href="https://github.com/manuelloverso/"
+                @click="toggleCollapse"
+              >
+                <i class="fa-brands fa-github"></i>
+                Github
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                target="_blank"
+                class="nav-link"
+                href="https://linkedin.com/in/manuel-loverso-30582b282"
+                @click="toggleCollapse"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+                Linkedin
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -101,6 +140,21 @@ export default {
   z-index: 2;
   top: 0;
 
+  .toggle-nav-links {
+    & li:hover {
+      color: var(--accent);
+    }
+  }
+
+  .navbar-toggler {
+    color: var(--accent);
+    border: 1px solid var(--text-grey);
+
+    & span {
+      color: white !important;
+    }
+  }
+
   & nav {
     display: flex;
     justify-content: space-between;
@@ -108,13 +162,13 @@ export default {
       both;
 
     .logo {
-      font-size: 2rem;
       color: var(--text-grey);
       text-decoration: none;
       cursor: none;
       transition: transform 0.3s linear, color 0.4s ease-in-out;
 
       & h1 {
+        font-size: 3rem;
         font-weight: 400;
         margin: 0 !important;
       }
@@ -127,7 +181,6 @@ export default {
 
     .nav-right-side {
       gap: 1.2rem;
-      align-items: center;
       font-size: 1.2rem;
 
       .nav-links {
