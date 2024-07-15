@@ -30,7 +30,7 @@ export default {
         <h1>ML</h1>
       </RouterLink>
 
-      <div class="nav-right-side d-flex">
+      <div class="nav-right-side d-none d-sm-flex">
         <ul class="nav-links">
           <li>
             <RouterLink :to="{ name: 'projects' }">
@@ -62,6 +62,33 @@ export default {
           </li>
         </ul>
       </div>
+
+      <div class="btn-group d-block d-sm-none">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-secondary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          DD
+        </button> -->
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Menu item</a></li>
+          <li><a class="dropdown-item" href="#">Menu item</a></li>
+          <li><a class="dropdown-item" href="#">Menu item</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
@@ -73,25 +100,12 @@ export default {
   position: sticky;
   z-index: 2;
   top: 0;
+
   & nav {
     display: flex;
     justify-content: space-between;
     animation: tracking-in-contract-bck 2s cubic-bezier(0.215, 0.61, 0.355, 1)
       both;
-    @keyframes tracking-in-contract-bck {
-      0% {
-        letter-spacing: 1em;
-        transform: translateZ(400px);
-        opacity: 0;
-      }
-      40% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateZ(0);
-        opacity: 1;
-      }
-    }
 
     .logo {
       font-size: 2rem;
@@ -102,10 +116,11 @@ export default {
 
       & h1 {
         font-weight: 400;
+        margin: 0 !important;
       }
 
       &:hover {
-        color: var(--accent);
+        color: var(--accent) !important;
         transform: scale(1.3);
       }
     }
@@ -114,6 +129,7 @@ export default {
       gap: 1.2rem;
       align-items: center;
       font-size: 1.2rem;
+
       .nav-links {
         display: flex;
         gap: 0.4rem;
@@ -127,8 +143,7 @@ export default {
           transition: 0.5s;
 
           &:hover {
-            color: var(--accent);
-
+            color: var(--accent) !important;
             span {
               transform: scale(1) translateY(0);
               opacity: 1;
@@ -161,7 +176,7 @@ export default {
           cursor: none;
 
           &:hover {
-            color: var(--accent);
+            color: var(--accent) !important;
           }
         }
       }
@@ -171,5 +186,20 @@ export default {
 
 .bg-header {
   background-color: rgba(10, 10, 10, 0.889);
+}
+
+@keyframes tracking-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    transform: translateZ(400px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
 </style>

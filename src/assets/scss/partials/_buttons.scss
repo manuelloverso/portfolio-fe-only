@@ -1,4 +1,4 @@
-.btn {
+.my-btn {
   position: relative;
   top: 0;
   left: 0;
@@ -10,8 +10,8 @@
   align-items: center;
   cursor: none;
 }
-.btn button {
-  cursor: none;
+.my-btn button {
+  cursor: none !important;
   position: absolute;
   top: 0;
   left: 0;
@@ -35,32 +35,32 @@
   transition: 0.5s;
   backdrop-filter: blur(15px);
 }
-.btn:hover button {
+.my-btn:hover button {
   letter-spacing: 3px;
 }
 
-.btn::before,
-.btn::after {
+.my-btn::before,
+.my-btn::after {
   background: rgb(7, 27, 139);
   box-shadow: 0 0 5px rgb(7, 27, 139), 0 0 15px rgb(7, 27, 139),
     0 0 30px rgb(7, 27, 139), 0 0 60px rgb(7, 27, 139);
 }
 
-.contacts-color.btn::before,
-.contacts-color.btn::after {
+.contacts-color.my-btn::before,
+.contacts-color.my-btn::after {
   background: rgb(6, 79, 10);
   box-shadow: 0 0 5px rgb(6, 79, 10), 0 0 15px rgb(6, 79, 10),
     0 0 30px rgb(6, 79, 10), 0 0 60px rgb(6, 79, 10);
 }
 
-.projects-color.btn::before,
-.projects-color.btn::after {
+.projects-color.my-btn::before,
+.projects-color.my-btn::after {
   background: rgb(186, 22, 22);
   box-shadow: 0 0 5px rgb(186, 22, 22), 0 0 15px rgb(186, 22, 22),
     0 0 30px rgb(186, 22, 22), 0 0 60px rgb(186, 22, 22);
 }
 
-.btn button::before {
+.my-btn button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -72,10 +72,10 @@
   transition: 0.5s;
   filter: blur(0px);
 }
-.btn:hover button::before {
+.my-btn:hover button::before {
   transform: skewX(45deg) translate(200px);
 }
-.btn::before {
+.my-btn::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -87,14 +87,14 @@
   transition: 0.5s;
   transition-delay: 0.5;
 }
-.btn:hover::before {
+.my-btn:hover::before {
   bottom: 0;
   height: 50%;
   width: 80%;
   border-radius: 30px;
 }
 
-.btn::after {
+.my-btn::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -106,7 +106,7 @@
   transition: 0.5s;
   transition-delay: 0.5;
 }
-.btn:hover::after {
+.my-btn:hover::after {
   top: 0;
   height: 50%;
   width: 80%;

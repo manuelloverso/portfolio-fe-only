@@ -3,22 +3,23 @@ html {
 }
 
 body {
-  background-color: var(--site-bg);
+  background-color: var(--site-bg) !important;
   position: relative;
-  color: var(--text-grey);
-  font-family: "Nunito", sans-serif;
+  color: var(--text-grey) !important;
+  font-family: "Nunito", sans-serif !important;
   cursor: none;
   overflow-x: hidden;
 }
 
 a {
-  cursor: none;
-  color: inherit;
-  text-decoration: none;
+  cursor: none !important;
+  color: inherit !important;
+  text-decoration: none !important  ;
 }
 
 ul {
   list-style: none;
+  margin: 0 !important;
 }
 
 .technology-btn {
@@ -49,7 +50,7 @@ ul {
 
   .gh-link {
     background-color: black;
-    color: white;
+    color: white !important;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
@@ -59,7 +60,7 @@ ul {
 
   .yt-link {
     background-color: rgb(191, 43, 43);
-    color: white;
+    color: white !important;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
@@ -69,6 +70,6 @@ ul {
 
   .preview-link {
     background-color: var(--accent);
-    color: black;
+    color: black !important;
   }
 }

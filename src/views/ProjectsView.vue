@@ -55,7 +55,9 @@ export default {
 
           <div class="projects-btn">
             <RouterLink :to="{ name: 'contacts' }">
-              <div class="btn projects-color"><button>Contattami</button></div>
+              <div class="my-btn projects-color">
+                <button>Contattami</button>
+              </div>
             </RouterLink>
           </div>
         </div>
@@ -73,11 +75,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.cards-container {
-  display: flex;
-  flex-direction: column;
 }
 .tracking-in-expand-fwd-top {
   -webkit-animation: tracking-in-expand-fwd-top 2s

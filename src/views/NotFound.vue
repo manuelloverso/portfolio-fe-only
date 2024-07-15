@@ -12,7 +12,7 @@ export default {
       <h2>404</h2>
       <h4>Spiacente, quello che stai cercando non esiste</h4>
       <RouterLink :to="{ name: 'home' }">
-        <div class="btn"><button>Torna alla home</button></div>
+        <div class="my-btn"><button>Torna alla home</button></div>
       </RouterLink>
     </div>
   </main>

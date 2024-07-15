@@ -10,7 +10,7 @@ export default {
   <footer id="app-footer">
     <div class="md-container row">
       <div class="col-12 col-md-4">
-        <nav class="d-flex flex-column g-3 align-start">
+        <nav class="d-flex flex-column gap-3 align-items-start">
           <RouterLink class="logo" :to="{ name: 'home' }"> Home </RouterLink>
 
           <RouterLink :to="{ name: 'projects' }"> Progetti </RouterLink>
@@ -20,7 +20,7 @@ export default {
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="socials d-flex flex-column g-3 align-start">
+        <div class="socials d-flex flex-column gap-3 align-items-start">
           <a target="_blank" href="https://github.com/manuelloverso/">
             <i class="fa-brands fa-github"></i>
             Github
@@ -41,8 +41,8 @@ export default {
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="portfolio-links d-flex flex-column g-3 align-start">
-          <h3>GH Website Repos</h3>
+        <div class="portfolio-links d-flex flex-column gap-3 align-items-start">
+          <h4>GH Website Repos</h4>
           <a
             target="_blank"
             href="https://github.com/manuelloverso/frontend-portfolio"
@@ -67,6 +67,11 @@ export default {
   padding: 3rem 0;
   background-color: rgba(0, 0, 0, 0.458);
   color: var(--accent);
+
+  & h4 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
 }
 
 a {

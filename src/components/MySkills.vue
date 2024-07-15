@@ -124,7 +124,7 @@ export default {
     <h1 class="md-container skills-heading">Skills</h1>
     <div class="splide skills-slider" aria-label="skills">
       <div class="splide__track">
-        <ul class="splide__list align-center">
+        <ul class="splide__list">
           <splide-slide v-for="tech in technologies">
             <div class="logo">
               <img

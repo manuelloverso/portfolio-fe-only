@@ -62,7 +62,7 @@ export default {
 
         <div class="projects-btn">
           <RouterLink :to="{ name: 'projects' }">
-            <div class="btn"><button>Vedi di più</button></div>
+            <div class="my-btn"><button>Vedi di più</button></div>
           </RouterLink>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default {
 
           <div class="projects-btn">
             <RouterLink :to="{ name: 'contacts' }">
-              <div class="btn"><button>Contattami</button></div>
+              <div class="my-btn"><button>Contattami</button></div>
             </RouterLink>
           </div>
         </div>
@@ -109,11 +109,6 @@ export default {
     font-weight: 400;
     color: var(--accent);
     margin-bottom: 4rem;
-  }
-
-  .cards-container {
-    display: flex;
-    flex-direction: column;
   }
 
   .projects-btn {

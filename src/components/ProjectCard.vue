@@ -95,7 +95,10 @@ export default {
 };
 </script>
 <template>
-  <RouterLink class="card-link card-container" :to="'projects/' + project.id">
+  <RouterLink
+    class="card-link project-card-container"
+    :to="'projects/' + project.id"
+  >
     <div
       class="project-card"
       @mouseenter="cardCursor()"

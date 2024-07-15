@@ -99,7 +99,7 @@ export default {
     <div class="md-container">
       <div class="page-header">
         <div class="text-container">
-          <h1 class="tracking-in-expand-fwd-top">Conttattami</h1>
+          <h1 class="tracking-in-expand-fwd-top">Contattami</h1>
           <h2 class="tracking-in-expand-fwd-bottom">
             Contattami per collaborare ad un progetto o per una chiacchierata!
           </h2>
@@ -116,7 +116,7 @@ export default {
         <span>Oppure contattami tramite il form qui sotto</span>
       </div>
 
-      <div class="d-flex justify-center">
+      <div class="d-flex justify-content-center">
         <div class="card-form col-12 col-md-6">
           <template v-if="!loading">
             <h3 v-if="failedCall" class="error">
@@ -176,8 +176,8 @@ export default {
                 <p class="error" v-if="errors.message">{{ errors.message }}</p>
               </div>
 
-              <div class="d-flex justify-center">
-                <div class="btn contacts-color">
+              <div class="d-flex justify-content-center">
+                <div class="my-btn contacts-color">
                   <button ref="submitbtn" type="submit" :disabled="submitted">
                     Invia
                   </button>

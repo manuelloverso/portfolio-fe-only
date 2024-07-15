@@ -108,7 +108,7 @@ export default {
   <!-- cursor -->
   <div id="cursor"></div>
   <div id="cursor-shadow">
-    <p class="card-text">Scopri di più</p>
+    <p class="project-card-text">Scopri di più</p>
   </div>
 </template>
 <style scoped>
@@ -141,7 +141,7 @@ export default {
     opacity 0.2s ease-in-out;
 }
 
-.card-text {
+.project-card-text {
   color: black;
   display: none;
 }
@@ -154,7 +154,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.774);
   width: 120px;
 
-  .card-text {
+  .project-card-text {
     display: block;
   }
 }

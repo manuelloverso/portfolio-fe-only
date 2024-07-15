@@ -231,7 +231,9 @@ export default {
 
           <div class="projects-btn">
             <RouterLink :to="{ name: 'contacts' }">
-              <div class="btn projects-color"><button>Contattami</button></div>
+              <div class="my-btn projects-color">
+                <button>Contattami</button>
+              </div>
             </RouterLink>
           </div>
         </div>
