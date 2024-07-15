@@ -108,7 +108,7 @@ export default {
   <!-- cursor -->
   <div id="cursor"></div>
   <div id="cursor-shadow">
-    <p class="project-card-text">Scopri di più</p>
+    <p class="project-card-text m-0">Scopri di più</p>
   </div>
 </template>
 <style scoped>

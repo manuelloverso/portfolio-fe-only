@@ -18,6 +18,7 @@ export default {
     return {
       store,
       backgroundUpdate: "",
+      isTouch: false,
     };
   },
 
@@ -29,6 +30,10 @@ export default {
   },
 
   methods: {
+    isTouchDevice() {
+      return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    },
+
     handleBackground() {
       setTimeout(() => {
         if (this.$route.name == "contacts") {
@@ -47,6 +52,7 @@ export default {
 
   mounted() {
     store.callApi();
+    this.isTouch = this.isTouchDevice();
 
     /* scroll */
     lenis.on("scroll", (e) => {});
@@ -61,8 +67,10 @@ export default {
 };
 </script>
 <template>
-  <!-- custom cursor -->
-  <CustomCursor />
+  <template v-if="!isTouch">
+    <!-- custom cursor -->
+    <CustomCursor />
+  </template>
 
   <div ref="bg-1" class="bg-bobble1 bobble" :class="backgroundUpdate"></div>
   <div ref="bg-2" class="bg-bobble2 bobble" :class="backgroundUpdate"></div>
