@@ -23,8 +23,8 @@ export default {
     <div class="home-jumbotron">
       <div class="md-container">
         <div class="jumbo-text tracking-in-contract-bck-top">
-          <h1 class="split-jumbo head-jumbo">Manuel Loverso</h1>
-          <h3 class="mb-5 split-jumbo">Jr. Full Stack Web Developer</h3>
+          <h1>Manuel Loverso</h1>
+          <h3 class="mb-5">Jr. Full Stack Web Developer</h3>
         </div>
         <Scroller />
       </div>
@@ -52,19 +52,20 @@ export default {
   }
 
   .jumbo-text {
+    text-align: center;
     color: var(--accent);
     margin-bottom: 100px;
+    white-space: pre;
     & h1 {
-      font-size: 5.5rem;
-      line-height: 0.8;
+      /* font-size: 5.5rem; */
+      font-size: 11vw;
       padding-top: 20px;
-      overflow: hidden;
       font-weight: 300;
       margin-bottom: 30px;
     }
 
     & h3 {
-      font-size: 3rem;
+      font-size: 6vw;
       font-weight: 300;
 
       line-height: 0.9;
@@ -112,6 +113,20 @@ export default {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .jumbo-text {
+    text-align: start !important;
+
+    & h1 {
+      font-size: 5.5rem !important;
+    }
+
+    & h3 {
+      font-size: 3rem !important;
+    }
   }
 }
 </style>

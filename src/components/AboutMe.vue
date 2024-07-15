@@ -78,6 +78,7 @@ export default {
 
 <style scoped>
 #about-me {
+  overflow-x: hidden;
   padding: 3rem 0;
   color: var(--accent);
   width: 40%;
