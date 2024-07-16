@@ -5,4 +5,3 @@
 - refactorying style: move everything into components scoped style
 - edit projects show view
 - fix old image on projects edit form (laravel)
-- fix console errors when clicking on a card from touch devices

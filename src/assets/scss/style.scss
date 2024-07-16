@@ -26,7 +26,13 @@
 }
 
 .project-card-container {
-  width: 70%;
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .project-card-container {
+    width: 70%;
+  }
 }
 
 /* lenis */

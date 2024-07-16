@@ -11,45 +11,47 @@ export default {
 
   methods: {
     customCursor() {
-      /* custom cursor */
-      const cursor = document.getElementById("cursor");
-      const cursorShadow = document.getElementById("cursor-shadow");
+      if (!store.isTouch) {
+        /* custom cursor */
+        const cursor = document.getElementById("cursor");
+        const cursorShadow = document.getElementById("cursor-shadow");
 
-      const coords = {
-        x: 0,
-        y: 0,
-      };
+        const coords = {
+          x: 0,
+          y: 0,
+        };
 
-      const prevCoords = {
-        x: 0,
-        y: 0,
-      };
+        const prevCoords = {
+          x: 0,
+          y: 0,
+        };
 
-      window.addEventListener("mousemove", (e) => {
-        coords.x = e.clientX;
-        coords.y = e.clientY;
-      });
+        window.addEventListener("mousemove", (e) => {
+          coords.x = e.clientX;
+          coords.y = e.clientY;
+        });
 
-      function update() {
-        cursor.style.top = `${coords.y}px`;
-        cursor.style.left = `${coords.x}px`;
+        function update() {
+          cursor.style.top = `${coords.y}px`;
+          cursor.style.left = `${coords.x}px`;
 
-        const y = lerp(prevCoords.y, coords.y, 0.15);
-        const x = lerp(prevCoords.x, coords.x, 0.15);
+          const y = lerp(prevCoords.y, coords.y, 0.15);
+          const x = lerp(prevCoords.x, coords.x, 0.15);
 
-        cursorShadow.style.top = `${y}px`;
-        cursorShadow.style.left = `${x}px`;
+          cursorShadow.style.top = `${y}px`;
+          cursorShadow.style.left = `${x}px`;
 
-        prevCoords.x = x;
-        prevCoords.y = y;
+          prevCoords.x = x;
+          prevCoords.y = y;
+
+          requestAnimationFrame(update);
+        }
 
         requestAnimationFrame(update);
-      }
 
-      requestAnimationFrame(update);
-
-      function lerp(a, b, t) {
-        return a * (1 - t) + b * t;
+        function lerp(a, b, t) {
+          return a * (1 - t) + b * t;
+        }
       }
     },
 

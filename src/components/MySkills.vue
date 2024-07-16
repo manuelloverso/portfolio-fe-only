@@ -14,6 +14,7 @@ export default {
   },
   data() {
     return {
+      perPage: 2.5,
       technologies: [
         {
           name: "VueJS",
@@ -78,7 +79,7 @@ export default {
         type: "loop",
         drag: "free",
         focus: "center",
-        perPage: 6,
+        perPage: this.perPage,
         arrows: false,
         pagination: false,
         autoScroll: {
@@ -110,6 +111,18 @@ export default {
   mounted() {
     this.animateHeading();
     ScrollTrigger.refresh();
+    console.log(window.outerWidth);
+    if (window.outerWidth > 400) {
+      this.perPage = 3;
+    }
+    if (window.outerWidth > 600) {
+      console.log("im in 600");
+      this.perPage = 4;
+    }
+    if (window.outerWidth > 900) {
+      console.log("im in 600");
+      this.perPage = 6;
+    }
     this.slider();
   },
 
@@ -121,7 +134,7 @@ export default {
 </script>
 <template>
   <section id="skills">
-    <h1 class="md-container skills-heading">Skills</h1>
+    <h2 class="md-container skills-heading">Skills</h2>
     <div class="splide skills-slider" aria-label="skills">
       <div class="splide__track">
         <ul class="splide__list">
@@ -150,13 +163,21 @@ export default {
     cursor: grab;
   }
 
-  & h1 {
+  & h2 {
     text-align: center;
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 500;
     color: var(--accent);
     padding-bottom: 2rem;
     margin-bottom: 80px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #skills {
+    & h2 {
+      font-size: 5rem;
+    }
   }
 }
 

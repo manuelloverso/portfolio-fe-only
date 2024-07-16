@@ -103,18 +103,25 @@ export default {
 #home-projects {
   padding: 3rem 0;
   margin-bottom: 300px;
-  height: 1416px;
   & h2 {
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 400;
     color: var(--accent);
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
   }
 
   .projects-btn {
     display: flex;
     justify-content: center;
     cursor: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #home-projects {
+    & h2 {
+      font-size: 5rem;
+    }
   }
 }
 </style>
