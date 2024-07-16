@@ -61,7 +61,7 @@ export default {
   <div class="md-container">
     <section id="about-me">
       <h1 class="about-heading">Chi sono</h1>
-      <p class="split about-paragraph">
+      <p class="split about-paragraph col-12 col-md-8 col-lg-6">
         Sono un Junior Web Developer con una grande passione per la
         programmazione e la creazione di soluzioni web innovative. Dopo aver
         completato un corso intensivo di 700 ore, mi sono dedicato con
@@ -81,12 +81,11 @@ export default {
   overflow-x: hidden;
   padding: 3rem 0;
   color: var(--accent);
-  width: 40%;
   margin-bottom: 350px;
 
   & h1 {
     color: var(--accent);
-    font-size: 5rem;
+    font-size: 3rem;
     margin-bottom: 100px;
     font-weight: 500;
   }
@@ -94,6 +93,14 @@ export default {
   & p {
     font-size: 1.5rem;
     line-height: 1.7;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #about-me {
+    & h1 {
+      font-size: 5rem;
+    }
   }
 }
 </style>

@@ -70,7 +70,6 @@ export default {
       setTimeout(() => {
         if (!this.loading && !this.failed) {
           const techs = document.querySelectorAll(".technology-btn");
-          console.log(techs);
 
           gsap.set(techs, { opacity: 0, y: 30 });
 
