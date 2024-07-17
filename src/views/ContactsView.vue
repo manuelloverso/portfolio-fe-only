@@ -2,6 +2,9 @@
 import axios from "axios";
 import Scroller from "../components/Scroller.vue";
 import AppLoader from "../components/AppLoader.vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "ContactsView",
@@ -77,6 +80,23 @@ export default {
         cursor.style.width = "10px";
       });
     },
+
+    animateEmail() {
+      const mail = document.querySelector(".mail");
+
+      gsap.from(mail, {
+        x: -1000,
+        opacity: 0,
+        duration: 2,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: mail,
+          start: "top 87%",
+          end: "top 15%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    },
   },
 
   watch: {
@@ -90,6 +110,7 @@ export default {
   },
 
   mounted() {
+    this.animateEmail();
     this.cursorOnBtn();
   },
 };
@@ -117,7 +138,7 @@ export default {
       </div>
 
       <div class="d-flex justify-content-center">
-        <div class="card-form col-12 col-md-6">
+        <div class="card-form col-12 col-md-8 col-xl-6">
           <template v-if="!loading">
             <h3 v-if="failedCall" class="error">
               Oops, qualcosa è andato storto, riprova più tardi
@@ -201,12 +222,20 @@ export default {
   margin-bottom: 150px;
 
   & h4 {
-    font-size: 1.3rem;
+    font-size: 5vw;
     margin-bottom: 20px;
   }
 
   & span {
     font-size: 1.15rem;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .mail {
+    & h4 {
+      font-size: 1.3rem;
+    }
   }
 }
 .error {
@@ -236,14 +265,39 @@ export default {
   }
 
   & h1 {
-    font-size: 6rem;
+    font-size: 13vw;
     font-weight: 300;
     margin-bottom: 30px;
   }
 
   & h2 {
+    text-align: center;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 6vw;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .page-header {
+    & h1 {
+      font-size: 4.6rem;
+    }
+
+    & h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .page-header {
+    & h1 {
+      font-size: 5rem;
+    }
+
+    & h2 {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -301,14 +355,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-top {
@@ -317,14 +378,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 
@@ -341,14 +409,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-bottom {
@@ -357,14 +432,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 </style>

@@ -75,6 +75,20 @@ export default {
   }
 }
 
+@media screen and (min-width: 992px) {
+  .jumbo-text {
+    text-align: start !important;
+
+    & h1 {
+      font-size: 5.5rem !important;
+    }
+
+    & h3 {
+      font-size: 3rem !important;
+    }
+  }
+}
+
 /* animations */
 .tracking-in-contract-bck-top {
   -webkit-animation: tracking-in-contract-bck-top 3s
@@ -113,20 +127,6 @@ export default {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .jumbo-text {
-    text-align: start !important;
-
-    & h1 {
-      font-size: 5.5rem !important;
-    }
-
-    & h3 {
-      font-size: 3rem !important;
-    }
   }
 }
 </style>

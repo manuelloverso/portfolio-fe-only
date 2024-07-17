@@ -8,8 +8,8 @@ export default {
 </script>
 <template>
   <footer id="app-footer">
-    <div class="md-container row">
-      <div class="col-12 col-md-4">
+    <div class="md-container row gy-5 gy-md-0">
+      <div class="col-6 col-md-4">
         <nav class="d-flex flex-column gap-3 align-items-start">
           <RouterLink class="logo" :to="{ name: 'home' }"> Home </RouterLink>
 
@@ -19,7 +19,7 @@ export default {
         </nav>
       </div>
 
-      <div class="col-12 col-md-4">
+      <div class="col-6 col-md-4">
         <div class="socials d-flex flex-column gap-3 align-items-start">
           <a target="_blank" href="https://github.com/manuelloverso/">
             <i class="fa-brands fa-github"></i>
@@ -35,7 +35,7 @@ export default {
 
           <a target="_blank" href="mailto:manuel.loverso.dev@gmail.com">
             <i class="fa-solid fa-at"></i>
-            manuel.loverso.dev@gmail.com
+            Email
           </a>
         </div>
       </div>
