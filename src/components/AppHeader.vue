@@ -38,7 +38,7 @@ export default {
     <nav class="md-container navbar">
       <!-- Site Logo -->
       <RouterLink class="logo align-self-start" :to="{ name: 'home' }">
-        <h1>ML</h1>
+        <img src="/public/img/logo.png" alt="" />
       </RouterLink>
 
       <div class="nav-right-side d-none d-md-flex align-items-center">
@@ -167,15 +167,12 @@ export default {
       cursor: none;
       transition: transform 0.3s linear, color 0.4s ease-in-out;
 
-      & h1 {
-        font-size: 3rem;
-        font-weight: 400;
-        margin: 0 !important;
+      & img {
+        width: 80px;
       }
 
       &:hover {
-        color: var(--accent) !important;
-        transform: scale(1.3);
+        transform: scale(1.2);
       }
     }
 
