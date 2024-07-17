@@ -55,10 +55,10 @@ export default {
           image: "sass.svg",
         },
 
-        /* sql: {
+        {
           name: "sql",
           image: "sql.svg",
-        }, */
+        },
 
         {
           name: "Vite",

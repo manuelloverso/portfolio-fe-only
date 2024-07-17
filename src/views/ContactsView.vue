@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { store } from "../store.js";
 import Scroller from "../components/Scroller.vue";
 import AppLoader from "../components/AppLoader.vue";
 import { gsap } from "gsap";
@@ -14,6 +15,7 @@ export default {
   },
   data() {
     return {
+      store,
       name: "",
       email: "",
       message: "",
@@ -39,14 +41,15 @@ export default {
       axios
         .post(this.apiUrl, data)
         .then((response) => {
-          console.log(response);
           if (response.data.success) {
+            console.log("email sent");
             this.name = "";
             this.email = "";
             this.message = "";
             this.loading = false;
             this.success = true;
           } else {
+            console.log("the email returned an error");
             this.loading = false;
             this.submitted = false;
             this.errors = response.data.errors;
@@ -54,6 +57,7 @@ export default {
           }
         })
         .catch((err) => {
+          console.log("cannot send the email");
           this.loading = false;
           this.submitted = false;
           this.failedCall = true;
@@ -62,23 +66,25 @@ export default {
     },
 
     cursorOnBtn() {
-      const cursorShadow = document.getElementById("cursor-shadow");
-      const cursor = document.getElementById("cursor");
+      if (!store.isTouch) {
+        const cursorShadow = document.getElementById("cursor-shadow");
+        const cursor = document.getElementById("cursor");
 
-      this.$refs.submitbtn.addEventListener("mouseenter", () => {
-        cursorShadow.style.opacity = 0;
-        cursor.style.width = "25px";
-      });
+        this.$refs.submitbtn.addEventListener("mouseenter", () => {
+          cursorShadow.style.opacity = 0;
+          cursor.style.width = "25px";
+        });
 
-      this.$refs.submitbtn.addEventListener("mouseleave", () => {
-        cursorShadow.style.opacity = 1;
-        cursor.style.width = "10px";
-      });
+        this.$refs.submitbtn.addEventListener("mouseleave", () => {
+          cursorShadow.style.opacity = 1;
+          cursor.style.width = "10px";
+        });
 
-      this.$refs.submitbtn.addEventListener("click", () => {
-        cursorShadow.style.opacity = 1;
-        cursor.style.width = "10px";
-      });
+        this.$refs.submitbtn.addEventListener("click", () => {
+          cursorShadow.style.opacity = 1;
+          cursor.style.width = "10px";
+        });
+      }
     },
 
     animateEmail() {
