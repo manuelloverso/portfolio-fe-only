@@ -6,3 +6,4 @@
 - edit projects show view
 - fix old image on projects edit form (laravel)
 - fix show view
+- edit 404

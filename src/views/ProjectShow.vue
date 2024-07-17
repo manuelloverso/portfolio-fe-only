@@ -38,34 +38,6 @@ export default {
         });
     },
 
-    animateInfo() {
-      setTimeout(() => {
-        if (!this.loading && !this.failed) {
-          /* description animation */
-          const splitElement = document.querySelector(".split");
-
-          const text = new SplitType(splitElement, { types: "words,chars" });
-
-          gsap.fromTo(
-            text.chars,
-            {
-              opacity: 0.2,
-            },
-            {
-              opacity: 1,
-              stagger: 1,
-              scrollTrigger: {
-                trigger: ".description-paragraph",
-                start: "top 80%",
-                end: "center 65%",
-                scrub: 3,
-              },
-            }
-          );
-        }
-      }, 500);
-    },
-
     animateTechnologies() {
       setTimeout(() => {
         if (!this.loading && !this.failed) {
@@ -94,7 +66,6 @@ export default {
     loading(newVal) {
       if (!newVal) {
         this.$nextTick(() => {
-          this.animateInfo();
           this.animateTechnologies();
         });
       }
@@ -143,7 +114,7 @@ export default {
         <div class="details">
           <div class="left col-12 col-md-6">
             <div class="description">
-              <p class="split description-paragraph">
+              <p>
                 {{ project.description }}
               </p>
             </div>
@@ -255,11 +226,11 @@ export default {
   margin-bottom: 250px;
 
   .hero {
-    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 30vh;
+    padding-top: 4rem;
+    margin-bottom: 4rem;
     & h1 {
       font-size: 2rem;
       font-weight: 400;
