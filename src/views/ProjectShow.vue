@@ -121,11 +121,10 @@ export default {
         <AppLoader />
       </template>
       <div v-if="!loading && !failed">
-        <h1 class="project-title text-center tracking-in-expand-fwd-top">
-          {{ project.title }}
-        </h1>
-
-        <div class="image">
+        <div class="hero">
+          <h1 class="project-title text-center tracking-in-expand-fwd-top">
+            {{ project.title }}
+          </h1>
           <!-- Image -->
           <img
             class="slide-in-blurred-top"
@@ -142,7 +141,7 @@ export default {
         </div>
 
         <div class="details">
-          <div class="left">
+          <div class="left col-12 col-md-6">
             <div class="description">
               <p class="split description-paragraph">
                 {{ project.description }}
@@ -161,7 +160,7 @@ export default {
             </div>
           </div>
 
-          <div class="right">
+          <div class="right col-12 col-md-6">
             <div class="date">
               {{ project.date }}
             </div>
@@ -253,17 +252,19 @@ export default {
 }
 
 #project-show {
-  padding-top: 4rem;
   margin-bottom: 250px;
 
-  & h1 {
-    font-size: 3rem;
-    font-weight: 400;
-    margin-bottom: 3rem;
-  }
-
-  .image {
-    margin-bottom: 3rem;
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30vh;
+    & h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+    }
     & img {
       width: 100%;
     }
@@ -272,10 +273,9 @@ export default {
   .details {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .left {
-      width: 35%;
-
       .description {
         font-size: 1.3rem;
         margin-bottom: 2rem;
@@ -298,7 +298,66 @@ export default {
       .date {
         text-align: end;
       }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+        gap: 10px;
+        margin-bottom: 1.2rem;
+        a {
+          text-decoration: none;
+          padding: 10px;
+          border-radius: 13px;
+        }
+
+        .gh-link {
+          background-color: black;
+          color: white !important;
+          transition: background-color 0.3s ease-in-out;
+
+          &:hover {
+            background-color: rgb(38, 38, 38);
+          }
+        }
+
+        .yt-link {
+          background-color: rgb(191, 43, 43);
+          color: white !important;
+          transition: background-color 0.3s ease-in-out;
+
+          &:hover {
+            background-color: rgb(105, 20, 20);
+          }
+        }
+
+        .preview-link {
+          background-color: var(--accent);
+          color: black !important;
+        }
+      }
     }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  #project-show {
+    .hero {
+      & h1 {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .date {
+    text-align: start !important;
+    margin: 40px 0;
+  }
+
+  .project-links {
+    justify-content: start !important;
   }
 }
 

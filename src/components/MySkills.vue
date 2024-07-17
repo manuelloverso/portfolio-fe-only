@@ -111,16 +111,13 @@ export default {
   mounted() {
     this.animateHeading();
     ScrollTrigger.refresh();
-    console.log(window.outerWidth);
-    if (window.outerWidth > 400) {
+    if (window.innerWidth > 400) {
       this.perPage = 3;
     }
-    if (window.outerWidth > 600) {
-      console.log("im in 600");
+    if (window.innerWidth > 600) {
       this.perPage = 4;
     }
-    if (window.outerWidth > 900) {
-      console.log("im in 600");
+    if (window.innerWidth > 900) {
       this.perPage = 6;
     }
     this.slider();

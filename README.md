@@ -5,3 +5,4 @@
 - refactorying style: move everything into components scoped style
 - edit projects show view
 - fix old image on projects edit form (laravel)
+- fix show view
