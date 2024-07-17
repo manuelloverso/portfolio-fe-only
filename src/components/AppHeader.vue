@@ -1,10 +1,21 @@
 <script>
 import { RouterLink } from "vue-router";
+import { Collapse } from "bootstrap";
 
 export default {
   name: "AppHeader",
   data() {
     return {};
+  },
+
+  methods: {
+    toggleCollapse() {
+      const navbarCollapse = this.$refs.navbarCollapse;
+      if (navbarCollapse.classList.contains("show")) {
+        const collapseInstance = new Collapse(navbarCollapse);
+        collapseInstance.hide();
+      }
+    },
   },
 
   mounted() {
@@ -24,13 +35,13 @@ export default {
 <template>
   <header id="app-header">
     <!-- Navigation bar -->
-    <nav class="md-container">
+    <nav class="md-container navbar">
       <!-- Site Logo -->
-      <RouterLink class="logo" :to="{ name: 'home' }">
-        <h1>ML</h1>
+      <RouterLink class="logo align-self-start" :to="{ name: 'home' }">
+        <img src="/public/img/logo.png" alt="" />
       </RouterLink>
 
-      <div class="nav-right-side d-flex">
+      <div class="nav-right-side d-none d-md-flex align-items-center">
         <ul class="nav-links">
           <li>
             <RouterLink :to="{ name: 'projects' }">
@@ -62,6 +73,61 @@ export default {
           </li>
         </ul>
       </div>
+
+      <div class="btn-group d-block d-md-none text-end">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#n_bar"
+          aria-controls="navbarNavAltMarkup"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="n_bar" ref="navbarCollapse">
+          <ul class="navbar-nav toggle-nav-links text-end">
+            <li class="nav-item">
+              <RouterLink
+                :to="{ name: 'projects' }"
+                class="nav-link"
+                @click="toggleCollapse"
+                >Progetti</RouterLink
+              >
+            </li>
+            <li class="nav-item">
+              <RouterLink
+                class="nav-link"
+                :to="{ name: 'contacts' }"
+                @click="toggleCollapse"
+                >Contattami</RouterLink
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                target="_blank"
+                class="nav-link"
+                href="https://github.com/manuelloverso/"
+                @click="toggleCollapse"
+              >
+                <i class="fa-brands fa-github"></i>
+                Github
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                target="_blank"
+                class="nav-link"
+                href="https://linkedin.com/in/manuel-loverso-30582b282"
+                @click="toggleCollapse"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+                Linkedin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 </template>
@@ -73,47 +139,47 @@ export default {
   position: sticky;
   z-index: 2;
   top: 0;
+
+  .toggle-nav-links {
+    & li:hover {
+      color: var(--accent);
+    }
+  }
+
+  .navbar-toggler {
+    color: var(--accent);
+    border: 1px solid var(--text-grey);
+
+    & span {
+      color: white !important;
+    }
+  }
+
   & nav {
     display: flex;
     justify-content: space-between;
     animation: tracking-in-contract-bck 2s cubic-bezier(0.215, 0.61, 0.355, 1)
       both;
-    @keyframes tracking-in-contract-bck {
-      0% {
-        letter-spacing: 1em;
-        transform: translateZ(400px);
-        opacity: 0;
-      }
-      40% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateZ(0);
-        opacity: 1;
-      }
-    }
 
     .logo {
-      font-size: 2rem;
       color: var(--text-grey);
       text-decoration: none;
       cursor: none;
       transition: transform 0.3s linear, color 0.4s ease-in-out;
 
-      & h1 {
-        font-weight: 400;
+      & img {
+        width: 80px;
       }
 
       &:hover {
-        color: var(--accent);
-        transform: scale(1.3);
+        transform: scale(1.2);
       }
     }
 
     .nav-right-side {
       gap: 1.2rem;
-      align-items: center;
       font-size: 1.2rem;
+
       .nav-links {
         display: flex;
         gap: 0.4rem;
@@ -127,8 +193,7 @@ export default {
           transition: 0.5s;
 
           &:hover {
-            color: var(--accent);
-
+            color: var(--accent) !important;
             span {
               transform: scale(1) translateY(0);
               opacity: 1;
@@ -161,7 +226,7 @@ export default {
           cursor: none;
 
           &:hover {
-            color: var(--accent);
+            color: var(--accent) !important;
           }
         }
       }
@@ -171,5 +236,20 @@ export default {
 
 .bg-header {
   background-color: rgba(10, 10, 10, 0.889);
+}
+
+@keyframes tracking-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    transform: translateZ(400px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
 </style>

@@ -9,13 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@splidejs/vue-splide": "^0.6.12",
     "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
     "lenis": "^1.1.6",
     "sass": "^1.77.3",
+    "split-type": "^0.3.4",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2"
   },

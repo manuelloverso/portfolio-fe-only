@@ -1,13 +1,14 @@
 .bg-bobble1 {
+  display: none;
   background-color: rgb(7, 27, 139);
   position: fixed;
-  top: 10vh;
+  top: 30vh;
   z-index: -1;
   left: 70vw;
-  width: 300px;
+  width: 160px;
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(70px);
   animation: animation 15s ease infinite;
 }
 
@@ -17,40 +18,83 @@
   position: fixed;
   top: 50vh;
   z-index: -1;
-  left: 10vw;
+  left: 50vw;
+  animation: animation 20s ease infinite;
   width: 300px;
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(120px);
-  animation: animation 20s ease infinite;
+  filter: blur(100px);
 }
 
 @keyframes animation {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 
   15% {
-    transform: scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   35% {
-    transform: scale(1.4);
+    transform: translate(-50%, -50%) scale(1.4);
   }
 
   50% {
-    transform: scale(1.6);
+    transform: translate(-50%, -50%) scale(1.6);
   }
 
   65% {
-    transform: scale(1.4);
+    transform: translate(-50%, -50%) scale(1.4);
   }
 
   85% {
-    transform: scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   100% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bg-bobble1 {
+    display: block;
+  }
+
+  .bg-bobble2 {
+    top: 80vh;
+    left: 25vw;
+    width: 160px;
+    filter: blur(70px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .bg-bobble1 {
+    width: 220px;
+    filter: blur(90px);
+  }
+
+  .bg-bobble2 {
+    top: 80vh;
+    left: 30vw;
+    width: 220px;
+    filter: blur(90px);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .bg-bobble1 {
+    left: 75vw;
+
+    width: 300px;
+    filter: blur(110px);
+  }
+
+  .bg-bobble2 {
+    top: 75vh;
+    left: 20vw;
+    width: 300px;
+    filter: blur(110px);
   }
 }

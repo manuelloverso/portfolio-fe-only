@@ -1,5 +1,6 @@
 <script>
 import { RouterLink } from "vue-router";
+import { store } from "../store";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +11,9 @@ export default {
     project: Object,
   },
   data() {
-    return {};
+    return {
+      store,
+    };
   },
 
   methods: {
@@ -47,7 +50,12 @@ export default {
     },
 
     cardsAnimation() {
-      const cards = document.querySelectorAll(".project-card");
+      let cards;
+      if (window.outerWidth < 768) {
+        cards = document.querySelectorAll(".small-project-card");
+      } else {
+        cards = document.querySelectorAll(".project-card");
+      }
       cards.forEach((card) => {
         gsap.fromTo(
           card,
@@ -68,22 +76,33 @@ export default {
     },
 
     cardCursor() {
-      const cursor = document.getElementById("cursor");
-      const cursorShadow = document.getElementById("cursor-shadow");
-      cursorShadow.classList.add("card-hover");
-      cursor.classList.add("card-hover");
+      if (!store.isTouch) {
+        const cursor = document.getElementById("cursor");
+        const cursorShadow = document.getElementById("cursor-shadow");
+        cursorShadow.classList.add("card-hover");
+        cursor.classList.add("card-hover");
+      }
     },
 
     cardCursorLeave() {
-      const cursor = document.getElementById("cursor");
-      const cursorShadow = document.getElementById("cursor-shadow");
-      cursorShadow.classList.remove("card-hover");
-      cursor.classList.remove("card-hover");
+      if (!store.isTouch) {
+        const cursor = document.getElementById("cursor");
+        const cursorShadow = document.getElementById("cursor-shadow");
+        cursorShadow.classList.remove("card-hover");
+        cursor.classList.remove("card-hover");
+      }
     },
   },
 
   mounted() {
-    this.cardEffect();
+    if (store.isTouch) {
+      const images = document.querySelectorAll(".image img");
+      images.forEach((img) => {
+        img.classList.add("visible");
+      });
+    } else {
+      this.cardEffect();
+    }
     this.cardsAnimation();
     ScrollTrigger.refresh();
   },
@@ -95,9 +114,12 @@ export default {
 };
 </script>
 <template>
-  <RouterLink class="card-link card-container" :to="'projects/' + project.id">
+  <RouterLink
+    class="card-link project-card-container"
+    :to="'projects/' + project.id"
+  >
     <div
-      class="project-card"
+      class="project-card d-none d-md-flex"
       @mouseenter="cardCursor()"
       @mouseleave="cardCursorLeave()"
       @click="cardCursorLeave()"
@@ -122,7 +144,6 @@ export default {
         <img
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
-          class="project-img"
           v-if="project.card_image.startsWith('http')"
           :src="project.card_image"
           :alt="project.title"
@@ -131,11 +152,40 @@ export default {
           v-else
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
-          class="project-img"
           :src="'http://127.0.0.1:8000' + '/storage/' + project.card_image"
           :alt="project.title"
         />
       </div>
+    </div>
+
+    <!-- small devices card -->
+
+    <div class="small-project-card d-md-none">
+      <div class="image">
+        <!-- Image -->
+        <img
+          v-if="project.card_image.startsWith('http')"
+          :src="project.card_image"
+          :alt="project.title"
+        />
+        <img
+          v-else
+          :src="'http://127.0.0.1:8000' + '/storage/' + project.card_image"
+          :alt="project.title"
+        />
+      </div>
+
+      <!-- title -->
+      <h2 class="project-title">{{ project.title }}</h2>
+
+      <!-- technologies -->
+      <template v-if="project.technologies.length != 0">
+        <div class="technologies">
+          <div class="technology-btn" v-for="tech in project.technologies">
+            {{ tech.name }}
+          </div>
+        </div>
+      </template>
     </div>
   </RouterLink>
 </template>
@@ -150,8 +200,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 1rem;
-
-  height: 300px;
+  min-height: 300px;
   border: 1px solid grey;
   border-radius: 15px;
   cursor: none;
@@ -187,6 +236,10 @@ export default {
       transition: transform 0.3s ease, opacity 0.3s ease;
       opacity: 0;
     }
+
+    & img.visible {
+      opacity: 1;
+    }
   }
 }
 
@@ -198,5 +251,36 @@ export default {
 
 .image img:hover {
   transform: rotate(5deg) scale(1.1);
+}
+
+.small-project-card {
+  border: 1px solid grey;
+  text-align: center;
+  padding: 35% 20px 30px 20px;
+  border-radius: 15px;
+  position: relative;
+  background-color: var(--bg-cards);
+  .image {
+    position: absolute;
+    top: -40px;
+    & img {
+      width: 80%;
+      border-radius: 10px;
+      aspect-ratio: 16 / 8;
+    }
+  }
+
+  .project-title {
+    font-size: 7vw;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.3rem;
+    justify-content: center;
+  }
 }
 </style>

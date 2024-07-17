@@ -1,13 +1,38 @@
 @use "./partials/common";
-@use "./partials/utilities";
 @use "./partials/background";
 @use "./partials/buttons";
+
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
 
 :root {
   --accent: rgb(197, 205, 209);
   --bg-cards: #18181860;
   --text-grey: rgb(84, 84, 84);
   --site-bg: rgb(10, 10, 10);
+}
+
+/* CONTAINERS */
+.md-container {
+  margin: auto;
+  width: 80%;
+  max-width: 1400px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-card-container {
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .project-card-container {
+    width: 70%;
+  }
 }
 
 /* lenis */

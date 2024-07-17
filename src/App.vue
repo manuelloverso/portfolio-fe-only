@@ -47,6 +47,7 @@ export default {
 
   mounted() {
     store.callApi();
+    store.isTouch = store.isTouchDevice();
 
     /* scroll */
     lenis.on("scroll", (e) => {});
@@ -61,8 +62,10 @@ export default {
 };
 </script>
 <template>
-  <!-- custom cursor -->
-  <CustomCursor />
+  <template v-if="!store.isTouch">
+    <!-- custom cursor -->
+    <CustomCursor />
+  </template>
 
   <div ref="bg-1" class="bg-bobble1 bobble" :class="backgroundUpdate"></div>
   <div ref="bg-2" class="bg-bobble2 bobble" :class="backgroundUpdate"></div>

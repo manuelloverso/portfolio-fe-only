@@ -1,7 +1,11 @@
 <script>
 import axios from "axios";
+import { store } from "../store.js";
 import Scroller from "../components/Scroller.vue";
 import AppLoader from "../components/AppLoader.vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "ContactsView",
@@ -11,6 +15,7 @@ export default {
   },
   data() {
     return {
+      store,
       name: "",
       email: "",
       message: "",
@@ -36,14 +41,15 @@ export default {
       axios
         .post(this.apiUrl, data)
         .then((response) => {
-          console.log(response);
           if (response.data.success) {
+            console.log("email sent");
             this.name = "";
             this.email = "";
             this.message = "";
             this.loading = false;
             this.success = true;
           } else {
+            console.log("the email returned an error");
             this.loading = false;
             this.submitted = false;
             this.errors = response.data.errors;
@@ -51,6 +57,7 @@ export default {
           }
         })
         .catch((err) => {
+          console.log("cannot send the email");
           this.loading = false;
           this.submitted = false;
           this.failedCall = true;
@@ -59,22 +66,41 @@ export default {
     },
 
     cursorOnBtn() {
-      const cursorShadow = document.getElementById("cursor-shadow");
-      const cursor = document.getElementById("cursor");
+      if (!store.isTouch) {
+        const cursorShadow = document.getElementById("cursor-shadow");
+        const cursor = document.getElementById("cursor");
 
-      this.$refs.submitbtn.addEventListener("mouseenter", () => {
-        cursorShadow.style.opacity = 0;
-        cursor.style.width = "25px";
-      });
+        this.$refs.submitbtn.addEventListener("mouseenter", () => {
+          cursorShadow.style.opacity = 0;
+          cursor.style.width = "25px";
+        });
 
-      this.$refs.submitbtn.addEventListener("mouseleave", () => {
-        cursorShadow.style.opacity = 1;
-        cursor.style.width = "10px";
-      });
+        this.$refs.submitbtn.addEventListener("mouseleave", () => {
+          cursorShadow.style.opacity = 1;
+          cursor.style.width = "10px";
+        });
 
-      this.$refs.submitbtn.addEventListener("click", () => {
-        cursorShadow.style.opacity = 1;
-        cursor.style.width = "10px";
+        this.$refs.submitbtn.addEventListener("click", () => {
+          cursorShadow.style.opacity = 1;
+          cursor.style.width = "10px";
+        });
+      }
+    },
+
+    animateEmail() {
+      const mail = document.querySelector(".mail");
+
+      gsap.from(mail, {
+        x: -1000,
+        opacity: 0,
+        duration: 2,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: mail,
+          start: "top 87%",
+          end: "top 15%",
+          toggleActions: "play none none reverse",
+        },
       });
     },
   },
@@ -90,6 +116,7 @@ export default {
   },
 
   mounted() {
+    this.animateEmail();
     this.cursorOnBtn();
   },
 };
@@ -99,7 +126,7 @@ export default {
     <div class="md-container">
       <div class="page-header">
         <div class="text-container">
-          <h1 class="tracking-in-expand-fwd-top">Conttattami</h1>
+          <h1 class="tracking-in-expand-fwd-top">Contattami</h1>
           <h2 class="tracking-in-expand-fwd-bottom">
             Contattami per collaborare ad un progetto o per una chiacchierata!
           </h2>
@@ -116,8 +143,8 @@ export default {
         <span>Oppure contattami tramite il form qui sotto</span>
       </div>
 
-      <div class="d-flex justify-center">
-        <div class="card-form col-12 col-md-6">
+      <div class="d-flex justify-content-center">
+        <div class="card-form col-12 col-md-8 col-xl-6">
           <template v-if="!loading">
             <h3 v-if="failedCall" class="error">
               Oops, qualcosa è andato storto, riprova più tardi
@@ -176,8 +203,8 @@ export default {
                 <p class="error" v-if="errors.message">{{ errors.message }}</p>
               </div>
 
-              <div class="d-flex justify-center">
-                <div class="btn contacts-color">
+              <div class="d-flex justify-content-center">
+                <div class="my-btn contacts-color">
                   <button ref="submitbtn" type="submit" :disabled="submitted">
                     Invia
                   </button>
@@ -201,12 +228,20 @@ export default {
   margin-bottom: 150px;
 
   & h4 {
-    font-size: 1.3rem;
+    font-size: 5vw;
     margin-bottom: 20px;
   }
 
   & span {
     font-size: 1.15rem;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .mail {
+    & h4 {
+      font-size: 1.3rem;
+    }
   }
 }
 .error {
@@ -236,14 +271,39 @@ export default {
   }
 
   & h1 {
-    font-size: 6rem;
+    font-size: 13vw;
     font-weight: 300;
     margin-bottom: 30px;
   }
 
   & h2 {
+    text-align: center;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 6vw;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .page-header {
+    & h1 {
+      font-size: 4.6rem;
+    }
+
+    & h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .page-header {
+    & h1 {
+      font-size: 5rem;
+    }
+
+    & h2 {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -301,14 +361,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-top {
@@ -317,14 +384,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 
@@ -341,14 +415,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-bottom {
@@ -357,14 +438,21 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 </style>

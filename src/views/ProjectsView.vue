@@ -55,7 +55,9 @@ export default {
 
           <div class="projects-btn">
             <RouterLink :to="{ name: 'contacts' }">
-              <div class="btn projects-color"><button>Contattami</button></div>
+              <div class="my-btn projects-color">
+                <button>Contattami</button>
+              </div>
             </RouterLink>
           </div>
         </div>
@@ -74,11 +76,6 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
-.cards-container {
-  display: flex;
-  flex-direction: column;
-}
 .tracking-in-expand-fwd-top {
   -webkit-animation: tracking-in-expand-fwd-top 2s
     cubic-bezier(0.215, 0.61, 0.355, 1) both;
@@ -92,14 +89,22 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
   }
+
+  90% {
+    white-space: nowrap;
+  }
+
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-top {
@@ -108,14 +113,20 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(-500px);
     transform: translateZ(-700px) translateY(-500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 
@@ -132,14 +143,20 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 @keyframes tracking-in-expand-fwd-bottom {
@@ -148,14 +165,20 @@ export default {
     -webkit-transform: translateZ(-700px) translateY(500px);
     transform: translateZ(-700px) translateY(500px);
     opacity: 0;
+    white-space: nowrap;
   }
   40% {
     opacity: 0.6;
+    white-space: nowrap;
+  }
+  90% {
+    white-space: nowrap;
   }
   100% {
     -webkit-transform: translateZ(0) translateY(0);
     transform: translateZ(0) translateY(0);
     opacity: 1;
+    white-space: normal;
   }
 }
 
@@ -180,14 +203,41 @@ export default {
   }
 
   & h1 {
-    font-size: 6rem;
+    /* font-size: 6rem; */
+    font-size: 13vw;
     font-weight: 300;
     margin-bottom: 30px;
   }
 
   & h2 {
+    text-align: center;
     font-weight: 300;
-    font-size: 2rem;
+    /*  font-size: 2rem; */
+    font-size: 6vw;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .page-header {
+    & h1 {
+      font-size: 4.6rem;
+    }
+
+    & h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .page-header {
+    & h1 {
+      font-size: 5rem;
+    }
+
+    & h2 {
+      font-size: 2rem;
+    }
   }
 }
 </style>

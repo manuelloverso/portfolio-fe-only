@@ -5,6 +5,7 @@ export const store = reactive({
   projects: [],
   projectsLoading: true,
   failed: false,
+  isTouch: null,
 
   /* get projects */
   callApi() {
@@ -19,5 +20,9 @@ export const store = reactive({
         this.projectsLoading = false;
         this.failed = true;
       });
+  },
+
+  isTouchDevice() {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
   },
 });
