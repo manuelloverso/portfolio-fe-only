@@ -81,7 +81,9 @@ export default {
     }
 
     this.id = this.$route.params.id;
-    this.singleProject(`http://127.0.0.1:8000/api/projects/${this.id}`);
+    this.singleProject(
+      `https://admin.manuelloverso.com/api/projects/${this.id}`
+    );
   },
 };
 </script>
