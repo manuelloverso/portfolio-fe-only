@@ -152,7 +152,9 @@ export default {
           v-else
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
-          :src="'http://127.0.0.1:8000' + '/storage/' + project.card_image"
+          :src="
+            'https://admin.manuelloverso.com' + '/storage/' + project.card_image
+          "
           :alt="project.title"
         />
       </div>
@@ -170,7 +172,9 @@ export default {
         />
         <img
           v-else
-          :src="'http://127.0.0.1:8000' + '/storage/' + project.card_image"
+          :src="
+            'https://admin.manuelloverso.com' + '/storage/' + project.card_image
+          "
           :alt="project.title"
         />
       </div>

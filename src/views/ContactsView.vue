@@ -20,7 +20,7 @@ export default {
       email: "",
       message: "",
       failedCall: false,
-      apiUrl: "http://127.0.0.1:8000/api/contacts",
+      apiUrl: "https://admin.manuelloverso.com/api/contacts",
       loading: false,
       success: false,
       errors: [],
