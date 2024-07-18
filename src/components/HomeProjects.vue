@@ -20,19 +20,22 @@ export default {
 
   methods: {
     animateHeading() {
-      const text = document.querySelector(".projects-heading");
+      setTimeout(() => {
+        const text = document.querySelector(".projects-heading");
 
-      gsap.from(text, {
-        x: -2000,
-        duration: 2,
-        ease: "back.out",
-        scrollTrigger: {
-          trigger: text,
-          start: "top 87%",
-          end: "top 15%",
-          toggleActions: "play none none reverse",
-        },
-      });
+        gsap.from(text, {
+          x: -2000,
+          duration: 2,
+          ease: "back.out",
+          scrollTrigger: {
+            trigger: text,
+            start: "top 87%",
+            end: "top 15%",
+            toggleActions: "play none none reverse",
+            markers: true,
+          },
+        });
+      }, 500);
     },
   },
 

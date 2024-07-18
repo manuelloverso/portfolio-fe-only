@@ -50,29 +50,31 @@ export default {
     },
 
     cardsAnimation() {
-      let cards;
-      if (window.outerWidth < 768) {
-        cards = document.querySelectorAll(".small-project-card");
-      } else {
-        cards = document.querySelectorAll(".project-card");
-      }
-      cards.forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, scale: 0.5 },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 1,
-            scrollTrigger: {
-              trigger: card,
-              toggleActions: "play none none reverse",
-              start: "top 80%",
-              markers: false,
-            },
-          }
-        );
-      });
+      setTimeout(() => {
+        let cards;
+        if (window.outerWidth < 768) {
+          cards = document.querySelectorAll(".small-project-card");
+        } else {
+          cards = document.querySelectorAll(".project-card");
+        }
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, scale: 0.5 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 1,
+              scrollTrigger: {
+                trigger: card,
+                toggleActions: "play none none reverse",
+                start: "top 80%",
+                markers: false,
+              },
+            }
+          );
+        });
+      }, 600);
     },
 
     cardCursor() {

@@ -50,7 +50,7 @@ export default {
             pin: true,
           },
         });
-      }, 500);
+      }, 200);
     },
   },
 
