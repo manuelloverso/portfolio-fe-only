@@ -32,7 +32,6 @@ export default {
             start: "top 87%",
             end: "top 15%",
             toggleActions: "play none none reverse",
-            markers: true,
           },
         });
       }, 500);
