@@ -11,11 +11,21 @@ export default {
     <div class="md-container row gy-5 gy-md-0">
       <div class="col-6 col-md-4">
         <nav class="d-flex flex-column gap-3 align-items-start">
-          <RouterLink class="logo" :to="{ name: 'home' }"> Home </RouterLink>
+          <RouterLink
+            class="logo"
+            :to="{ name: 'home' }"
+            activeClass="active-route"
+          >
+            Home
+          </RouterLink>
 
-          <RouterLink :to="{ name: 'projects' }"> Progetti </RouterLink>
+          <RouterLink :to="{ name: 'projects' }" activeClass="active-route">
+            Progetti
+          </RouterLink>
 
-          <RouterLink :to="{ name: 'contacts' }"> Contattami </RouterLink>
+          <RouterLink :to="{ name: 'contacts' }" activeClass="active-route">
+            Contattami
+          </RouterLink>
         </nav>
       </div>
 
@@ -80,6 +90,10 @@ a {
   text-decoration: none;
   cursor: none;
   font-size: 1.15rem;
+}
+
+.active-route {
+  color: white !important;
 }
 
 a::before {

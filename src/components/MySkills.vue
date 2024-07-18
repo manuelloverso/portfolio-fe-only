@@ -140,7 +140,7 @@ export default {
               <img
                 class="tech"
                 width="100"
-                :src="`/public/img/${tech.image}`"
+                :src="`/img/${tech.image}`"
                 :alt="tech.tech"
               />
             </div>

@@ -38,19 +38,19 @@ export default {
     <nav class="md-container navbar">
       <!-- Site Logo -->
       <RouterLink class="logo align-self-start" :to="{ name: 'home' }">
-        <img src="/public/img/logo.png" alt="" />
+        <img src="/img/logo.png" alt="" />
       </RouterLink>
 
       <div class="nav-right-side d-none d-md-flex align-items-center">
         <ul class="nav-links">
           <li>
-            <RouterLink :to="{ name: 'projects' }">
+            <RouterLink :to="{ name: 'projects' }" activeClass="active-route">
               Progetti
               <span></span>
             </RouterLink>
           </li>
           <li>
-            <RouterLink :to="{ name: 'contacts' }">
+            <RouterLink :to="{ name: 'contacts' }" activeClass="active-route">
               Contattami
               <span></span>
             </RouterLink>
@@ -91,6 +91,7 @@ export default {
               <RouterLink
                 :to="{ name: 'projects' }"
                 class="nav-link"
+                activeClass="active-route"
                 @click="toggleCollapse"
                 >Progetti</RouterLink
               >
@@ -98,6 +99,7 @@ export default {
             <li class="nav-item">
               <RouterLink
                 class="nav-link"
+                activeClass="active-route"
                 :to="{ name: 'contacts' }"
                 @click="toggleCollapse"
                 >Contattami</RouterLink
@@ -139,6 +141,10 @@ export default {
   position: sticky;
   z-index: 2;
   top: 0;
+
+  .active-route {
+    color: var(--accent) !important;
+  }
 
   .toggle-nav-links {
     & li:hover {

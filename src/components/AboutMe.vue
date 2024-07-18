@@ -69,9 +69,9 @@ export default {
         entusiasmo allo sviluppo di competenze in diversi ambiti della
         programmazione web, sia front-end che back-end. Anche se sono
         relativamente nuovo in questo campo, ogni progetto rappresenta per me
-        un'opportunità di crescita e apprendimento. Sono motivato a migliorare
-        costantemente le mie abilità e sono entusiasta di affrontare nuove sfide
-        nel mondo dello sviluppo web.
+        un'opportunità di crescita e apprendimento. Mi piace affrontare nuove
+        sfide nel mondo dello sviluppo web e sono sempre pronto a mettermi alla
+        prova.
       </p>
     </section>
   </div>
