@@ -33,7 +33,7 @@ export default {
             },
           }
         );
-      }, 500);
+      }, 550);
     },
 
     animateHeading() {
@@ -55,8 +55,8 @@ export default {
   },
 
   mounted() {
-    this.animateParagraph();
     this.animateHeading();
+    this.animateParagraph();
   },
 };
 </script>
