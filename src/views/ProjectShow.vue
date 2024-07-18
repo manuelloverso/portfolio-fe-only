@@ -108,7 +108,11 @@ export default {
           <img
             class="slide-in-blurred-top"
             v-else
-            :src="'http://127.0.0.1:8000' + '/storage/' + project.show_image"
+            :src="
+              'https://admin.manuelloverso.com' +
+              '/storage/' +
+              project.show_image
+            "
             alt=""
           />
         </div>
