@@ -92,19 +92,21 @@ export default {
     },
 
     animateHeading() {
-      const text = document.querySelector(".skills-heading");
+      setTimeout(() => {
+        const text = document.querySelector(".skills-heading");
 
-      gsap.from(text, {
-        x: -1000,
-        scale: 0,
-        scrollTrigger: {
-          trigger: text,
-          start: "top 85%",
-          end: "bottom 20%",
-          scrub: true,
-          pin: true,
-        },
-      });
+        gsap.from(text, {
+          x: -1000,
+          scale: 0,
+          scrollTrigger: {
+            trigger: text,
+            start: "top 85%",
+            end: "bottom 20%",
+            scrub: true,
+            pin: true,
+          },
+        });
+      }, 500);
     },
   },
 

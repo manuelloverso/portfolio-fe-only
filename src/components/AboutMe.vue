@@ -37,18 +37,20 @@ export default {
     },
 
     animateHeading() {
-      gsap.from(".about-heading", {
-        x: 700,
-        opacity: 0,
-        scale: 0.2,
-        scrollTrigger: {
-          trigger: ".about-heading",
-          start: "top 80%",
-          end: "top 20%",
-          scrub: true,
-          pin: true,
-        },
-      });
+      setTimeout(() => {
+        gsap.from(".about-heading", {
+          x: 700,
+          opacity: 0,
+          scale: 0.2,
+          scrollTrigger: {
+            trigger: ".about-heading",
+            start: "top 80%",
+            end: "top 20%",
+            scrub: true,
+            pin: true,
+          },
+        });
+      }, 500);
     },
   },
 
