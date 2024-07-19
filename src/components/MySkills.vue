@@ -140,6 +140,7 @@ export default {
           <splide-slide v-for="tech in technologies">
             <div class="logo">
               <img
+                loading="lazy"
                 class="tech"
                 width="100"
                 :src="`/img/${tech.image}`"

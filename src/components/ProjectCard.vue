@@ -142,6 +142,7 @@ export default {
       <div class="image">
         <!-- Image -->
         <img
+          loading="lazy"
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
           v-if="project.card_image.startsWith('http')"
@@ -150,6 +151,7 @@ export default {
         />
         <img
           v-else
+          loading="lazy"
           @mouseenter="cardCursorLeave()"
           @mouseleave="cardCursor()"
           :src="
@@ -166,12 +168,14 @@ export default {
       <div class="image">
         <!-- Image -->
         <img
+          loading="lazy"
           v-if="project.card_image.startsWith('http')"
           :src="project.card_image"
           :alt="project.title"
         />
         <img
           v-else
+          loading="lazy"
           :src="
             'https://admin.manuelloverso.com' + '/storage/' + project.card_image
           "
