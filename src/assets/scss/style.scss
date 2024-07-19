@@ -2,8 +2,15 @@
 @use "./partials/background";
 @use "./partials/buttons";
 
-// Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+
+// Import Bootstrap's core
+/* @import "bootstrap/scss/variables";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins"; */
+
+/* only needed */
+/* @import "bootstrap/scss/grid"; */
 
 :root {
   --accent: rgb(197, 205, 209);
