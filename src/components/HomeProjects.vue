@@ -15,37 +15,39 @@ export default {
   data() {
     return {
       store,
+      gsapInstance: null,
     };
   },
 
   methods: {
     animateHeading() {
-      setTimeout(() => {
-        const text = document.querySelector(".projects-heading");
+      const text = this.$refs.projectsHeading;
 
-        gsap.from(text, {
-          x: -2000,
-          duration: 2,
-          ease: "back.out",
-          scrollTrigger: {
-            trigger: text,
-            start: "top 87%",
-            end: "top 15%",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }, 500);
+      this.gsapInstance = gsap.from(text, {
+        x: -2000,
+        duration: 2,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: text,
+          start: "top 87%",
+          end: "top 15%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      ScrollTrigger.refresh();
     },
   },
 
   mounted() {
+    store.callApi();
     this.animateHeading();
-    ScrollTrigger.refresh();
   },
 
   beforeDestroy() {
-    this.animateHeading.scrollTrigger.kill();
-    this.animateHeading.kill();
+    if (this.gsapInstance) {
+      this.gsapInstance.scrollTrigger.kill();
+    }
   },
 };
 </script>
@@ -53,7 +55,7 @@ export default {
   <!-- Projects Section -->
   <section id="home-projects">
     <div class="md-container">
-      <h2 class="text-center projects-heading">Progetti</h2>
+      <h2 class="text-center" ref="projectsHeading">Progetti</h2>
       <div
         v-if="!store.projectsLoading && !store.failed"
         class="cards-container"

@@ -46,7 +46,6 @@ export default {
   },
 
   mounted() {
-    store.callApi();
     store.isTouch = store.isTouchDevice();
 
     /* scroll */

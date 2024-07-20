@@ -1,3 +1,4 @@
 # TO-DO :
 
-- cors policy
+- fix skills / about / projects card animations
+- remove overflow x

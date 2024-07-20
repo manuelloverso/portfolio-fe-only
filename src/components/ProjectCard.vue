@@ -13,66 +13,64 @@ export default {
   data() {
     return {
       store,
+      gsapInstance: null,
     };
   },
 
   methods: {
     cardEffect() {
-      const cards = document.querySelectorAll(".project-card");
+      const card = this.$refs.projectCard;
 
       const maxRotation = 15;
-      if (cards.length === 0) return;
+      /* if (cards.length === 0) return; */
 
-      cards.forEach((card) => {
-        card.addEventListener("mousemove", (e) => {
-          const cardWidth = card.clientWidth;
-          const cardHeight = card.clientHeight;
+      card.addEventListener("mousemove", (e) => {
+        const cardWidth = card.clientWidth;
+        const cardHeight = card.clientHeight;
 
-          const cardWidthHalf = cardWidth / 2;
-          const cardHeightHalf = cardHeight / 2;
+        const cardWidthHalf = cardWidth / 2;
+        const cardHeightHalf = cardHeight / 2;
 
-          const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
-          const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
+        const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
+        const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
 
-          let degX = -(offsetHeight * 0.05);
-          let degY = offsetWidth * 0.03;
+        let degX = -(offsetHeight * 0.05);
+        let degY = offsetWidth * 0.03;
 
-          degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
-          degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
+        degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
+        degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
 
-          card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
-        });
+        card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
+      });
 
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = `rotateX(0) rotateY(0)`;
-        });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = `rotateX(0) rotateY(0)`;
       });
     },
 
     cardsAnimation() {
-      let cards;
+      let card;
       if (window.outerWidth < 768) {
-        cards = document.querySelectorAll(".small-project-card");
+        card = this.$refs.smallProjectCard;
       } else {
-        cards = document.querySelectorAll(".project-card");
+        card = this.$refs.projectCard;
       }
-      cards.forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, scale: 0.5 },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 1,
-            scrollTrigger: {
-              trigger: card,
-              toggleActions: "play none none reverse",
-              start: "top 80%",
-              markers: false,
-            },
-          }
-        );
-      });
+      this.gsapInstance = gsap.fromTo(
+        card,
+        { autoAlpha: 0, scale: 0.5 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: card,
+            toggleActions: "play none none reverse",
+            start: "top 80%",
+          },
+        }
+      );
+
+      ScrollTrigger.refresh();
     },
 
     cardCursor() {
@@ -104,12 +102,12 @@ export default {
       this.cardEffect();
     }
     this.cardsAnimation();
-    ScrollTrigger.refresh();
   },
 
   beforeDestroy() {
-    this.cardsAnimation.scrollTrigger.kill();
-    this.cardsAnimation.kill();
+    if (this.gsapInstance) {
+      this.gsapInstance.scrollTrigger.kill();
+    }
   },
 };
 </script>
@@ -119,6 +117,7 @@ export default {
     :to="'projects/' + project.id"
   >
     <div
+      ref="projectCard"
       class="project-card d-none d-md-flex"
       @mouseenter="cardCursor()"
       @mouseleave="cardCursorLeave()"
@@ -164,7 +163,7 @@ export default {
 
     <!-- small devices card -->
 
-    <div class="small-project-card d-md-none">
+    <div class="small-project-card d-md-none" ref="smallProjectCard">
       <div class="image">
         <!-- Image -->
         <img

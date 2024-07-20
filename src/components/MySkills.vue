@@ -1,4 +1,5 @@
 <script>
+import { store } from "../store";
 import { SplideSlide } from "@splidejs/vue-splide";
 import Splide from "@splidejs/splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
@@ -14,7 +15,9 @@ export default {
   },
   data() {
     return {
+      store,
       perPage: 2.5,
+      gsapInstance: null,
       technologies: [
         {
           name: "VueJS",
@@ -92,27 +95,26 @@ export default {
     },
 
     animateHeading() {
-      setTimeout(() => {
-        const text = document.querySelector(".skills-heading");
+      const text = this.$refs.skillsHeading;
 
-        gsap.from(text, {
-          x: -1000,
-          scale: 0,
-          scrollTrigger: {
-            trigger: text,
-            start: "top 85%",
-            end: "bottom 20%",
-            scrub: true,
-            pin: true,
-          },
-        });
-      }, 500);
+      this.gsapInstance = gsap.from(text, {
+        x: -1000,
+        scale: 0,
+        scrollTrigger: {
+          trigger: text,
+          start: "top 85%",
+          end: "bottom 20%",
+          scrub: true,
+          pin: true,
+        },
+      });
+
+      ScrollTrigger.refresh();
     },
   },
 
   mounted() {
     this.animateHeading();
-    ScrollTrigger.refresh();
     if (window.innerWidth > 400) {
       this.perPage = 3;
     }
@@ -126,14 +128,15 @@ export default {
   },
 
   beforeDestroy() {
-    this.animateHeading.scrollTrigger.kill();
-    this.animateHeading.kill();
+    if (this.gsapInstance) {
+      this.gsapInstance.scrollTrigger.kill();
+    }
   },
 };
 </script>
 <template>
   <section id="skills">
-    <h2 class="md-container skills-heading">Skills</h2>
+    <h2 class="md-container" ref="skillsHeading">Skills</h2>
     <div class="splide skills-slider" aria-label="skills">
       <div class="splide__track">
         <ul class="splide__list">

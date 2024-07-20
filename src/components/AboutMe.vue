@@ -1,8 +1,8 @@
 <script>
 import { gsap } from "gsap";
+import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
-import SplitType from "split-type";
 
 export default {
   name: "AboutMe",
@@ -12,51 +12,52 @@ export default {
 
   methods: {
     animateParagraph() {
-      setTimeout(() => {
-        const splitElement = document.querySelector(".split");
+      const splitElement = this.$refs.splitElement;
 
-        const text = new SplitType(splitElement, { types: "words,chars" });
+      const text = new SplitType(splitElement, { types: "words,chars" });
 
-        gsap.fromTo(
-          text.chars,
-          {
-            opacity: 0.2,
+      gsap.fromTo(
+        text.chars,
+        {
+          opacity: 0.2,
+        },
+        {
+          opacity: 1,
+          stagger: 1,
+          scrollTrigger: {
+            trigger: splitElement,
+            start: "top 80%",
+            end: "center 60%",
+            scrub: 3,
           },
-          {
-            opacity: 1,
-            stagger: 1,
-            scrollTrigger: {
-              trigger: ".about-paragraph",
-              start: "top 80%",
-              end: "center 60%",
-              scrub: 3,
-            },
-          }
-        );
-      }, 550);
+        }
+      );
     },
 
     animateHeading() {
-      setTimeout(() => {
-        gsap.from(".about-heading", {
-          x: 700,
-          opacity: 0,
-          scale: 0.2,
-          scrollTrigger: {
-            trigger: ".about-heading",
-            start: "top 80%",
-            end: "top 20%",
-            scrub: true,
-            pin: true,
-          },
-        });
-      }, 200);
+      gsap.from(".about-heading", {
+        x: 700,
+        opacity: 0,
+        scale: 0.2,
+        scrollTrigger: {
+          trigger: ".about-heading",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true,
+          pin: true,
+        },
+      });
     },
   },
 
   mounted() {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     this.animateHeading();
     this.animateParagraph();
+  },
+
+  beforeDestroy() {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   },
 };
 </script>
@@ -64,7 +65,7 @@ export default {
   <div class="md-container">
     <section id="about-me">
       <h1 class="about-heading">Chi sono</h1>
-      <p class="split about-paragraph col-12 col-md-8 col-lg-6">
+      <p class="col-12 col-md-8 col-lg-6" ref="splitElement">
         Sono un Junior Web Developer con una grande passione per la
         programmazione e la creazione di soluzioni web innovative. Dopo aver
         completato un corso intensivo di 700 ore, mi sono dedicato con

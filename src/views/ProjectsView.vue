@@ -16,6 +16,12 @@ export default {
       store,
     };
   },
+
+  mounted() {
+    if (store.projects.length < 1) {
+      store.callApi();
+    }
+  },
 };
 </script>
 <template>
