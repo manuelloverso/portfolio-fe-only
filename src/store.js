@@ -12,7 +12,7 @@ export const store = reactive({
     console.log("calling api");
     this.projectsLoading = true;
     axios
-      .get("http://127.0.0.1:8000/api/projects")
+      .get("https://admin.manuelloverso.com/api/projects")
       .then((response) => {
         this.projects = response.data.response;
         this.projectsLoading = false;
