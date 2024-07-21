@@ -118,7 +118,6 @@ export default {
   mounted() {
     if (!store.isTouch) {
       this.animateEmail();
-      x;
     }
     this.cursorOnBtn();
   },
