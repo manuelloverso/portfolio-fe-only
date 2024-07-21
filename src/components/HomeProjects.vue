@@ -41,7 +41,9 @@ export default {
 
   mounted() {
     store.callApi();
-    this.animateHeading();
+    if (!store.isTouch) {
+      this.animateHeading();
+    }
   },
 
   beforeDestroy() {

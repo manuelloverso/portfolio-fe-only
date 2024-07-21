@@ -100,8 +100,8 @@ export default {
       });
     } else {
       this.cardEffect();
+      this.cardsAnimation();
     }
-    this.cardsAnimation();
   },
 
   beforeDestroy() {

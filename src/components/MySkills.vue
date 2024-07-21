@@ -114,7 +114,9 @@ export default {
   },
 
   mounted() {
-    this.animateHeading();
+    if (!store.isTouch) {
+      this.animateHeading();
+    }
     if (window.innerWidth > 400) {
       this.perPage = 3;
     }

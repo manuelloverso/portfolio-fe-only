@@ -3,11 +3,14 @@ import { gsap } from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
+import { store } from "../store";
 
 export default {
   name: "AboutMe",
   data() {
-    return {};
+    return {
+      store,
+    };
   },
 
   methods: {
@@ -52,7 +55,9 @@ export default {
 
   mounted() {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    this.animateHeading();
+    if (!store.isTouch) {
+      this.animateHeading();
+    }
     this.animateParagraph();
   },
 

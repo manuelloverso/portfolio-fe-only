@@ -116,7 +116,10 @@ export default {
   },
 
   mounted() {
-    this.animateEmail();
+    if (!store.isTouch) {
+      this.animateEmail();
+      x;
+    }
     this.cursorOnBtn();
   },
 };
