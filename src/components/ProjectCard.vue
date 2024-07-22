@@ -22,30 +22,30 @@ export default {
       const card = this.$refs.projectCard;
 
       const maxRotation = 15;
-      /* if (cards.length === 0) return; */
+      if (card) {
+        card.addEventListener("mousemove", (e) => {
+          const cardWidth = card.clientWidth;
+          const cardHeight = card.clientHeight;
 
-      card.addEventListener("mousemove", (e) => {
-        const cardWidth = card.clientWidth;
-        const cardHeight = card.clientHeight;
+          const cardWidthHalf = cardWidth / 2;
+          const cardHeightHalf = cardHeight / 2;
 
-        const cardWidthHalf = cardWidth / 2;
-        const cardHeightHalf = cardHeight / 2;
+          const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
+          const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
 
-        const offsetWidth = e.clientX - card.offsetLeft - cardWidthHalf;
-        const offsetHeight = e.clientY - card.offsetTop - cardHeightHalf;
+          let degX = -(offsetHeight * 0.05);
+          let degY = offsetWidth * 0.03;
 
-        let degX = -(offsetHeight * 0.05);
-        let degY = offsetWidth * 0.03;
+          degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
+          degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
 
-        degX = Math.max(-maxRotation, Math.min(maxRotation, degX));
-        degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
+          card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
+        });
 
-        card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = `rotateX(0) rotateY(0)`;
-      });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = `rotateX(0) rotateY(0)`;
+        });
+      }
     },
 
     cardsAnimation() {
@@ -99,8 +99,8 @@ export default {
         img.classList.add("visible");
       });
     } else {
-      this.cardEffect();
       this.cardsAnimation();
+      /* this.cardEffect(); */
     }
   },
 
