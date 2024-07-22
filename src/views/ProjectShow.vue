@@ -16,6 +16,7 @@ export default {
       id: null,
       loading: true,
       failed: false,
+      gsapInstance: null,
     };
   },
 
@@ -39,26 +40,24 @@ export default {
     },
 
     animateTechnologies() {
-      setTimeout(() => {
-        if (!this.loading && !this.failed) {
-          const techs = document.querySelectorAll(".technology-btn");
+      if (!this.loading && !this.failed) {
+        const techs = document.querySelectorAll(".technology-btn");
 
-          gsap.set(techs, { opacity: 0, y: 30 });
+        gsap.set(techs, { opacity: 0, y: 30 });
 
-          gsap.to(techs, {
-            ease: "back.out",
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
+        this.gsapInstance = gsap.to(techs, {
+          ease: "back.out",
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
 
-            scrollTrigger: {
-              trigger: ".technologies",
-              toggleActions: "restart none none reverse",
-              start: "top 80%",
-            },
-          });
-        }
-      }, 500);
+          scrollTrigger: {
+            trigger: ".technologies",
+            toggleActions: "restart none none reverse",
+            start: "top 80%",
+          },
+        });
+      }
     },
   },
 
@@ -73,6 +72,8 @@ export default {
   },
 
   mounted() {
+    this.id = this.$route.params.id;
+    this.singleProject(`http://127.0.0.1:8000/api/projects/${this.id}`);
     const activeHovers = document.querySelectorAll(".card-hover");
     if (activeHovers) {
       activeHovers.forEach((el) => {
@@ -80,10 +81,13 @@ export default {
       });
     }
 
-    this.id = this.$route.params.id;
-    this.singleProject(
-      `https://admin.manuelloverso.com/api/projects/${this.id}`
-    );
+    this.animateTechnologies();
+  },
+
+  beforeUnmount() {
+    if (this.gsapInstance) {
+      this.gsapInstance.kill();
+    }
   },
 };
 </script>

@@ -15,6 +15,7 @@ export default {
   },
   data() {
     return {
+      gsapInstance: null,
       store,
       name: "",
       email: "",
@@ -90,7 +91,7 @@ export default {
     animateEmail() {
       const mail = document.querySelector(".mail");
 
-      gsap.from(mail, {
+      this.gsapInstance = gsap.from(mail, {
         x: -1000,
         opacity: 0,
         duration: 2,
@@ -120,6 +121,12 @@ export default {
       this.animateEmail();
     }
     this.cursorOnBtn();
+  },
+
+  beforeUnmount() {
+    if (this.gsapInstance) {
+      this.gsapInstance.kill();
+    }
   },
 };
 </script>

@@ -104,9 +104,9 @@ export default {
     }
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.gsapInstance) {
-      this.gsapInstance.scrollTrigger.kill();
+      this.gsapInstance.kill();
     }
   },
 };

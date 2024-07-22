@@ -129,9 +129,9 @@ export default {
     this.slider();
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.gsapInstance) {
-      this.gsapInstance.scrollTrigger.kill();
+      this.gsapInstance.kill();
     }
   },
 };

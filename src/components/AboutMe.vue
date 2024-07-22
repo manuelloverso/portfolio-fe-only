@@ -10,6 +10,8 @@ export default {
   data() {
     return {
       store,
+      gsapParagraph: null,
+      gsapHeading: null,
     };
   },
 
@@ -19,7 +21,7 @@ export default {
 
       const text = new SplitType(splitElement, { types: "words,chars" });
 
-      gsap.fromTo(
+      this.gsapParagraph = gsap.fromTo(
         text.chars,
         {
           opacity: 0.2,
@@ -38,7 +40,7 @@ export default {
     },
 
     animateHeading() {
-      gsap.from(".about-heading", {
+      this.gsapHeading = gsap.from(".about-heading", {
         x: 700,
         opacity: 0,
         scale: 0.2,
@@ -54,15 +56,20 @@ export default {
   },
 
   mounted() {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     if (!store.isTouch) {
       this.animateHeading();
     }
     this.animateParagraph();
   },
 
-  beforeDestroy() {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  beforeUnmount() {
+    if (this.gsapHeading) {
+      this.gsapHeading.kill();
+    }
+
+    if (this.gsapParagraph) {
+      this.gsapParagraph.kill();
+    }
   },
 };
 </script>
