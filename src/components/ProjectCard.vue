@@ -14,6 +14,7 @@ export default {
     return {
       store,
       gsapInstance: null,
+      cardEvent: null,
     };
   },
 
@@ -24,6 +25,8 @@ export default {
       const maxRotation = 15;
       if (card) {
         card.addEventListener("mousemove", (e) => {
+          card.style.transition = "none";
+
           const cardWidth = card.clientWidth;
           const cardHeight = card.clientHeight;
 
@@ -44,6 +47,7 @@ export default {
 
         card.addEventListener("mouseleave", () => {
           card.style.transform = `rotateX(0) rotateY(0)`;
+          card.style.transition = "transform 0.3s ease";
         });
       }
     },
@@ -100,7 +104,7 @@ export default {
       });
     } else {
       this.cardsAnimation();
-      /* this.cardEffect(); */
+      this.cardEffect();
     }
   },
 
@@ -213,7 +217,11 @@ export default {
   cursor: none;
   background: var(--bg-cards);
   position: relative;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transition: none;
+  }
 
   .left {
     width: 60%;

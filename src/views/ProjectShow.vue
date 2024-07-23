@@ -41,22 +41,21 @@ export default {
 
     animateTechnologies() {
       if (!this.loading && !this.failed) {
-        const techs = document.querySelectorAll(".technology-btn");
+        setTimeout(() => {
+          const techs = document.querySelectorAll(".technology-btn");
+          this.gsapInstance = gsap.to(techs, {
+            ease: "back.out",
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
 
-        gsap.set(techs, { opacity: 0, y: 30 });
-
-        this.gsapInstance = gsap.to(techs, {
-          ease: "back.out",
-          opacity: 1,
-          y: 0,
-          stagger: 0.1,
-
-          scrollTrigger: {
-            trigger: ".technologies",
-            toggleActions: "restart none none reverse",
-            start: "top 80%",
-          },
-        });
+            scrollTrigger: {
+              trigger: ".technologies",
+              toggleActions: "restart none none reverse",
+              start: "top 80%",
+            },
+          });
+        }, 1000);
       }
     },
   },
@@ -268,6 +267,11 @@ export default {
   </main>
 </template>
 <style scoped>
+.technology-btn {
+  opacity: 0;
+  transform: translateY(+30px);
+}
+
 .failed-call {
   flex-direction: column;
   gap: 2rem;
