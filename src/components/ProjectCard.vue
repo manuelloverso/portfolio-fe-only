@@ -217,7 +217,6 @@ export default {
   cursor: none;
   background: var(--bg-cards);
   position: relative;
-  transition: transform 0.3s ease;
 
   &:hover {
     transition: none;
