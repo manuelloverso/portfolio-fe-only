@@ -22,8 +22,8 @@ export default {
     <!-- Home Page Jumbotron -->
     <div class="home-jumbotron">
       <div class="md-container">
-        <div class="jumbo-text tracking-in-contract-bck-top updated">
-          <h1>Manuel Loverso</h1>
+        <div class="jumbo-text tracking-in-contract-bck-top">
+          <h1 class="new-update">Manuel Loverso</h1>
           <h3 class="mb-5">Jr. Full Stack Web Developer</h3>
         </div>
         <Scroller />
