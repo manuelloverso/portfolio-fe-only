@@ -48,6 +48,9 @@ export default {
         card.addEventListener("mouseleave", () => {
           card.style.transform = `rotateX(0) rotateY(0)`;
           card.style.transition = "transform 0.3s ease";
+          setTimeout(() => {
+            card.style.transition = "none";
+          }, 500);
         });
       }
     },
