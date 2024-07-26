@@ -34,8 +34,6 @@ export default {
           toggleActions: "play none none reverse",
         },
       });
-
-      ScrollTrigger.refresh();
     },
   },
 

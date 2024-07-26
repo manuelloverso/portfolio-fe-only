@@ -17,6 +17,7 @@ export default {
     return {
       store,
       perPage: 2.5,
+      splideInstance: null,
       gsapInstance: null,
       technologies: [
         {
@@ -78,7 +79,7 @@ export default {
 
   methods: {
     slider() {
-      const splide = new Splide(".splide", {
+      this.splideInstance = new Splide(".splide", {
         type: "loop",
         drag: "free",
         focus: "center",
@@ -91,7 +92,7 @@ export default {
         },
       });
 
-      splide.mount({ AutoScroll });
+      this.splideInstance.mount({ AutoScroll });
     },
 
     animateHeading() {
@@ -108,15 +109,19 @@ export default {
           pin: true,
         },
       });
+    },
+  },
 
-      ScrollTrigger.refresh();
+  watch: {
+    "store.projectsLoading": function (newVal) {
+      if (!newVal && !this.store.isTouch) {
+        this.animateHeading();
+      }
     },
   },
 
   mounted() {
-    if (!store.isTouch) {
-      this.animateHeading();
-    }
+    console.log(this.splideInstance);
     if (window.innerWidth > 400) {
       this.perPage = 3;
     }
@@ -132,6 +137,10 @@ export default {
   beforeUnmount() {
     if (this.gsapInstance) {
       this.gsapInstance.kill();
+    }
+
+    if (this.splideInstance) {
+      this.splideInstance.destroy();
     }
   },
 };

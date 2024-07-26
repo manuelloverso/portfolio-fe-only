@@ -24,7 +24,7 @@ export default {
 
       const maxRotation = 15;
       if (card) {
-        card.addEventListener("mousemove", (e) => {
+        const handleMouseMove = (e) => {
           card.style.transition = "none";
 
           const cardWidth = card.clientWidth;
@@ -43,15 +43,20 @@ export default {
           degY = Math.max(-maxRotation, Math.min(maxRotation, degY));
 
           card.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`;
-        });
+        };
 
-        card.addEventListener("mouseleave", () => {
+        const handleMouseLeave = () => {
           card.style.transform = `rotateX(0) rotateY(0)`;
           card.style.transition = "transform 0.3s ease";
           setTimeout(() => {
             card.style.transition = "none";
           }, 500);
-        });
+        };
+
+        card.addEventListener("mousemove", handleMouseMove);
+        card.addEventListener("mouseleave", handleMouseLeave);
+
+        this.cardEvent = { handleMouseMove, handleMouseLeave };
       }
     },
 
@@ -76,8 +81,6 @@ export default {
           },
         }
       );
-
-      ScrollTrigger.refresh();
     },
 
     cardCursor() {
@@ -115,6 +118,12 @@ export default {
     if (this.gsapInstance) {
       this.gsapInstance.kill();
     }
+
+    if (this.cardEvent) {
+      const card = this.$refs.projectCard;
+      card.removeEventListener("mousemove", this.cardEvent.handleMouseMove);
+      card.removeEventListener("mouseleave", this.cardEvent.handleMouseLeave);
+    }
   },
 };
 </script>
@@ -126,9 +135,9 @@ export default {
     <div
       ref="projectCard"
       class="project-card d-none d-md-flex"
-      @mouseenter="cardCursor()"
-      @mouseleave="cardCursorLeave()"
-      @click="cardCursorLeave()"
+      @mouseenter="cardCursor"
+      @mouseleave="cardCursorLeave"
+      @click="cardCursorLeave"
     >
       <div class="left" ref="cardLeft">
         <div class="project-title">
@@ -149,8 +158,8 @@ export default {
         <!-- Image -->
         <img
           loading="lazy"
-          @mouseenter="cardCursorLeave()"
-          @mouseleave="cardCursor()"
+          @mouseenter="cardCursorLeave"
+          @mouseleave="cardCursor"
           v-if="project.card_image.startsWith('http')"
           :src="project.card_image"
           :alt="project.title"
@@ -158,8 +167,8 @@ export default {
         <img
           v-else
           loading="lazy"
-          @mouseenter="cardCursorLeave()"
-          @mouseleave="cardCursor()"
+          @mouseenter="cardCursorLeave"
+          @mouseleave="cardCursor"
           :src="
             'https://admin.manuelloverso.com' + '/storage/' + project.card_image
           "

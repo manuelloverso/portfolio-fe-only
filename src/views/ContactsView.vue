@@ -171,7 +171,7 @@ export default {
             <h3 v-if="success" class="success">
               Grazie per avermi contattato! Risponderò al più presto.
             </h3>
-            <form @submit.prevent="sendMessage()">
+            <form @submit.prevent="sendMessage">
               <div class="group">
                 <label for="name" class="form-label">Nome*</label>
                 <input

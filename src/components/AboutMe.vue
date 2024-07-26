@@ -12,6 +12,7 @@ export default {
       store,
       gsapParagraph: null,
       gsapHeading: null,
+      splitInstance: null,
     };
   },
 
@@ -19,10 +20,12 @@ export default {
     animateParagraph() {
       const splitElement = this.$refs.splitElement;
 
-      const text = new SplitType(splitElement, { types: "words,chars" });
+      this.splitInstance = new SplitType(splitElement, {
+        types: "words,chars",
+      });
 
       this.gsapParagraph = gsap.fromTo(
-        text.chars,
+        this.splitInstance.chars,
         {
           opacity: 0.2,
         },
@@ -69,6 +72,10 @@ export default {
 
     if (this.gsapParagraph) {
       this.gsapParagraph.kill();
+    }
+
+    if (this.splitInstance) {
+      this.splitInstance.revert();
     }
   },
 };

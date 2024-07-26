@@ -9,7 +9,6 @@ export const store = reactive({
 
   /* get projects */
   callApi() {
-    console.log("calling api");
     this.projectsLoading = true;
     axios
       .get("https://admin.manuelloverso.com/api/projects")
