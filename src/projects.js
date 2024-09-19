@@ -13,7 +13,14 @@ const projects = [
     backendLink: null,
     youtubeLink: null,
     date: "2024-03-23",
-    technologies: ["HTML", "CSS", "JavaScript", "VueJS", "Bootstrap"],
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "VueJS",
+      "Bootstrap",
+      "Responsive",
+    ],
   },
 
   {
@@ -62,8 +69,8 @@ const projects = [
     id: 4,
     title: "Deliveroo Clone",
     isInEvidence: true,
-    cardImage: "delvieroo-card.png",
-    showImage: "delvieroo-show.png",
+    cardImage: "deliveroo-card.png",
+    showImage: "deliveroo-show.png",
     description:
       "In team abbiamo replicato le funzionalità di Deliveroo. Il sito comprendeuna sezione back-office riservata all'utente registrato (ristoratore),sviluppata in Laravel, dove abbiamo implementato funzionalità come lagestione dei menù, la visualizzazione degli ordini ricevuti e l'analisi dellevendite tramite grafici mensili. La parte front pubblica, sviluppata in Vue,permette agli utenti non registrati di cercare ristoranti filtrandoli percategoria, visualizzare il menù del ristorante, aggiornare il carrello e inviarel'ordine dopo aver effettuato il pagamento. La ricerca dei ristoranti, l'inviodegli ordini e l'accettazione dei pagamenti avvengono tramite chiamate axios,che permettono la comunicazione tra back-end e front-end.",
     LiveLink: null,
@@ -80,8 +87,14 @@ const projects = [
       "Database",
       "PHP",
       "SQL",
+      "JavaScript",
+      "VueJS",
+      "Sass",
+      "Responsive",
     ],
   },
 ];
+
+projects.reverse();
 
 export default projects;

@@ -2,25 +2,19 @@
 import { store } from "../store";
 import ProjectCard from "../components/ProjectCard.vue";
 import Scroller from "../components/Scroller.vue";
-import AppLoader from "../components/AppLoader.vue";
+import projects from "../projects";
 
 export default {
   name: "ProjectsView",
   components: {
     ProjectCard,
     Scroller,
-    AppLoader,
   },
   data() {
     return {
       store,
+      projects,
     };
-  },
-
-  mounted() {
-    if (store.projects.length < 1) {
-      store.callApi();
-    }
   },
 };
 </script>
@@ -39,35 +33,11 @@ export default {
       </div>
 
       <!-- Projects -->
-      <div
-        v-if="!store.projectsLoading && !store.failed"
-        class="cards-container"
-      >
-        <template v-for="project in store.projects" :key="project.id">
+      <div class="cards-container">
+        <template v-for="project in projects" :key="project.id">
           <ProjectCard :project="project" />
         </template>
       </div>
-
-      <template v-if="store.projectsLoading">
-        <AppLoader />
-      </template>
-
-      <template v-if="store.failed">
-        <div class="failed-call">
-          <p>
-            Mi spiace, al momento non è possibile visualizzare i progetti,
-            riprova più tardi e invia una segnalazione
-          </p>
-
-          <div class="projects-btn">
-            <RouterLink :to="{ name: 'contacts' }">
-              <div class="my-btn projects-color">
-                <button>Contattami</button>
-              </div>
-            </RouterLink>
-          </div>
-        </div>
-      </template>
     </div>
   </main>
 </template>

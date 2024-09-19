@@ -121,7 +121,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.splideInstance);
     if (window.innerWidth > 400) {
       this.perPage = 3;
     }

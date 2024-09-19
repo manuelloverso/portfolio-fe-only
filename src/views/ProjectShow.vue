@@ -1,8 +1,8 @@
 <script>
-import axios from "axios";
-import AppLoader from "../components/AppLoader.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import projects from "../projects";
+import AppLoader from "../components/AppLoader.vue";
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
@@ -12,69 +12,43 @@ export default {
   },
   data() {
     return {
+      projects,
       project: null,
       id: null,
-      loading: true,
-      failed: false,
       gsapInstance: null,
     };
   },
 
   methods: {
-    singleProject(url) {
-      axios
-        .get(url)
-        .then((response) => {
-          if (response.data.success) {
-            this.project = response.data.response;
-            this.loading = false;
-          } else {
-            this.$router.push({ name: "NotFound" });
-          }
-        })
-        .catch((err) => {
-          this.loading = false;
-          this.failed = true;
-          console.log(err);
-        });
-    },
-
     animateTechnologies() {
-      if (!this.loading && !this.failed) {
-        setTimeout(() => {
-          const techs = document.querySelectorAll(".technology-btn");
-          this.gsapInstance = gsap.to(techs, {
-            ease: "back.out",
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
+      setTimeout(() => {
+        const techs = document.querySelectorAll(".technology-btn");
+        this.gsapInstance = gsap.to(techs, {
+          ease: "back.out",
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
 
-            scrollTrigger: {
-              trigger: ".technologies",
-              toggleActions: "restart none none reverse",
-              start: "top 80%",
-            },
-          });
-        }, 1000);
-      }
-    },
-  },
-
-  watch: {
-    loading(newVal) {
-      if (!newVal) {
-        this.$nextTick(() => {
-          this.animateTechnologies();
+          scrollTrigger: {
+            trigger: ".technologies",
+            toggleActions: "restart none none reverse",
+            start: "top 80%",
+          },
         });
-      }
+      }, 1000);
     },
   },
 
   mounted() {
-    this.id = this.$route.params.id;
-    this.singleProject(
-      `https://admin.manuelloverso.com/api/projects/${this.id}`
-    );
+    this.id = Number(this.$route.params.id);
+
+    this.project = projects.find((p) => p.id === this.id);
+
+    if (!this.project) {
+      this.$router.push({ name: "NotFound" });
+      return;
+    }
+
     const activeHovers = document.querySelectorAll(".card-hover");
     if (activeHovers) {
       activeHovers.forEach((el) => {
@@ -94,11 +68,8 @@ export default {
 </script>
 <template>
   <main id="project-show">
-    <div class="md-container">
-      <template v-if="loading">
-        <AppLoader />
-      </template>
-      <div v-if="!loading && !failed">
+    <div v-if="project" class="md-container">
+      <div>
         <div class="hero">
           <h1 class="project-title text-center tracking-in-expand-fwd-top">
             {{ project.title }}
@@ -106,19 +77,8 @@ export default {
           <!-- Image -->
           <img
             class="slide-in-blurred-top"
-            v-if="project.show_image.startsWith('http')"
-            :src="project.show_image"
-            alt=""
-          />
-          <img
-            class="slide-in-blurred-top"
-            v-else
-            :src="
-              'https://admin.manuelloverso.com' +
-              '/storage/' +
-              project.show_image
-            "
-            alt=""
+            :src="'/img/projects/' + project.showImage"
+            :alt="project.title"
           />
         </div>
 
@@ -130,13 +90,13 @@ export default {
               </p>
             </div>
 
-            <div v-if="project.technologies.length != 0" class="technologies">
+            <div v-if="project.technologies.length > 0" class="technologies">
               <div class="technologies">
                 <button
                   class="technology-btn"
                   v-for="tech in project.technologies"
                 >
-                  {{ tech.name }}
+                  {{ tech }}
                 </button>
               </div>
             </div>
@@ -152,8 +112,8 @@ export default {
               <a
                 target="_blank"
                 class="gh-link"
-                v-if="project.github_link"
-                :href="project.github_link"
+                v-if="project.githubLink"
+                :href="project.githubLink"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -171,8 +131,8 @@ export default {
               <a
                 target="_blank"
                 class="gh-link"
-                v-if="project.frontend_link"
-                :href="project.frontend_link"
+                v-if="project.frontendLink"
+                :href="project.frontendLink"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -190,8 +150,8 @@ export default {
               <a
                 target="_blank"
                 class="gh-link"
-                v-if="project.backend_link"
-                :href="project.backend_link"
+                v-if="project.backendLink"
+                :href="project.backendLink"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -209,8 +169,8 @@ export default {
               <a
                 target="_blank"
                 class="yt-link"
-                v-if="project.yt_link"
-                :href="project.yt_link"
+                v-if="project.youtubeLink"
+                :href="project.youtubeLink"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -228,8 +188,8 @@ export default {
               <a
                 target="_blank"
                 class="preview-link"
-                v-if="project.preview_link"
-                :href="project.preview_link"
+                v-if="project.liveLink"
+                :href="project.liveLink"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -246,24 +206,9 @@ export default {
           </div>
         </div>
       </div>
-
-      <template v-if="failed">
-        <div class="failed-call">
-          <p>
-            Mi spiace, al momento non è possibile visualizzare i progetti,
-            riprova più tardi e invia una segnalazione
-          </p>
-
-          <div class="projects-btn">
-            <RouterLink :to="{ name: 'contacts' }">
-              <div class="my-btn projects-color">
-                <button>Contattami</button>
-              </div>
-            </RouterLink>
-          </div>
-        </div>
-      </template>
     </div>
+
+    <AppLoader v-else />
   </main>
 </template>
 <style scoped>

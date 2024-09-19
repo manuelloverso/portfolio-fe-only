@@ -3,18 +3,18 @@ import { store } from "../store";
 import ProjectCard from "./ProjectCard.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import AppLoader from "./AppLoader.vue";
+import projects from "../projects";
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "HomeProjects",
   components: {
     ProjectCard,
-    AppLoader,
   },
   data() {
     return {
       store,
+      projects,
       gsapInstance: null,
     };
   },
@@ -38,7 +38,6 @@ export default {
   },
 
   mounted() {
-    store.callApi();
     if (!store.isTouch) {
       this.animateHeading();
     }
@@ -56,12 +55,9 @@ export default {
   <section id="home-projects">
     <div class="md-container">
       <h2 class="text-center" ref="projectsHeading">Progetti</h2>
-      <div
-        v-if="!store.projectsLoading && !store.failed"
-        class="cards-container"
-      >
-        <template v-for="project in store.projects" :key="project.id">
-          <ProjectCard v-if="project.is_in_evidence" :project="project" />
+      <div class="cards-container">
+        <template v-for="project in projects" :key="project.id">
+          <ProjectCard v-if="project.isInEvidence" :project="project" />
         </template>
 
         <div class="projects-btn">
@@ -70,25 +66,6 @@ export default {
           </RouterLink>
         </div>
       </div>
-
-      <template v-if="store.projectsLoading">
-        <AppLoader />
-      </template>
-
-      <template v-if="store.failed">
-        <div class="failed-call">
-          <p>
-            Mi spiace, al momento non è possibile visualizzare i progetti,
-            riprova più tardi e invia una segnalazione
-          </p>
-
-          <div class="projects-btn">
-            <RouterLink :to="{ name: 'contacts' }">
-              <div class="my-btn"><button>Contattami</button></div>
-            </RouterLink>
-          </div>
-        </div>
-      </template>
     </div>
   </section>
 </template>

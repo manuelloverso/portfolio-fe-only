@@ -145,10 +145,10 @@ export default {
         </div>
 
         <!-- Project's Technologies -->
-        <template v-if="project.technologies.length != 0">
+        <template v-if="project.technologies.length > 0">
           <div class="technologies">
             <div class="technology-btn" v-for="tech in project.technologies">
-              {{ tech.name }}
+              {{ tech }}
             </div>
           </div>
         </template>
@@ -160,18 +160,7 @@ export default {
           loading="lazy"
           @mouseenter="cardCursorLeave"
           @mouseleave="cardCursor"
-          v-if="project.card_image.startsWith('http')"
-          :src="project.card_image"
-          :alt="project.title"
-        />
-        <img
-          v-else
-          loading="lazy"
-          @mouseenter="cardCursorLeave"
-          @mouseleave="cardCursor"
-          :src="
-            'https://admin.manuelloverso.com' + '/storage/' + project.card_image
-          "
+          :src="'/img/projects/' + project.cardImage"
           :alt="project.title"
         />
       </div>
@@ -184,16 +173,7 @@ export default {
         <!-- Image -->
         <img
           loading="lazy"
-          v-if="project.card_image.startsWith('http')"
-          :src="project.card_image"
-          :alt="project.title"
-        />
-        <img
-          v-else
-          loading="lazy"
-          :src="
-            'https://admin.manuelloverso.com' + '/storage/' + project.card_image
-          "
+          :src="'/img/projects/' + project.cardImage"
           :alt="project.title"
         />
       </div>
@@ -202,10 +182,10 @@ export default {
       <h2 class="project-title">{{ project.title }}</h2>
 
       <!-- technologies -->
-      <template v-if="project.technologies.length != 0">
+      <template v-if="project.technologies.length > 0">
         <div class="technologies">
           <div class="technology-btn" v-for="tech in project.technologies">
-            {{ tech.name }}
+            {{ tech }}
           </div>
         </div>
       </template>
