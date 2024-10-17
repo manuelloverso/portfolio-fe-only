@@ -112,15 +112,9 @@ export default {
     },
   },
 
-  watch: {
-    "store.projectsLoading": function (newVal) {
-      if (!newVal && !this.store.isTouch) {
-        this.animateHeading();
-      }
-    },
-  },
-
   mounted() {
+    if (!store.isTouch) this.animateHeading();
+
     if (window.innerWidth > 400) {
       this.perPage = 3;
     }

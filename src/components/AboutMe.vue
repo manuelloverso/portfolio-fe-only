@@ -59,9 +59,8 @@ export default {
   },
 
   mounted() {
-    if (!store.isTouch) {
-      this.animateHeading();
-    }
+    if (!store.isTouch) this.animateHeading();
+
     this.animateParagraph();
   },
 

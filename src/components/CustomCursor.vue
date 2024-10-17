@@ -11,47 +11,45 @@ export default {
 
   methods: {
     customCursor() {
-      if (!store.isTouch) {
-        /* custom cursor */
-        const cursor = document.getElementById("cursor");
-        const cursorShadow = document.getElementById("cursor-shadow");
+      /* custom cursor */
+      const cursor = document.getElementById("cursor");
+      const cursorShadow = document.getElementById("cursor-shadow");
 
-        const coords = {
-          x: 0,
-          y: 0,
-        };
+      const coords = {
+        x: 0,
+        y: 0,
+      };
 
-        const prevCoords = {
-          x: 0,
-          y: 0,
-        };
+      const prevCoords = {
+        x: 0,
+        y: 0,
+      };
 
-        window.addEventListener("mousemove", (e) => {
-          coords.x = e.clientX;
-          coords.y = e.clientY;
-        });
+      window.addEventListener("mousemove", (e) => {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+      });
 
-        function update() {
-          cursor.style.top = `${coords.y}px`;
-          cursor.style.left = `${coords.x}px`;
+      function update() {
+        cursor.style.top = `${coords.y}px`;
+        cursor.style.left = `${coords.x}px`;
 
-          const y = lerp(prevCoords.y, coords.y, 0.15);
-          const x = lerp(prevCoords.x, coords.x, 0.15);
+        const y = lerp(prevCoords.y, coords.y, 0.15);
+        const x = lerp(prevCoords.x, coords.x, 0.15);
 
-          cursorShadow.style.top = `${y}px`;
-          cursorShadow.style.left = `${x}px`;
+        cursorShadow.style.top = `${y}px`;
+        cursorShadow.style.left = `${x}px`;
 
-          prevCoords.x = x;
-          prevCoords.y = y;
-
-          requestAnimationFrame(update);
-        }
+        prevCoords.x = x;
+        prevCoords.y = y;
 
         requestAnimationFrame(update);
+      }
 
-        function lerp(a, b, t) {
-          return a * (1 - t) + b * t;
-        }
+      requestAnimationFrame(update);
+
+      function lerp(a, b, t) {
+        return a * (1 - t) + b * t;
       }
     },
 
@@ -90,19 +88,13 @@ export default {
         }, 2000);
       });
     },
-    "store.projectsLoading"(newVal) {
-      if (!newVal) {
-        /* questo serve per lanciare la funzione dopo che il dom è aggiornato */
-        this.$nextTick(() => {
-          this.hoverLinks();
-        });
-      }
-    },
   },
 
   mounted() {
-    this.customCursor();
-    this.hoverLinks();
+    if (!store.isTouch) {
+      this.customCursor();
+      this.hoverLinks();
+    }
   },
 };
 </script>

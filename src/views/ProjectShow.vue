@@ -288,6 +288,9 @@ export default {
         }
 
         a {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           text-decoration: none;
           padding: 10px;
           border-radius: 13px;
@@ -316,6 +319,15 @@ export default {
         .preview-link {
           background-color: var(--accent);
           color: black !important;
+          transition: background-color 0.3s ease-in-out;
+
+          & > svg {
+            fill: black;
+          }
+
+          &:hover {
+            background-color: rgb(145, 145, 145);
+          }
         }
       }
     }
