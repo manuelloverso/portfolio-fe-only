@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { store } from "../store.js";
 import Scroller from "../components/Scroller.vue";
 import AppLoader from "../components/AppLoader.vue";
@@ -17,8 +18,8 @@ export default {
     return {
       gsapInstance: null,
       store,
-      name: "",
-      email: "",
+      user_name: "",
+      user_email: "",
       message: "",
       failedCall: false,
       apiUrl: "https://admin.manuelloverso.com/api/contacts",
@@ -31,6 +32,39 @@ export default {
 
   methods: {
     sendMessage() {
+      this.submitted = true;
+      this.loading = true;
+      emailjs
+        .sendForm(
+          "portfolio_service",
+          "portfolio_form",
+          this.$refs.contactForm,
+          {
+            publicKey: "fO7Ptspz5NrPfMhh7",
+          }
+        )
+        .then(
+          (res) => {
+            console.log(res);
+            if (res.status === 200) {
+              console.log("email sent");
+              this.user_name = "";
+              this.user_email = "";
+              this.message = "";
+              this.loading = false;
+              this.success = true;
+            }
+          },
+          (err) => {
+            console.log("failed", err.text);
+            this.loading = false;
+            this.failedCall = true;
+            this.submitted = false;
+          }
+        );
+    },
+
+    /*     sendMessage() {
       this.submitted = true;
       this.loading = true;
       const data = {
@@ -65,7 +99,7 @@ export default {
           console.log(err);
         });
     },
-
+ */
     cursorOnBtn() {
       if (!store.isTouch) {
         const cursorShadow = document.getElementById("cursor-shadow");
@@ -171,7 +205,7 @@ export default {
             <h3 v-if="success" class="success">
               Grazie per avermi contattato! Risponderò al più presto.
             </h3>
-            <form @submit.prevent="sendMessage">
+            <form ref="contactForm" @submit.prevent="sendMessage">
               <div class="group">
                 <label for="name" class="form-label">Nome*</label>
                 <input
@@ -179,29 +213,25 @@ export default {
                   minlength="2"
                   maxlength="50"
                   type="text"
-                  name="name"
-                  id="name"
+                  name="user_name"
+                  id="user_name"
                   placeholder="Fabio Rossi"
-                  v-model="name"
+                  v-model="user_name"
                 />
-
-                <p class="error" v-if="errors.name">{{ errors.name }}</p>
               </div>
 
               <div class="group">
-                <label for="email" class="form-label">Email*</label>
+                <label for="user_email" class="form-label">Email*</label>
                 <input
                   required
                   minlength="2"
                   maxlength="50"
                   type="email"
-                  name="email"
-                  id="email"
+                  name="user_email"
+                  id="user_email"
                   placeholder="abc@mail.com"
-                  v-model="email"
+                  v-model="user_email"
                 />
-
-                <p class="error" v-if="errors.email">{{ errors.email }}</p>
               </div>
 
               <div class="group">
@@ -217,8 +247,6 @@ export default {
                   v-model="message"
                   placeholder="Dimmi qualcosa.."
                 ></textarea>
-
-                <p class="error" v-if="errors.message">{{ errors.message }}</p>
               </div>
 
               <div class="d-flex justify-content-center">
