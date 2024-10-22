@@ -14,7 +14,7 @@ export default {
     return {
       projects,
       project: null,
-      id: null,
+      slug: null,
       gsapInstance: null,
     };
   },
@@ -40,9 +40,9 @@ export default {
   },
 
   mounted() {
-    this.id = Number(this.$route.params.id);
+    this.slug = this.$route.params.slug;
 
-    this.project = projects.find((p) => p.id === this.id);
+    this.project = projects.find((p) => p.slug === this.slug);
 
     if (!this.project) {
       this.$router.push({ name: "NotFound" });

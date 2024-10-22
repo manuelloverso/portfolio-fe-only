@@ -130,7 +130,7 @@ export default {
 <template>
   <RouterLink
     class="card-link project-card-container"
-    :to="'projects/' + project.id"
+    :to="'projects/' + project.slug"
   >
     <div
       ref="projectCard"
