@@ -33,7 +33,7 @@ export default {
 };
 </script>
 <template>
-  <header id="app-header">
+  <header id="app-header update-redirect">
     <!-- Navigation bar -->
     <nav class="md-container navbar">
       <!-- Site Logo -->
